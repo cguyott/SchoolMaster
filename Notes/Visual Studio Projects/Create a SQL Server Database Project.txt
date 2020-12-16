@@ -1,0 +1,141 @@
+
+1. Start Visual Studio 2019
+
+2. Go to the "Tools" menu and selecting the "Options..." item.
+
+   Go to the "SQL Server Tools" section (in the left most pane) and open
+   "Transact-SQL Editor" then open "Query Execution" and select the
+   "General" tab.
+
+   Make sure that "By default, open new queries in SQLCMD mode" is checked.
+
+3a. If you have an existing solution, right click on "Solution '...'" and select "Add" and then "New Project...".
+3b. If this is the first project in the solution, go to file menu, select new, select project.
+
+4. Under "Installed" open "Query Language"
+
+5. Select a "SQL Server Database Project", and click "next".
+
+   Set "Project Name:" to be "SQLDatabase" and set the "Location" to be the solution
+   folder (which is the default).
+
+   Click on the "Create" button.
+
+6. Now right click on the SQLDatabase project and select "Properties"
+
+	a. Go to "Project Settings" and change the "Target platform:" to be
+	   "SQL Server 2019 or Azure SQL Database Managed Instance". 
+
+	b. Go to the "SQLCLR" tab and set the "Assembly name" and the "Default namespace"
+	   to be NMS.<repository name>.<project name> (in my case it was
+	   NMS.Microservice.Audit.SQLDatabse).
+
+	   Also set the "Target framework:" to ".NET Framework 4.8.
+
+	c. While in the "SQLCLR" tab click on the "Assembly Information..." button
+	   and specify the following information:
+
+		Title: SchoolMaster.SQLDatabase
+		Description: NMS.Microservice.Audit.SQLDatabase
+		Company: SchoolMaster.SQLDatabase
+		Product: School Master
+		Copyright: Copyright © 2021 Briarwood Consulting
+		Assembly version: 1.0.0.0
+		File version: 1.0.0.0
+		Neutral language: English (United States)
+
+	d. Go to the "SQLCLR Build" tab and change the "Configuration" to
+	   "All Configurations" and then set "Treat warnings as errors" to "All".
+
+	   Uncheck "Define DEBUG constant" and "Define TRACE constant".
+
+	e. Go to the "Build" tab and leave the "Configuration" set to
+	   "All Configurations" and then make sure that "Treat Transact-SQL warnings as errors"
+	   is checked.
+
+	   Then set the "Build output file name:" to SchoolMaster.SQLDatabase.
+
+	   I found that I was unable to save the change to the "Build output file name:"
+	   from Visual Studio 2017.  Instead I had to go into the SQLDatabase.sqlproj file
+	   with a text editor and manually change the "<SqlTargetName>" tag to the correct
+	   value for both the "Debug" and "Release" configurations.
+
+	f. Go to the "Code Analysis" tab and leave the "Configuration" set to
+	   "All Configurations" and then make sure that "Enable Code Analysis on Build"
+	   is checked and that "Treat Warning as Error" is checked for each of the rows
+	   in the "Rules" section.
+
+	g. Go back to the SQLCLR Build tab and for the Debug and Release builds
+	   seperately check the "XML documentation file:" check box.  This should
+	   default the path and file to the correct value
+	   (bin\Release or Debug\NMS.Microservice.LicenseUsage.SQLDatabase.xml).
+
+7. The SQL Server Database Project puts all of the files directly in the
+   project folder.  This can get confusing over time so I added the following
+   folders to the project:
+
+	Scripts
+	SSMS Scripts - Not Deployed
+	Stored Procedures
+	Tables
+
+   "SSMS Scripts - Not Deployed" is for scripts that are useful to run from
+   "SQL Server Management Studio" and have their "Build Action" property set to
+   "None" for each of the scripts in this folder.
+
+8. I then right clicked on the appropriate folder, such as Tables, and selected
+   "Add" and then "New Item..." and selected the appropriate item under "SQL Server".
+
+   In this case I went to "Tables and Views" and selected a "Table".
+
+   "Stored Procedures", "User-defined Table Types" and other useful items are
+   listed under "Programmability".
+
+9. Depending on what you are doing in your Stored Procedures and other SQL
+   constructs you may need to add a "Reference" to the master database.
+
+   To do this you:
+
+	a. Right click on "References".
+	b. Select "Add Database Reference...".
+	c. Select "System database".
+	d. And then specify "master".
+
+   I did not change any other settings and clicked on the "OK" button.
+
+
+10. After creating all of the objects I needed to populate the database I right-clicked
+    on the project and selected "Build".
+
+    I then resolved all of the build errors and warnings that were generated.
+
+    You may see a warning that "Transact-SQL IntelliSense is not active for this editor
+    because the editor is in SQLCMD mode.".  This is fine.  We run the editor in SQLCMD
+    mode by default.
+
+11. Once things are successfully building it is time to "Publish" the database.
+
+    a. Right click on the database project and select "Publish".
+
+    b. The "Publish Database" dialog appears.  If you have not yet created an empty
+       database to test with you can do so by following these instructions:
+       "..\SQL Server 2019\Creating a Database.txt"
+
+    c. Click the "Edit..." button and specify the "Target Database connection" information.
+
+	Server Name: <server name, fully qualified>
+	Authentication: SQL Server Authentication
+	User Name: <admin login>
+	Password: <admin password>
+	Remember Password: Checked
+	Database Name: <database name>
+
+    d. Test the connection.  Once it is working click on the "OK" button.
+
+11. Back in the "Publish Database" dialog you can now choose to publish the database
+    to a script ("Generate Script") or to the database you configued ("Publish").
+
+12. If you choose "Generate Script" the project will open a window with the script in it.
+    The contents of the window will have a file name
+    (NMS.Microservice.Audit.SQLDatabase.publish.sql) as it's title and the file will have
+    been saved in the bin\Debug or bin\Release folder.

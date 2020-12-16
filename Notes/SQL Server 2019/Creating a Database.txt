@@ -1,0 +1,18 @@
+
+1. Right click on "Databases" and select "New Database".
+
+2. In the "General" tab specify the database name.
+
+3. In the "Options" tab set the "Recovery Model" to "Simple" if you are doing this on a development machine.
+
+4. Select "OK".
+
+5. If you might need to use the LIKE operator or do other full text searches you will need to verify that
+   full text search is enabled.
+
+   To do this open a "New Query" window and run the following SQL:
+
+   SELECT FULLTEXTSERVICEPROPERTY('IsFullTextInstalled')
+
+   If the query returns 1 then Full-Text Search is enabled. If it returns 0 then Full-Text Search is not
+   enabled and you will need to run SQL Server Installation Center to add the Full-Text Search feature.

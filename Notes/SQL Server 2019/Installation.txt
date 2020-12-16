@@ -1,0 +1,39 @@
+
+1. Run "setup.exe".
+
+2. Select "Installation" in the left side menu.
+
+3. Select "New SQL Server stand-alone installation or add features ..."
+
+4. Accept all of the defaults in all of the screens except the following:
+
+	No need to open ports on firewall if not accessing from other PCs.
+
+	Select the following "Instance Features":
+
+		Database Engine Services
+		Machine Learning Services and Language Extensions
+			R
+			Python
+		Full-Text and Semantic Extractions for Search
+		Data Quality Services
+		PolyBase Query Service for HDFS data sources
+
+	Select the following "Shared Features":
+
+		Machine Learning Server (Standalone)
+			R
+			Python
+		Data Quality Client
+		Client Tools Connectivity
+		Client Tools Backwards Compatibility
+		Client Tools SDK
+		SQL Client Connectivity SDK
+		Master Data Services
+
+5. The "Collation" should be set to "SQL_Latin1_General_CP1_CI_AS".
+
+6. Under "Server Configuration" be sure to specify "Mixed Mode".
+
+7. Set the "sa" password (letM3Get$In2) and add the current user (MGUYOTT01\Marc) in
+   "Specify SQL Server administrator".
