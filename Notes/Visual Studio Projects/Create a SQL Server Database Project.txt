@@ -132,10 +132,10 @@
 
     d. Test the connection.  Once it is working click on the "OK" button.
 
-11. Back in the "Publish Database" dialog you can now choose to publish the database
+12. Back in the "Publish Database" dialog you can now choose to publish the database
     to a script ("Generate Script") or to the database you configued ("Publish").
 
-12. If you choose "Generate Script" the project will open a window with the script in it.
+13. If you choose "Generate Script" the project will open a window with the script in it.
     The contents of the window will have a file name
-    (NMS.Microservice.Audit.SQLDatabase.publish.sql) as it's title and the file will have
+    (SchoolMaster.SQLDatabase.publish.sql) as it's title and the file will have
     been saved in the bin\Debug or bin\Release folder.
