@@ -79,6 +79,8 @@
   <ItemGroup>
     <None Include="SSMS Scripts - Not Deployed\00 CreateDatabase.sql" />
     <Build Include="Tables\Person.sql" />
+    <None Include="SSMS Scripts - Not Deployed\01 PopulatePersonTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\02 PopulateRoleTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">
@@ -86,5 +88,12 @@
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
     </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Role.sql" />
+    <Build Include="Tables\PersonRoleMap.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SQLDatabase.refactorlog" />
   </ItemGroup>
 </Project>
