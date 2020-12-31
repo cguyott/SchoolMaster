@@ -13,4 +13,8 @@
     [LastPasswordChangedDate] DATETIME2 NOT NULL, 
     [CreatedDate] DATETIME2 NOT NULL, 
     CONSTRAINT [PK_Person] PRIMARY KEY ([Id]),
-)
+);
+GO
+
+CREATE UNIQUE INDEX UQ_Login ON [dbo].[Person] ([Login]);
+GO

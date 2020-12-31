@@ -67,11 +67,50 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="SSMS Scripts - Not Deployed" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SSMS Scripts - Not Deployed\00 CreateDatabase.sql" />
+    <None Include="SSMS Scripts - Not Deployed\01 PopulatePersonTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\02 PopulateRoleTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\03 PopulatePersonRoleMapTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\04 PopulateAddressTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\05 PopulateEmailTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\06 PopulatePhoneTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\07 PopulateAdministratorTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\08 PopulateInstructorTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\09 PopulateStudentTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\10 PopulateGuardianTable.sql" />
+    <None Include="SSMS Scripts - Not Deployed\11 PopulateStudentGuardianTable.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\150\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Address.sql" />
+    <Build Include="Tables\Administrator.sql" />
+    <Build Include="Tables\Email.sql" />
+    <Build Include="Tables\Guardian.sql" />
+    <Build Include="Tables\Instructor.sql" />
+    <Build Include="Tables\Person.sql" />
+    <Build Include="Tables\PersonRoleMap.sql" />
+    <Build Include="Tables\Phone.sql" />
+    <Build Include="Tables\Role.sql" />
+    <Build Include="Tables\Student.sql" />
+    <Build Include="Tables\StudentGuardianMap.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SQLDatabase.refactorlog" />
   </ItemGroup>
 </Project>
