@@ -1,0 +1,38 @@
+
+How to configure Code Analysis in .NET Core
+https://curia.me/how-to-configure-code-analysis-in-net-core/
+
+Configure and use Roslyn analyzer rules
+https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers?view=vs-2019
+
+StyleCop.Analyzers by Sam Harwell et. al. 1.1.118
+https://www.nuget.org/packages/StyleCop.Analyzers
+
+1. You will need to add the "StyleCop.Analyzers" NuGet package to each of
+   the .NET Core projects that you wish to use Code Analysis on.
+
+2. You have to enable "Full Solution Analysis" in Visual Studio 2017 by going
+   to the "Tools" menu and selecting the "Options..." item.
+
+   Go to the "Text Editor" section (in the left most pane) and open "C#" and then click
+   on the "Advanced" item.
+
+   Make sure that "Background analysis scope:" is set to "Entire solution".
+
+3. You will want to make sure that you are not inserting tabs when indenting code.
+
+   Go to the "Tools" menu and select the "Options..." item.
+
+   Go to the "Text Editor" section (in the leftmost pane) and open "All Languages" and then "Tabs".
+
+   Make sure that "Insert spaces" item is checked.
+
+4. You will want to change each projects properties to treat all warnings as errors.
+
+   In Visual Studio, right click on the project and select "Properties".
+
+   Go to the "Build" tab and change the "Configuration:" drop down to be "All Configurations".
+
+   Select the "All" option under "Treat warnings as errors".
+
+5. Restart Visual Studio 2019.

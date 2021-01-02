@@ -1,0 +1,126 @@
+
+We are using xUnit.net as our unit testing framework.
+
+1. Make sure that you have the correct versions of the .NET Core software installed.
+
+   You can check which versions of the .NET Core 2.x software you have installed by
+   going into the Control Panel and selecting "Uninstall a program" under "Programs".
+
+   You should see entries similar to:
+
+	Microsoft .NET Core SDK 3.1.403 (x64)
+	Microsoft ASP.NET Core 5.0.1 - Shared Framework
+
+2. In Visual Studio 2019, create the unit test project.
+
+	a. You want to create an xUnit Test Project so right click on the solution
+	   and select "Add" and then "New Project..."
+
+	b. In the "Add New Project" dialog select "C#", then "Windows" and then "Test".
+
+	   In the list that appear select "xUnit Test Project (.NET Core)".
+
+	c. Click on "Next".
+
+3. Set the "Project Name" to "WebAPI.Tests" or whatever you deem appropriate.
+
+   The "Location" should be defaulted to the folder containing the solution (the .sln file).
+   Do not change this.
+
+   Press the "Create" button.
+
+4. Right click on the project and select "Properties.
+
+   Go to the "Application" tab and set the "Assembly name" and the "Default namespace"
+   to be "SchoolMaster.WebAPI.Tests" or whatever you deem appropriate.
+
+5. Go to any files that were created as part of the creation of the project and change
+   thier namespaces appropriately.
+
+6. Still in the "Properties" settings, go to the "Build" tab.
+
+   Change the "Configuration:" setting to be "All Configurations".
+
+   Uncheck "Define TRACE constant".
+
+   Select the "All" item under "Treat warnings as errors".
+
+7. Change the "Configuration:" to "Debug" and then repeat using appropriate values
+   for "Release":
+
+   Set the output path by browsing to "bin\Debug\".
+
+   Check "XML documentation file:" and confirm it creates the .xml file in the
+   folder identified in the above step.
+
+   Use "bin\Release\" for the Release configuration.
+
+8. Still in the "Properties" settings, go to the "Package" tab.
+
+   Change the following settings (adjusting for your specific project):
+
+	Package id:		SchoolMaster.WebAPI.Tests
+	Package version:	1.0.0
+	Authors:		Briarwood Consulting
+	Company:		Briarwood Consulting
+	Product:		School Master
+	Copyright:		Copyright © 2021 Briarwood Consulting
+	Assembly neutral language:	English (United States)
+	Assembly version:	1.0.0.0
+	Assembly file version:	1.0.0.0
+
+9. Right click on the WebAPI.Tests project, select "Add" and then "New Item".
+
+   Select "Assembly Information File" (AssemblyInfo.cs) and click on "Add".
+
+   Open the file and add this line:
+
+	[assembly: CLSCompliant(true)]
+
+   That will require you to add this using statement:
+
+	using System;
+
+   Move the AssemblyInfo.cs file into the Properties folder.
+
+10. Set up code analysis as described in "Code Analysis - Initial Setup.txt"
+
+11. When you created the xUnit Test Project, Visual Studio 2019 creates a UnitTest1.cs file
+    for you.  Open this file and replace the default "Test1()" implementation with the following:
+
+        [Fact]
+        public void PassingTest()
+        {
+            Assert.Equal(4, Add(2, 2));
+        }
+
+        [Fact]
+        public void FailingTest()
+        {
+            Assert.Equal(5, Add(2, 2));
+        }
+
+        private int Add(int x, int y)
+        {
+            return x + y;
+        }
+
+12. Build the WebAPI.Test project and address any errors.
+
+13. Now open the "Test Explorer" window.  You can open the "Test Explorer" window by going
+    to the "Test" menu and selecting the "Test Explorer".
+
+    Visual Studio should find the unit tests you just created and if you click on the
+    "Run All" link Visual Studio will run your unit tests.
+
+14. If you want to debug a test that is failing simply set a break point inside that
+    unit test and then, in Test Explorer, right click on the unit test you want to debug
+    and select "Debug".
+
+15. Install the latest FakeItEasy NuGet package: https://www.nuget.org/packages/FakeItEasy/
+
+16. Install the latest AutoFixture Xunit2 NuGet package:
+    https://www.nuget.org/packages/AutoFixture.Xunit2/
+
+17. Install the latest AutoFixture AutoFakeItEasy NuGet package:
+    https://www.nuget.org/packages/AutoFixture.AutoFakeItEasy/

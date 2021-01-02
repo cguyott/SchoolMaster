@@ -1,0 +1,129 @@
+
+Create an ASP.NET Core web app in Azure
+https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-dotnet
+
+Be sure to choose "Windows" as your hosting platform.
+
+If you are looking at the above web page you want to do the section titled "Create an ASP.NET Core web app".
+This covers steps 1 through 5.
+
+1. In Visual Studio, create a project by selecting File > New > Project or
+   by right clicking on the solution and selecting Add > New Project...
+
+2. In the New Project dialog, select Visual "C#" > "Windows" > "Web" and then from the list of
+   templates select "ASP.NET Core Web Application".
+
+   Select "Next".
+
+3. Set the "Project Name" to "WebAPI" or whatever you deem appropriate.
+
+   If you are also creating a new solution you will be prompted to set these values:
+
+   Set the "Location" to be the solution folder.
+
+   Set the "Solution name" to be "SchoolMaster" or whatever you deem appropriate.
+
+   If you are adding this project to an existing solution you will be prompted to set these values:
+
+   The "Location" should be defaulted to the folder containing the solution (the .sln file).  Do not
+   change this.
+
+   Press the "Create" button.
+
+4. The "Creata a new ASP.NET Core Web Application" dialog will appear.
+
+   The first drop down should be ".NET Core" and the second drop down
+   should be "ASP.NET Core 3.1".
+
+   Select "API" from the list of project types for our Web API.
+
+   Leave "Enable Docker Support" unchecked.
+
+   Check "Configure for HTTPS".
+
+   Leave "Authentication" specified as "No Authentication".
+
+5. Click on the "Create" button and close the "WebAPI" tab that opens.
+
+6. Right click on the project and select "Properties.
+
+   Go to the "Application" tab and set the "Assembly name" and the "Default namespace"
+   to be "SchoolMaster.WebAPI" or whatever you deem appropriate.
+
+7. Change the "namespace" statements in the following files:
+
+	Program.cs
+	Startup.cs
+	WeatherForecast.cs
+	Controllers/WeatherForecastController.cs
+
+   to add "SchoolMaster." to the front of them.
+
+8. Right click on the WebAPI project, select "Add" and then "New Item".
+
+   Select "Assembly Information File" (AssemblyInfo.cs) and click on "Add".
+
+   Open the file and add this line:
+
+	[assembly: CLSCompliant(true)]
+
+   That will require you to add this using statement:
+
+	using System;
+
+   Move the AssemblyInfo.cs file into the Properties folder.
+
+9. Right click on the project and select "Rebuild".  Initially you will get some build
+   warnings concerning things not being "CLS-compliant".  To address these warnings:
+
+	Add "[CLSCompliant(false)]" before the definition of CreateWebHostBuilder()
+	in Program.cs.
+
+	Add "[CLSCompliant(false)]" before the "Startup" class definition in
+	Startup.cs.
+
+	Add "[CLSCompliant(false)]" before the "WeatherForecastController" class definition in
+	the "Controllers/WeatherForecastController.cs".
+
+    Address any other warnings (though there should be none).
+
+10. Right click on the WebAPI project and select "Properties".  Go to the "Build" tab.
+
+    Change the "Configuration:" setting to be "All Configurations" and then select
+    the "All" item under "Treat warnings as errors".
+
+    Uncheck the "Define TRACE constant" in the "General" section.
+
+11. Change the "Configuration:" to "Debug" and then repeat using appropriate values
+    for "Release":
+
+    Set the output path by browsing to "bin\Debug\".
+
+    Check "XML documentation file:" and confirm it creates the .xml file in the
+    folder identified in the above step.
+
+    Use "bin\Release\" for the Release configuration.
+
+12. Still in the "Properties" settings, go to the "Package" tab.
+
+    Change the following settings (adjusting for your specific project):
+
+	Package id:		SchoolMaster.WebAPI
+	Package version:	1.0.0
+	Authors:		Briarwood Consulting
+	Company:		Briarwood Consulting
+	Product:		SchoolMaster
+	Copyright:		Copyright © 2021 Briarwood Consulting
+	Assembly neutral language:	English (United States)
+	Assembly version:	1.0.0.0
+	Assembly file version:	1.0.0.0
+
+13. Set up code analysis as described in "Code Analysis - Initial Setup.txt"
+
+14. Set the WebAPI as the Startup project, build all projects in the solution and
+    address any errors that are generated.
+
+15. With the WebAPI set as the Startup project, from the "Debug" menu, select
+    "Debug" > "Start without Debugging" to run the web app locally.
+
+16. You should trust the IIS Express certficate if you are asked.

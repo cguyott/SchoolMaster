@@ -1,0 +1,64 @@
+
+xUnit.net
+
+This is the framework we are using for writing our unit tests.
+It is very light weight, extensible and easy to use.
+
+NuGet Package: https://www.nuget.org/packages/xunit/
+GitHub Repository: https://github.com/xunit/xunit
+Getting Started: https://xunit.github.io/
+
+-----
+
+Fake it Easy
+
+We switched from Moq to FakeItEasy to setup mocks, stubs, fakes, what-have-you.
+ Has a shorter learning curve and a more consistent calling convention.
+
+NuGet Package: https://www.nuget.org/packages/FakeItEasy/
+GitHub Repository: https://github.com/FakeItEasy/FakeItEasy
+
+-----
+
+AutoFixture
+
+An open source framework for .NET designed to minimize the 'Arrange' phase of your unit tests.
+Its primary goal is to allow developers to focus on what is being tested rather than how to setup
+the test scenario, by making it easier to create object graphs containing test data.
+
+This library integrates seamlessly with xUnit.net, and allows unit tests to be parameterized,
+allowing the test inputs to be passed into the unit test method directly.  Takes a lot of the
+suck out of the test setups.
+
+There isn’t any formal documentation, but rather of series of blog posts by the author.
+All are worth reading, and it will probably take reading several times before you truly get it.
+That was my experience, anyway :)
+
+NuGet Package: https://www.nuget.org/packages/AutoFixture/
+GitHub Repository: https://github.com/AutoFixture/AutoFixture
+Blog Posts: https://blog.ploeh.dk/tags/#AutoFixture-ref
+
+-----
+
+Books
+
+I’ve found the following books helpful , and they are available on Safari Books Online, which Nuance provides as a perk.   I think you need to enroll as part of Nuance University, but I don’t remember, and things could have changed.  I’m sure thevoice.nuance.com (https://nuance.jiveon.com/docs/DOC-44051) would be as helpful as always ;)  You should be able to use your Nuance domain creds to access Safari.  Anyway, they get into how to design/structure testable code, as well as how to test.
+
+xUnit Test Patterns: Refactoring Test Code, Gerard Meszaros  (not to be confused with the xUnit.net framework)
+https://www.oreilly.com/library/view/xunit-test-patterns/9780131495050/
+
+The Art of Unit Testing, Second Edition: with Examples in .NET, Roy Osherove
+https://www.oreilly.com/library/view/the-art-of/9781617290893/
+
+Not strictly a unit testing book, but a damn good one, written by the author of AutoFixture
+Dependency Injection in .NET, Mark Seemann
+https://www.oreilly.com/library/view/dependency-injection-in/9781935182504/
+
+Other Userful Links
+
+A heuristic for formatting code according to the AAA pattern by Mark Seemann
+https://blog.ploeh.dk/2013/06/24/a-heuristic-for-formatting-code-according-to-the-aaa-pattern/
+
+Mocks Aren't Stubs
+https://martinfowler.com/articles/mocksArentStubs.html
+
