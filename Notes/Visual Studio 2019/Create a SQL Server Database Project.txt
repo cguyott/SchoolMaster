@@ -139,3 +139,6 @@
     The contents of the window will have a file name
     (SchoolMaster.SQLDatabase.publish.sql) as it's title and the file will have
     been saved in the bin\Debug or bin\Release folder.
+
+14. Note: You must save the SQLDatabase.refactorlog file in your SCCS.  The SQL database project
+          will not build without it.

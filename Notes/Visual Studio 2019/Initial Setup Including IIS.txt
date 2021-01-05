@@ -1,0 +1,77 @@
+
+It is important that you are running Visual Studio 2019 (latest version).
+
+1. Install Visual Studio 2019 Enterprise (latest version).
+
+	Be sure to include the the following workloads from "Web & Cloud":
+
+		Azure development
+		ASP.NET and web development
+		Data storage and processing
+
+	And the following workloads from "Other Toolsets":
+
+		.NET Core cross-platform development
+
+	Feel free to add other workloads as desired.
+
+2. Make sure you have the 4.8 (or later) .NET Framework installed.
+
+3. Be sure the .NET Core 3.1 SDK (or later - includes the runtime) is installed.
+
+	https://dotnet.microsoft.com/download
+
+   Click on "Download .NET Core SDK" save it to a temp folder and then when finished
+   downloading "open" the download.
+
+4. Make sure you have the needed IIS components installed.
+
+	a. Open the Control Panel.
+
+	b. Select "Programs" and then "Turn Windows features on or off".
+
+	c. Make sure "Internet Information Services" is checked.  If it is
+	   not then click on it.  This item will not actually be a "check".
+	   It will be a "block".  This is because you can only enable certain
+	   aspects of IIS on Windows 10.  All of the parts of IIS that can
+	   be enabled on Windows 10 will be checked when you check the top level
+	   box.
+
+	d. Make sure "Internet Information Services Hostable Web Core" is checked.
+
+	e. After applying the above changes and rebooting (if needed, I did not need
+	   to) you can verify that IIS is installed by going to http://localhost/ in
+	   your web browser and see if you can see the IIS Windows default home page.
+
+5. Start Visual Studio 2019.
+
+6. Go to "Tools" > "NuGet Package Manager" and select "Package Manager Settings".
+
+7. Go to the "General" tab of the "NuGet Package Manager" section.
+
+8. Make sure both options under "Package Restore" are checked:
+
+	Allow NuGet to download missing packages
+	Automatically check for missing packages during build in Visual
+
+9. Under "Package Management" in the "Default package management format:" to "PackageReference".
+
+10. Now go to the "Tools" menu and selecting the "Options..." item.
+
+11. Go to the "SQL Server Tools" section (in the left most pane) and open
+    "Transact-SQL Editor" then open "Query Execution" and select the
+    "General" tab.
+
+12. Make sure that "By default, open new queries in SQLCMD mode" is checked.
+
+13. Now go to the "Text Editor" section (in the left most pane) and
+    open "C#" and then click on the "Advanced" item.
+
+14. Make sure that "Background analysis scope:" is set to "Entire solution".
+
+15. And finally go to the "Text Editor" section (in the leftmost pane)
+    and open "All Languages" and then "Tabs".
+
+16. In the "Indenting" section select "Smart".
+
+17. In the "Tab" section make sure that "Insert spaces" item is checked and set the "Tab size:" and "Indent size" to 4.
