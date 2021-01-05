@@ -1,17 +1,13 @@
 namespace SchoolMaster.WebAPI
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.HttpsPolicy;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
+    using SchoolMaster.WebAPI.Middleware;
 
     /// <summary>
     /// Startup class for initializing our Web API environment.
@@ -49,9 +45,30 @@ namespace SchoolMaster.WebAPI
         /// <param name="env">Web host environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Inject middleware to handle all exceptions.
+            ILogger errorHandlingLogger = app.ApplicationServices.GetService<ILogger<ErrorHandlingMiddleware>>();
+            app.UseMiddleware<ErrorHandlingMiddleware>(errorHandlingLogger);
+
+            // Inject middlware to log every API call.
+            errorHandlingLogger = app.ApplicationServices.GetService<ILogger<RequestLoggingMiddleware>>();
+            app.UseMiddleware<RequestLoggingMiddleware>(errorHandlingLogger);
+
+            // ????? app.UseHealthChecks("/IsAlive");
+
+            // This is critical!  If you don't add authentication the token will validate
+            // but the request will return 401 (unauthorized);
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
+            }
+            else
+            {
+                // The default HSTS value is 30 days. You may want to change
+                // this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
