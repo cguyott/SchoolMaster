@@ -5,6 +5,7 @@
     using System.Linq;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using SchoolMaster.WebAPI.DataModel;
 
     /// <summary>
     /// Controller for the WeatherForecast Web API.
