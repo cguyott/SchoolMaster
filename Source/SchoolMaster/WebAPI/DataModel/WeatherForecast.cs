@@ -1,4 +1,4 @@
-namespace SchoolMaster.WebAPI
+namespace SchoolMaster.WebAPI.DataModel
 {
     using System;
 

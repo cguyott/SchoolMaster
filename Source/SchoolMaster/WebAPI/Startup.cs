@@ -8,6 +8,7 @@ namespace SchoolMaster.WebAPI
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using SchoolMaster.WebAPI.Middleware;
+    using SchoolMaster.WebAPI.Swagger;
 
     /// <summary>
     /// Startup class for initializing our Web API environment.
@@ -35,7 +36,13 @@ namespace SchoolMaster.WebAPI
         /// <param name="services">Services collection.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            string sqlConnection = Configuration.GetValue<string>("SQL:connectString");
+
             services.AddControllers();
+            services.AddHealthChecks()
+                .AddSqlServer(sqlConnection);
+
+            services.AddSwaggerDocument();
         }
 
         /// <summary>
@@ -53,8 +60,6 @@ namespace SchoolMaster.WebAPI
             errorHandlingLogger = app.ApplicationServices.GetService<ILogger<RequestLoggingMiddleware>>();
             app.UseMiddleware<RequestLoggingMiddleware>(errorHandlingLogger);
 
-            // ????? app.UseHealthChecks("/IsAlive");
-
             // This is critical!  If you don't add authentication the token will validate
             // but the request will return 401 (unauthorized);
             app.UseAuthentication();
@@ -71,6 +76,15 @@ namespace SchoolMaster.WebAPI
                 app.UseHsts();
             }
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "School Master API v1");
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -80,6 +94,12 @@ namespace SchoolMaster.WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks(
+                    "/health",
+                    new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+                    {
+                        ResponseWriter = SchoolMaster.WebAPI.HealthCheck.ResponseWriters.WriteResponse,
+                    });
             });
         }
     }
