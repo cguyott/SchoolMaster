@@ -30,7 +30,13 @@
             string sqlConnectionString)
         {
             m_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
             m_sqlConnectionString = sqlConnectionString ?? throw new ArgumentNullException(nameof(sqlConnectionString));
+            if (string.IsNullOrWhiteSpace(sqlConnectionString))
+            {
+                throw new ArgumentException("Argument cannot be whitespace or the empty string.", nameof(sqlConnectionString));
+            }
+
             m_thisAsIDataAccess = this;
         }
 
