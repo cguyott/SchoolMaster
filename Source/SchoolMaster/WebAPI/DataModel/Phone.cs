@@ -22,6 +22,10 @@
         {
             m_id = -1;
             m_modified = false;
+            m_areaCode = null;
+            m_exchangeCode = null;
+            m_subscriberNumber = null;
+            m_contactOrder = 0;
         }
 
         /// <summary>
