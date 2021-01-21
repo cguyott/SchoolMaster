@@ -14,7 +14,7 @@
         /// <summary>
         /// Gets or sets address 2.
         /// </summary>
-        /// <remarks>Cannot exceed 95 characters in length. Can be null. Cannot be empty string or whitespace.</remarks>
+        /// <remarks>Cannot exceed 95 characters in length. Can be null. Cannot be empty string or whitespace. Attempting to set this property to whitespace or an empty string will set it to null.</remarks>
         string Address2 { get; set; }
 
         /// <summary>

@@ -67,10 +67,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NullEmail tests.
+        /// Constructor_Fails_EmailNull tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_NullEmail()
+        public void Constructor_Fails_EmailNull()
         {
             // Arrange.
 
@@ -79,10 +79,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_EmptyEmail tests.
+        /// Constructor_Fails_EmailEmpty tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_EmptyEmail()
+        public void Constructor_Fails_EmailEmpty()
         {
             // Arrange.
 
@@ -91,10 +91,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_WhitespaceEmail tests.
+        /// Constructor_Fails_EmailWhitespace tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_WhitespaceEmail()
+        public void Constructor_Fails_EmailWhitespace()
         {
             // Arrange.
 
@@ -103,10 +103,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NullEmail tests.
+        /// Constructor_Fails_EmailLong tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_EmailTooLong()
+        public void Constructor_Fails_EmailLong()
         {
             // Arrange.
 
@@ -137,10 +137,10 @@
         }
 
         /// <summary>
-        /// Set_Email_Fails_NullEmail tests.
+        /// Set_Email_Fails_EmailNull tests.
         /// </summary>
         [Fact]
-        public void Set_Email_Fails_NullEmail()
+        public void Set_Email_Fails_EmailNull()
         {
             // Arrange.
 
@@ -158,10 +158,10 @@
         }
 
         /// <summary>
-        /// Set_Email_Fails_EmptyEmail tests.
+        /// Set_Email_Fails_EmailEmpty tests.
         /// </summary>
         [Fact]
-        public void Set_Email_Fails_EmptyEmail()
+        public void Set_Email_Fails_EmailEmpty()
         {
             // Arrange.
 
@@ -179,10 +179,10 @@
         }
 
         /// <summary>
-        /// Set_Email_Fails_WhitespaceEmail tests.
+        /// Set_Email_Fails_EmailWhitespace tests.
         /// </summary>
         [Fact]
-        public void Set_Email_Fails_WhitespaceEmail()
+        public void Set_Email_Fails_EmailWhitespace()
         {
             // Arrange.
 
@@ -200,10 +200,10 @@
         }
 
         /// <summary>
-        /// Set_Email_Fails_EmailTooLong tests.
+        /// Set_Email_Fails_EmailLong tests.
         /// </summary>
         [Fact]
-        public void Set_Email_Fails_EmailTooLong()
+        public void Set_Email_Fails_EmailLong()
         {
             // Arrange.
 

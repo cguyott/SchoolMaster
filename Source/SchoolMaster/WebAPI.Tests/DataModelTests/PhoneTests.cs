@@ -62,10 +62,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NegativeId tests.
+        /// Constructor_Fails_IdNegative tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_NegativeId()
+        public void Constructor_Fails_IdNegative()
         {
             // Arrange.
 
@@ -74,10 +74,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_ZeroId tests.
+        /// Constructor_Fails_IdZero tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_ZeroId()
+        public void Constructor_Fails_IdZero()
         {
             // Arrange.
 
@@ -86,10 +86,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NullAreaCode tests.
+        /// Constructor_Fails_AreaCodeNull tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_NullAreaCode()
+        public void Constructor_Fails_AreaCodeNull()
         {
             // Arrange.
 
@@ -98,10 +98,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_EmptyAreaCode tests.
+        /// Constructor_Fails_AreaCodeEmpty tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_EmptyAreaCode()
+        public void Constructor_Fails_AreaCodeEmpty()
         {
             // Arrange.
 
@@ -110,10 +110,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_WhitespaceAreaCode tests.
+        /// Constructor_Fails_AreaCodeWhitespace tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_WhitespaceAreaCode()
+        public void Constructor_Fails_AreaCodeWhitespace()
         {
             // Arrange.
 
@@ -122,10 +122,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_ShortAreaCode tests.
+        /// Constructor_Fails_AreaCodeShort tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_ShortAreaCode()
+        public void Constructor_Fails_AreaCodeShort()
         {
             // Arrange.
 
@@ -134,10 +134,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_LongAreaCode tests.
+        /// Constructor_Fails_AreaCodeLong tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_LongAreaCode()
+        public void Constructor_Fails_AreaCodeLong()
         {
             // Arrange.
 
@@ -146,10 +146,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NonNumericAreaCode tests.
+        /// Constructor_Fails_AreaCodeNonNumeric tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_NonNumericAreaCode()
+        public void Constructor_Fails_AreaCodeNonNumeric()
         {
             // Arrange.
 
@@ -158,10 +158,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NullExchangeCode tests.
+        /// Constructor_Fails_ExchangeCodeNull tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_NullExchangeCode()
+        public void Constructor_Fails_ExchangeCodeNull()
         {
             // Arrange.
 
@@ -170,10 +170,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_EmptyExchangeCode tests.
+        /// Constructor_Fails_ExchangeCodeEmpty tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_EmptyExchangeCode()
+        public void Constructor_Fails_ExchangeCodeEmpty()
         {
             // Arrange.
 
@@ -182,10 +182,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_WhitespaceExchangeCode tests.
+        /// Constructor_Fails_ExchangeCodeWhitespace tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_WhitespaceExchangeCode()
+        public void Constructor_Fails_ExchangeCodeWhitespace()
         {
             // Arrange.
 
@@ -194,10 +194,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_ShortExchangeCode tests.
+        /// Constructor_Fails_ExchangeCodeShort tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_ShortExchangeCode()
+        public void Constructor_Fails_ExchangeCodeShort()
         {
             // Arrange.
 
@@ -206,10 +206,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_LongExchangeCode tests.
+        /// Constructor_Fails_ExchangeCodeLong tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_LongExchangeCode()
+        public void Constructor_Fails_ExchangeCodeLong()
         {
             // Arrange.
 
@@ -218,10 +218,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NonNumericExchangeCode tests.
+        /// Constructor_Fails_ExchangeCodeNonNumeric tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_NonNumericExchangeCode()
+        public void Constructor_Fails_ExchangeCodeNonNumeric()
         {
             // Arrange.
 
@@ -230,10 +230,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NullSubscriberNumber tests.
+        /// Constructor_Fails_SubscriberNumberNull tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_NullSubscriberNumber()
+        public void Constructor_Fails_SubscriberNumberNull()
         {
             // Arrange.
 
@@ -242,10 +242,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_EmptySubscriberNumber tests.
+        /// Constructor_Fails_SubscriberNumberEmpty tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_EmptySubscriberNumber()
+        public void Constructor_Fails_SubscriberNumberEmpty()
         {
             // Arrange.
 
@@ -254,10 +254,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_WhitespaceSubscriberNumber tests.
+        /// Constructor_Fails_SubscriberNumberWhitespace tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_WhitespaceSubscriberNumber()
+        public void Constructor_Fails_SubscriberNumberWhitespace()
         {
             // Arrange.
 
@@ -266,10 +266,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_ShortSubscriberNumber tests.
+        /// Constructor_Fails_SubscriberNumberShort tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_ShortSubscriberNumber()
+        public void Constructor_Fails_SubscriberNumberShort()
         {
             // Arrange.
 
@@ -278,10 +278,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_LongSubscriberNumber tests.
+        /// Constructor_Fails_SubscriberNumberLong tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_LongSubscriberNumber()
+        public void Constructor_Fails_SubscriberNumberLong()
         {
             // Arrange.
 
@@ -290,10 +290,10 @@
         }
 
         /// <summary>
-        /// Constructor_Fails_NonNumericSubscriberNumber tests.
+        /// Constructor_Fails_SubscriberNumberNonNumeric tests.
         /// </summary>
         [Fact]
-        public void Constructor_Fails_NonNumericSubscriberNumber()
+        public void Constructor_Fails_SubscriberNumberNonNumeric()
         {
             // Arrange.
 
@@ -325,10 +325,10 @@
         }
 
         /// <summary>
-        /// Set_AreaCode_Fails_NullAreaCode tests.
+        /// Set_AreaCode_Fails_AreaCodeNull tests.
         /// </summary>
         [Fact]
-        public void Set_AreaCode_Fails_NullAreaCode()
+        public void Set_AreaCode_Fails_AreaCodeNull()
         {
             // Arrange.
 
@@ -347,10 +347,10 @@
         }
 
         /// <summary>
-        /// Set_AreaCode_Fails_EmptyAreaCode tests.
+        /// Set_AreaCode_Fails_AreaCodeEmpty tests.
         /// </summary>
         [Fact]
-        public void Set_AreaCode_Fails_EmptyAreaCode()
+        public void Set_AreaCode_Fails_AreaCodeEmpty()
         {
             // Arrange.
 
@@ -369,10 +369,10 @@
         }
 
         /// <summary>
-        /// Set_AreaCode_Fails_WhitespaceAreaCode tests.
+        /// Set_AreaCode_Fails_AreaCodeWhitespace tests.
         /// </summary>
         [Fact]
-        public void Set_AreaCode_Fails_WhitespaceAreaCode()
+        public void Set_AreaCode_Fails_AreaCodeWhitespace()
         {
             // Arrange.
 
@@ -391,10 +391,10 @@
         }
 
         /// <summary>
-        /// Set_AreaCode_Fails_ShortAreaCode tests.
+        /// Set_AreaCode_Fails_AreaCodeShort tests.
         /// </summary>
         [Fact]
-        public void Set_AreaCode_Fails_ShortAreaCode()
+        public void Set_AreaCode_Fails_AreaCodeShort()
         {
             // Arrange.
 
@@ -413,10 +413,10 @@
         }
 
         /// <summary>
-        /// Set_AreaCode_Fails_LongAreaCode tests.
+        /// Set_AreaCode_Fails_AreaCodeLong tests.
         /// </summary>
         [Fact]
-        public void Set_AreaCode_Fails_LongAreaCode()
+        public void Set_AreaCode_Fails_AreaCodeLong()
         {
             // Arrange.
 
@@ -435,10 +435,10 @@
         }
 
         /// <summary>
-        /// Set_AreaCode_Fails_NonNumericAreaCode tests.
+        /// Set_AreaCode_Fails_AreaCodeNonNumeric tests.
         /// </summary>
         [Fact]
-        public void Set_AreaCode_Fails_NonNumericAreaCode()
+        public void Set_AreaCode_Fails_AreaCodeNonNumeric()
         {
             // Arrange.
 
@@ -480,10 +480,10 @@
         }
 
         /// <summary>
-        /// Set_ExchangeCode_Fails_NullAreaCode tests.
+        /// Set_ExchangeCode_Fails_ExchangeCodeNull tests.
         /// </summary>
         [Fact]
-        public void Set_ExchangeCode_Fails_NullExchangeCode()
+        public void Set_ExchangeCode_Fails_ExchangeCodeNull()
         {
             // Arrange.
 
@@ -502,10 +502,10 @@
         }
 
         /// <summary>
-        /// Set_ExchangeCode_Fails_EmptyAreaCode tests.
+        /// Set_ExchangeCode_Fails_ExchangeCodeEmpty tests.
         /// </summary>
         [Fact]
-        public void Set_ExchangeCode_Fails_EmptyExchangeCode()
+        public void Set_ExchangeCode_Fails_ExchangeCodeEmpty()
         {
             // Arrange.
 
@@ -524,10 +524,10 @@
         }
 
         /// <summary>
-        /// Set_ExchangeCode_Fails_WhitespaceAreaCode tests.
+        /// Set_ExchangeCode_Fails_ExchangeCodeWhitespace tests.
         /// </summary>
         [Fact]
-        public void Set_ExchangeCode_Fails_WhitespaceExchangeCode()
+        public void Set_ExchangeCode_Fails_ExchangeCodeWhitespace()
         {
             // Arrange.
 
@@ -546,10 +546,10 @@
         }
 
         /// <summary>
-        /// Set_ExchangeCode_Fails_ShortAreaCode tests.
+        /// Set_ExchangeCode_Fails_ExchangeCodeShort tests.
         /// </summary>
         [Fact]
-        public void Set_ExchangeCode_Fails_ShortExchangeCode()
+        public void Set_ExchangeCode_Fails_ExchangeCodeShort()
         {
             // Arrange.
 
@@ -568,10 +568,10 @@
         }
 
         /// <summary>
-        /// Set_ExchangeCode_Fails_LongAreaCode tests.
+        /// Set_ExchangeCode_Fails_ExchangeCodeLong tests.
         /// </summary>
         [Fact]
-        public void Set_ExchangeCode_Fails_LongExchangeCode()
+        public void Set_ExchangeCode_Fails_ExchangeCodeLong()
         {
             // Arrange.
 
@@ -590,10 +590,10 @@
         }
 
         /// <summary>
-        /// Set_ExchangeCode_Fails_NonNumericAreaCode tests.
+        /// Set_ExchangeCode_Fails_ExchangeCodeNonNumeric tests.
         /// </summary>
         [Fact]
-        public void Set_ExchangeCode_Fails_NonNumericExchangeCode()
+        public void Set_ExchangeCode_Fails_ExchangeCodeNonNumeric()
         {
             // Arrange.
 
@@ -635,10 +635,10 @@
         }
 
         /// <summary>
-        /// Set_SubscriberNumber_Fails_NullSubscriberNumber tests.
+        /// Set_SubscriberNumber_Fails_SubscriberNumberNull tests.
         /// </summary>
         [Fact]
-        public void Set_SubscriberNumber_Fails_NullSubscriberNumber()
+        public void Set_SubscriberNumber_Fails_SubscriberNumberNull()
         {
             // Arrange.
 
@@ -657,10 +657,10 @@
         }
 
         /// <summary>
-        /// Set_SubscriberNumber_Fails_EmptySubscriberNumber tests.
+        /// Set_SubscriberNumber_Fails_SubscriberNumberEmpty tests.
         /// </summary>
         [Fact]
-        public void Set_SubscriberNumber_Fails_EmptySubscriberNumber()
+        public void Set_SubscriberNumber_Fails_SubscriberNumberEmpty()
         {
             // Arrange.
 
@@ -679,10 +679,10 @@
         }
 
         /// <summary>
-        /// Set_SubscriberNumber_Fails_WhitespaceSubscriberNumber tests.
+        /// Set_SubscriberNumber_Fails_SubscriberNumberWhitespace tests.
         /// </summary>
         [Fact]
-        public void Set_SubscriberNumber_Fails_WhitespaceSubscriberNumber()
+        public void Set_SubscriberNumber_Fails_SubscriberNumberWhitespace()
         {
             // Arrange.
 
@@ -701,10 +701,10 @@
         }
 
         /// <summary>
-        /// Set_SubscriberNumber_Fails_ShortSubscriberNumber tests.
+        /// Set_SubscriberNumber_Fails_SubscriberNumberShort tests.
         /// </summary>
         [Fact]
-        public void Set_SubscriberNumber_Fails_ShortSubscriberNumber()
+        public void Set_SubscriberNumber_Fails_SubscriberNumberShort()
         {
             // Arrange.
 
@@ -723,10 +723,10 @@
         }
 
         /// <summary>
-        /// Set_SubscriberNumber_Fails_LongAreaCode tests.
+        /// Set_SubscriberNumber_Fails_SubscriberNumberLong tests.
         /// </summary>
         [Fact]
-        public void Set_SubscriberNumber_Fails_LongSubscriberNumber()
+        public void Set_SubscriberNumber_Fails_SubscriberNumberLong()
         {
             // Arrange.
 
@@ -745,10 +745,10 @@
         }
 
         /// <summary>
-        /// Set_SubscriberNumber_Fails_NonNumericSubscriberNumber tests.
+        /// Set_SubscriberNumber_Fails_SubscriberNumberNonNumeric tests.
         /// </summary>
         [Fact]
-        public void Set_SubscriberNumber_Fails_NonNumericSubscriberNumber()
+        public void Set_SubscriberNumber_Fails_SubscriberNumberNonNumeric()
         {
             // Arrange.
 

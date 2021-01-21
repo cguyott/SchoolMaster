@@ -135,12 +135,13 @@
             {
                 throw new ArgumentException("The 5 character zip code must be numeric.", "Zip");
             }
-            else if (zip[5] != '-')
+            else if (zip.Length == 10)
             {
-                throw new ArgumentException("The sixth character in the zip code must be a hyphen.", "Zip");
-            }
-            else
-            {
+                if (zip[5] != '-')
+                {
+                    throw new ArgumentException("The sixth character in the zip code must be a hyphen.", "Zip");
+                }
+
                 string tmp = zip.Replace('-', '0');
 
                 if (int.TryParse(tmp, out int _) == false)
@@ -153,6 +154,7 @@
         /// <summary>
         /// Gets the database unique identifier for this address.
         /// </summary>
+        /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
         public int Id
         {
             get
@@ -164,6 +166,7 @@
         /// <summary>
         /// Gets a value indicating whether or not this address has been modified.
         /// </summary>
+        /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
         public bool Modified
         {
             get

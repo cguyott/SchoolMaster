@@ -117,6 +117,7 @@
         /// <summary>
         /// Gets the database unique identifier for this phone.
         /// </summary>
+        /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
         public int Id
         {
             get
@@ -128,6 +129,7 @@
         /// <summary>
         /// Gets a value indicating whether or not this phone has been modified.
         /// </summary>
+        /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
         public bool Modified
         {
             get
