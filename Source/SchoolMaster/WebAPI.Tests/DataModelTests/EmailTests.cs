@@ -5,11 +5,11 @@
     using Xunit;
 
     /// <summary>
-    /// Phone unit tests.
+    /// Email unit tests.
     /// </summary>
     public class EmailTests
     {
-        // really_long_email is assigned a string of 257 characters.
+        // c_veryLongEmail is assigned a string of 257 characters.
         private const string c_veryLongEmail = "e5af105b73924c3590e99d2820e3ae7a3086d0e3e03542e1b0a44138a49965b1ee434e3efe8d063dc182cecb5f5b4b85a255a397de1c8615a6d6eef5676548dc532a4c96acbe01292f260a52abdc470343d6735ef36841cd9085e56f496ece7c87c8beb9f537d7702b22418d8ee6476dcd5f4ff3b3547f1193749400bd494bfab";
 
         /// <summary>

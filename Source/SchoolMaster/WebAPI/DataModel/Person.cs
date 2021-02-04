@@ -47,6 +47,8 @@
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Person"/> class.
+        ///
+        /// Internal changed to public to allow for unit testing.
         /// </summary>
         /// <param name="id">Unique id for this address in the database.</param>
         /// <param name="role">Role.</param>
@@ -61,19 +63,19 @@
         /// <param name="login">Login.</param>
         /// <param name="passwordHash">Password hash.</param>
         /// <param name="passwordSalt">Password salt.</param>
-        internal Person(int id,
-                        Role role,
-                        DateTime lastLoginDate,
-                        DateTime lastPasswordChangedDate,
-                        DateTime createdDate,
-                        string prefix,
-                        string firstName,
-                        string middleName,
-                        string lastName,
-                        string suffix,
-                        string login,
-                        string passwordHash,
-                        string passwordSalt)
+        public Person(int id,
+                      Role role,
+                      DateTime lastLoginDate,
+                      DateTime lastPasswordChangedDate,
+                      DateTime createdDate,
+                      string prefix,
+                      string firstName,
+                      string middleName,
+                      string lastName,
+                      string suffix,
+                      string login,
+                      string passwordHash,
+                      string passwordSalt)
         {
             if (id < 1)
             {
