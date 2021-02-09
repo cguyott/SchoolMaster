@@ -34,9 +34,9 @@
             // Assert.
 
             Assert.NotNull(person);
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
 
-            Assert.True(person.Id == -1);
+            Assert.True(person.PersonId == -1);
             Assert.True(person.Role == Role.Unknown);
             Assert.True(((IPerson)person).LastLoginDate == DateTime.MinValue);
             Assert.True(((IPerson)person).LastPasswordChangedDate == DateTime.MinValue);
@@ -79,9 +79,9 @@
             // Assert.
 
             Assert.NotNull(person);
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
 
-            Assert.True(id == person.Id);
+            Assert.True(id == person.PersonId);
             Assert.True(role == person.Role);
             Assert.True(lastLoginDate == ((IPerson)person).LastLoginDate);
             Assert.True(lastPasswordChangedDate == ((IPerson)person).LastPasswordChangedDate);
@@ -532,12 +532,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Prefix == null);
 
             ((IPerson)person).Prefix = prefix;
 
-            Assert.True(person.Modified == true);
+            Assert.True(person.PersonModified == true);
             Assert.True(((IPerson)person).Prefix == prefix);
         }
 
@@ -553,12 +553,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Prefix == null);
 
             Assert.Throws<ArgumentException>("Prefix", () => (((IPerson)person).Prefix = c_veryLongPrefix));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Prefix == null);
         }
 
@@ -575,12 +575,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
 
             ((IPerson)person).FirstName = firstName;
 
-            Assert.True(person.Modified == true);
+            Assert.True(person.PersonModified == true);
             Assert.True(((IPerson)person).FirstName == firstName);
         }
 
@@ -596,12 +596,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
 
             Assert.Throws<ArgumentException>("FirstName", () => (((IPerson)person).FirstName = null));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
         }
 
@@ -617,12 +617,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
 
             Assert.Throws<ArgumentException>("FirstName", () => (((IPerson)person).FirstName = string.Empty));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
         }
 
@@ -638,12 +638,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
 
             Assert.Throws<ArgumentException>("FirstName", () => (((IPerson)person).FirstName = "      "));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
         }
 
@@ -659,12 +659,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
 
             Assert.Throws<ArgumentException>("FirstName", () => (((IPerson)person).FirstName = c_veryLongName));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).FirstName == null);
         }
 
@@ -681,12 +681,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).MiddleName == null);
 
             ((IPerson)person).MiddleName = middleName;
 
-            Assert.True(person.Modified == true);
+            Assert.True(person.PersonModified == true);
             Assert.True(((IPerson)person).MiddleName == middleName);
         }
 
@@ -702,12 +702,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).MiddleName == null);
 
             Assert.Throws<ArgumentException>("MiddleName", () => (((IPerson)person).MiddleName = c_veryLongName));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).MiddleName == null);
         }
 
@@ -724,12 +724,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
 
             ((IPerson)person).LastName = lastName;
 
-            Assert.True(person.Modified == true);
+            Assert.True(person.PersonModified == true);
             Assert.True(((IPerson)person).LastName == lastName);
         }
 
@@ -745,12 +745,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
 
             Assert.Throws<ArgumentException>("LastName", () => (((IPerson)person).LastName = null));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
         }
 
@@ -766,12 +766,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
 
             Assert.Throws<ArgumentException>("LastName", () => (((IPerson)person).LastName = string.Empty));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
         }
 
@@ -787,12 +787,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
 
             Assert.Throws<ArgumentException>("LastName", () => (((IPerson)person).LastName = "      "));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
         }
 
@@ -808,12 +808,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
 
             Assert.Throws<ArgumentException>("LastName", () => (((IPerson)person).LastName = c_veryLongName));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).LastName == null);
         }
 
@@ -830,12 +830,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Suffix == null);
 
             ((IPerson)person).Suffix = suffix;
 
-            Assert.True(person.Modified == true);
+            Assert.True(person.PersonModified == true);
             Assert.True(((IPerson)person).Suffix == suffix);
         }
 
@@ -851,12 +851,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Suffix == null);
 
             Assert.Throws<ArgumentException>("Suffix", () => (((IPerson)person).Suffix = c_veryLongPrefix));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Suffix == null);
         }
 
@@ -873,12 +873,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
 
             ((IPerson)person).Login = login;
 
-            Assert.True(person.Modified == true);
+            Assert.True(person.PersonModified == true);
             Assert.True(((IPerson)person).Login == login);
         }
 
@@ -894,12 +894,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
 
             Assert.Throws<ArgumentException>("Login", () => (((IPerson)person).Login = null));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
         }
 
@@ -915,12 +915,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
 
             Assert.Throws<ArgumentException>("Login", () => (((IPerson)person).Login = string.Empty));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
         }
 
@@ -936,12 +936,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
 
             Assert.Throws<ArgumentException>("Login", () => (((IPerson)person).Login = "      "));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
         }
 
@@ -957,12 +957,12 @@
             TestPerson person = new TestPerson();
             Assert.NotNull(person);
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
 
             Assert.Throws<ArgumentException>("Login", () => (((IPerson)person).Login = c_veryLongLogin));
 
-            Assert.True(person.Modified == false);
+            Assert.True(person.PersonModified == false);
             Assert.True(((IPerson)person).Login == null);
         }
     }

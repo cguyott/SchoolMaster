@@ -224,7 +224,7 @@
         /// Gets the database unique identifier for this address.
         /// </summary>
         /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
-        public int Id
+        public int PersonId
         {
             get
             {
@@ -248,7 +248,7 @@
         /// Gets a value indicating whether or not this address has been modified.
         /// </summary>
         /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
-        public bool Modified
+        public bool PersonModified
         {
             get
             {
