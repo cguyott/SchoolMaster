@@ -75,3 +75,6 @@ It is important that you are running Visual Studio 2019 (latest version).
 16. In the "Indenting" section select "Smart".
 
 17. In the "Tab" section make sure that "Insert spaces" item is checked and set the "Tab size:" and "Indent size" to 4.
+
+18. Go to the "Projects and Solutions" section and open the general tab. Check "Show output window when build starts".
+
