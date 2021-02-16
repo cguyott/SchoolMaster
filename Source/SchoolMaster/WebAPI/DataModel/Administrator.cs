@@ -1,15 +1,15 @@
 ﻿namespace SchoolMaster.WebAPI.DataModel
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Administrator class implementation.
     /// </summary>
-    public class Administrator : Person, IPerson, IAdministrator
+    public class Administrator : Person, IAdministrator
     {
         private readonly int m_id;
 
-        private bool m_modified;
         private string m_department;
         private string m_position;
 
@@ -17,9 +17,9 @@
         /// Initializes a new instance of the <see cref="Administrator"/> class.
         /// </summary>
         public Administrator()
+            : base()
         {
             m_id = -1;
-            m_modified = false;
             m_department = null;
             m_position = null;
         }
@@ -30,7 +30,40 @@
         /// <param name="id">Unique id for this administrator in the database.</param>
         /// <param name="department">Department.</param>
         /// <param name="position">Position.</param>
-        public Administrator(int id, string department, string position)
+        /// <param name="personId">Unique id for this address in the database.</param>
+        /// <param name="lastLoginDate">Last login date.</param>
+        /// <param name="lastPasswordChangedDate">Last password changed date.</param>
+        /// <param name="createdDate">Created date.</param>
+        /// <param name="prefix">Prefix.</param>
+        /// <param name="firstName">First name.</param>
+        /// <param name="middleName">Middle name.</param>
+        /// <param name="lastName">Last name.</param>
+        /// <param name="suffix">Suffix.</param>
+        /// <param name="login">Login.</param>
+        /// <param name="passwordHash">Password hash.</param>
+        /// <param name="passwordSalt">Password salt.</param>
+        /// <param name="email">Email.</param>
+        /// <param name="addresses">Collection of addresses.</param>
+        /// <param name="phoneNumbers">Collection of phone numbers.</param>
+        public Administrator(int id,
+                             string department,
+                             string position,
+                             int personId,
+                             DateTime lastLoginDate,
+                             DateTime lastPasswordChangedDate,
+                             DateTime createdDate,
+                             string prefix,
+                             string firstName,
+                             string middleName,
+                             string lastName,
+                             string suffix,
+                             string login,
+                             string passwordHash,
+                             string passwordSalt,
+                             Email email,
+                             List<Address> addresses,
+                             List<Phone> phoneNumbers)
+            : base(personId, Role.Administrator, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers)
         {
             if (id < 1)
             {
@@ -41,7 +74,6 @@
             ValidatePosition(position);
 
             m_id = id;
-            m_modified = false;
             m_department = department;
             m_position = position;
         }
@@ -84,18 +116,6 @@
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether or not this address has been modified.
-        /// </summary>
-        /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
-        public bool AdminModified
-        {
-            get
-            {
-                return m_modified;
-            }
-        }
-
         /// <inheritdoc/>
         string IAdministrator.Department
         {
@@ -108,7 +128,7 @@
             {
                 ValidateDepartment(value);
 
-                m_modified = true;
+                Modified = true;
                 m_department = value;
             }
         }
@@ -125,7 +145,7 @@
             {
                 ValidatePosition(value);
 
-                m_modified = true;
+                Modified = true;
                 m_position = value;
             }
         }
@@ -137,13 +157,13 @@
         {
             get
             {
-                return ((IPerson)this).Prefix;
+                return Prefix;
             }
 
             set
             {
-                m_modified = true;
-                ((IPerson)this).Prefix = value;
+                Prefix = value;
+                Modified = true;
             }
         }
 
@@ -152,13 +172,13 @@
         {
             get
             {
-                return ((IPerson)this).FirstName;
+                return FirstName;
             }
 
             set
             {
-                m_modified = true;
-                ((IPerson)this).Prefix = value;
+                FirstName = value;
+                Modified = true;
             }
         }
 
@@ -167,13 +187,13 @@
         {
             get
             {
-                return ((IPerson)this).MiddleName;
+                return MiddleName;
             }
 
             set
             {
-                m_modified = true;
-                ((IPerson)this).MiddleName = value;
+                MiddleName = value;
+                Modified = true;
             }
         }
 
@@ -182,13 +202,13 @@
         {
             get
             {
-                return ((IPerson)this).LastName;
+                return LastName;
             }
 
             set
             {
-                m_modified = true;
-                ((IPerson)this).LastName = value;
+                LastName = value;
+                Modified = true;
             }
         }
 
@@ -197,13 +217,13 @@
         {
             get
             {
-                return ((IPerson)this).Suffix;
+                return Suffix;
             }
 
             set
             {
-                m_modified = true;
-                ((IPerson)this).Suffix = value;
+                Suffix = value;
+                Modified = true;
             }
         }
 
@@ -212,13 +232,13 @@
         {
             get
             {
-                return ((IPerson)this).Login;
+                return Login;
             }
 
             set
             {
-                m_modified = true;
-                ((IPerson)this).Login = value;
+                Login = value;
+                Modified = true;
             }
         }
 
@@ -227,7 +247,7 @@
         {
             get
             {
-                return ((IPerson)this).LastLoginDate;
+                return LastLoginDate;
             }
         }
 
@@ -236,7 +256,7 @@
         {
             get
             {
-                return ((IPerson)this).LastPasswordChangedDate;
+                return LastPasswordChangedDate;
             }
         }
 
@@ -245,14 +265,41 @@
         {
             get
             {
-                return ((IPerson)this).CreatedDate;
+                return CreatedDate;
+            }
+        }
+
+        /// <inheritdoc/>
+        Email IAdministrator.Email
+        {
+            get
+            {
+                return Email;
+            }
+        }
+
+        /// <inheritdoc/>
+        IEnumerable<Address> IAdministrator.Addresses
+        {
+            get
+            {
+                return Addresses;
+            }
+        }
+
+        /// <inheritdoc/>
+        IEnumerable<Phone> IAdministrator.PhoneNumbers
+        {
+            get
+            {
+                return PhoneNumbers;
             }
         }
 
         /// <inheritdoc/>
         bool IAdministrator.SetPassword(string password)
         {
-            return ((IPerson)this).SetPassword(password);
+            return SetPassword(password);
         }
         #endregion Implementation for IPerson Wrappers
     }

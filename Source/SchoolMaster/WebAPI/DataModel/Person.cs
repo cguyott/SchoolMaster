@@ -1,17 +1,22 @@
 ﻿namespace SchoolMaster.WebAPI.DataModel
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Person class implementation.
     /// </summary>
-    public abstract class Person : IPerson
+    /// <remarks>This should be internal but we need to make it public so our unit tests can access it.</remarks>
+    public abstract class Person
     {
         private readonly int m_id;
         private readonly Role m_role;
         private readonly DateTime m_lastLoginDate;
         private readonly DateTime m_lastPasswordChangedDate;
         private readonly DateTime m_createdDate;
+        private readonly Email m_email;
+        private readonly IEnumerable<Address> m_addresses;
+        private readonly IEnumerable<Phone> m_phoneNumbers;
 
         private bool m_modified;
         private string m_prefix;
@@ -43,6 +48,10 @@
             m_login = null;
             m_passwordHash = null;
             m_passwordSalt = null;
+
+            m_email = new Email();
+            m_addresses = new List<Address>();
+            m_phoneNumbers = new List<Phone>();
         }
 
         /// <summary>
@@ -50,7 +59,7 @@
         ///
         /// Internal changed to public to allow for unit testing.
         /// </summary>
-        /// <param name="id">Unique id for this address in the database.</param>
+        /// <param name="personId">Unique id for this address in the database.</param>
         /// <param name="role">Role.</param>
         /// <param name="lastLoginDate">Last login date.</param>
         /// <param name="lastPasswordChangedDate">Last password changed date.</param>
@@ -63,7 +72,10 @@
         /// <param name="login">Login.</param>
         /// <param name="passwordHash">Password hash.</param>
         /// <param name="passwordSalt">Password salt.</param>
-        public Person(int id,
+        /// <param name="email">Email.</param>
+        /// <param name="addresses">Collection of addresses.</param>
+        /// <param name="phoneNumbers">Collection of phone numbers.</param>
+        public Person(int personId,
                       Role role,
                       DateTime lastLoginDate,
                       DateTime lastPasswordChangedDate,
@@ -75,11 +87,18 @@
                       string suffix,
                       string login,
                       string passwordHash,
-                      string passwordSalt)
+                      string passwordSalt,
+                      Email email,
+                      List<Address> addresses,
+                      List<Phone> phoneNumbers)
         {
-            if (id < 1)
+            m_email = email ?? throw new ArgumentNullException(nameof(email));
+            m_addresses = addresses ?? throw new ArgumentNullException(nameof(addresses));
+            m_phoneNumbers = phoneNumbers ?? throw new ArgumentNullException(nameof(phoneNumbers));
+
+            if (personId < 1)
             {
-                throw new ArgumentException("The id must be greater than zero.", nameof(id));
+                throw new ArgumentException("The id must be greater than zero.", nameof(personId));
             }
 
             if ((role == Role.Unknown) || (role == Role.Unused))
@@ -96,7 +115,7 @@
             ValidatePasswordHash(passwordHash);
             ValidatePasswordSalt(passwordSalt);
 
-            m_id = id;
+            m_id = personId;
             m_role = role;
             m_lastLoginDate = lastLoginDate;
             m_lastPasswordChangedDate = lastPasswordChangedDate;
@@ -223,7 +242,6 @@
         /// <summary>
         /// Gets the database unique identifier for this address.
         /// </summary>
-        /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
         public int PersonId
         {
             get
@@ -235,7 +253,6 @@
         /// <summary>
         /// Gets the underlying role for this person instance.
         /// </summary>
-        /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
         public Role Role
         {
             get
@@ -245,19 +262,26 @@
         }
 
         /// <summary>
-        /// Gets a value indicating whether or not this address has been modified.
+        /// Gets or sets a value indicating whether or not this object has been modified.
         /// </summary>
-        /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
-        public bool PersonModified
+        public bool Modified
         {
             get
             {
                 return m_modified;
             }
+
+            set
+            {
+                m_modified = value;
+            }
         }
 
-        /// <inheritdoc/>
-        string IPerson.Prefix
+        /// <summary>
+        /// Gets or sets Prefix.
+        /// </summary>
+        /// <remarks>Cannot exceed 6 characters in length.</remarks>
+        public string Prefix
         {
             get
             {
@@ -273,8 +297,11 @@
             }
         }
 
-        /// <inheritdoc/>
-        string IPerson.FirstName
+        /// <summary>
+        /// Gets or sets FirstName.
+        /// </summary>
+        /// <remarks>Cannot exceed 50 characters in length.</remarks>
+        public string FirstName
         {
             get
             {
@@ -290,8 +317,11 @@
             }
         }
 
-        /// <inheritdoc/>
-        string IPerson.MiddleName
+        /// <summary>
+        /// Gets or sets MiddleName.
+        /// </summary>
+        /// <remarks>Cannot exceed 50 characters in length.</remarks>
+        public string MiddleName
         {
             get
             {
@@ -307,8 +337,11 @@
             }
         }
 
-        /// <inheritdoc/>
-        string IPerson.LastName
+        /// <summary>
+        /// Gets or sets LastName.
+        /// </summary>
+        /// <remarks>Cannot exceed 50 characters in length.</remarks>
+        public string LastName
         {
             get
             {
@@ -324,8 +357,11 @@
             }
         }
 
-        /// <inheritdoc/>
-        string IPerson.Suffix
+        /// <summary>
+        /// Gets or sets Suffix.
+        /// </summary>
+        /// <remarks>Cannot exceed 6 characters in length.</remarks>
+        public string Suffix
         {
             get
             {
@@ -341,8 +377,11 @@
             }
         }
 
-        /// <inheritdoc/>
-        string IPerson.Login
+        /// <summary>
+        /// Gets or sets Login.
+        /// </summary>
+        /// <remarks>Cannot exceed 64 characters in length.</remarks>
+        public string Login
         {
             get
             {
@@ -358,8 +397,10 @@
             }
         }
 
-        /// <inheritdoc/>
-        DateTime IPerson.LastLoginDate
+        /// <summary>
+        /// Gets lastLoginDate.
+        /// </summary>
+        public DateTime LastLoginDate
         {
             get
             {
@@ -367,8 +408,10 @@
             }
         }
 
-        /// <inheritdoc/>
-        DateTime IPerson.LastPasswordChangedDate
+        /// <summary>
+        /// Gets lastPasswordChangedDate.
+        /// </summary>
+        public DateTime LastPasswordChangedDate
         {
             get
             {
@@ -376,8 +419,10 @@
             }
         }
 
-        /// <inheritdoc/>
-        DateTime IPerson.CreatedDate
+        /// <summary>
+        /// Gets createdDate.
+        /// </summary>
+        public DateTime CreatedDate
         {
             get
             {
@@ -385,19 +430,59 @@
             }
         }
 
-        /// <inheritdoc/>
-        bool IPerson.SetPassword(string password)
+        /// <summary>
+        /// Gets email.
+        /// </summary>
+        public Email Email
+        {
+            get
+            {
+                return m_email;
+            }
+        }
+
+        /// <summary>
+        /// Gets addresses.
+        /// </summary>
+        public IEnumerable<Address> Addresses
+        {
+            get
+            {
+                return m_addresses;
+            }
+        }
+
+        /// <summary>
+        /// Gets phone numbers.
+        /// </summary>
+        public IEnumerable<Phone> PhoneNumbers
+        {
+            get
+            {
+                return m_phoneNumbers;
+            }
+        }
+
+        /// <summary>
+        /// Sets or updates the password.
+        /// </summary>
+        /// <param name="password">Password.</param>
+        /// <returns>"true" if successfully set; "false" otherwise.</returns>
+        public bool SetPassword(string password)
         {
             // to do
 
-            if (m_passwordHash == null)
+            if (string.IsNullOrWhiteSpace(password) == false)
             {
-                m_passwordHash = "string1";
-            }
+                if (m_passwordHash == null)
+                {
+                    m_passwordHash = "string1";
+                }
 
-            if (m_passwordSalt == null)
-            {
-                m_passwordSalt = "string2";
+                if (m_passwordSalt == null)
+                {
+                    m_passwordSalt = "string2";
+                }
             }
 
             return true;

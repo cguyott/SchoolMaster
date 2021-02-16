@@ -1,6 +1,7 @@
 ﻿namespace SchoolMaster.WebAPI.DataModel
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Administrator class interface definition.
@@ -18,8 +19,6 @@
         /// </summary>
         /// <remarks>Cannot exceed 128 characters in length. Cannot be null, empty string, or whitespace.</remarks>
         string Position { get; set; }
-
-        #region Wrappers for IPerson
 
         /// <summary>
         /// Gets or sets Prefix.
@@ -73,12 +72,25 @@
         DateTime CreatedDate { get; }
 
         /// <summary>
+        /// Gets email.
+        /// </summary>
+        Email Email { get; }
+
+        /// <summary>
+        /// Gets addresses.
+        /// </summary>
+        IEnumerable<Address> Addresses { get; }
+
+        /// <summary>
+        /// Gets phone numbers.
+        /// </summary>
+        IEnumerable<Phone> PhoneNumbers { get; }
+
+        /// <summary>
         /// Sets or updates the password.
         /// </summary>
         /// <param name="password">Password.</param>
         /// <returns>"true" if successfully set; "false" otherwise.</returns>
         bool SetPassword(string password);
-
-        #endregion Wrappers for IPerson
     }
 }

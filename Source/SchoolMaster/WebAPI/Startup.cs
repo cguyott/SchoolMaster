@@ -22,7 +22,7 @@ namespace SchoolMaster.WebAPI
         /// <param name="configuration">Configuration data for our Web API.</param>
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration ?? throw new ArgumentException("Unexpected null configuration parameter.", nameof(configuration));
+            Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         /// <summary>
