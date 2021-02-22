@@ -4,32 +4,29 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Administrator class implementation.
+    /// Guardian class implementation.
     /// </summary>
-    public class Administrator : Person, IAdministrator
+    public class Guardian : Person, IGuardian
     {
         private readonly int m_id;
 
-        private string m_department;
-        private string m_position;
+        private int m_contactOrder;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Administrator"/> class.
+        /// Initializes a new instance of the <see cref="Guardian"/> class.
         /// </summary>
-        public Administrator()
-            : base(Role.Administrator)
+        public Guardian()
+            : base(Role.Guardian)
         {
             m_id = -1;
-            m_department = null;
-            m_position = null;
+            m_contactOrder = -1;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Administrator"/> class.
+        /// Initializes a new instance of the <see cref="Guardian"/> class.
         /// </summary>
-        /// <param name="id">Unique id for this administrator in the database.</param>
-        /// <param name="department">Department.</param>
-        /// <param name="position">Position.</param>
+        /// <param name="id">Unique id for this Guardian in the database.</param>
+        /// <param name="contactOrder">Contact order.</param>
         /// <param name="personId">Unique id for this address in the database.</param>
         /// <param name="lastLoginDate">Last login date.</param>
         /// <param name="lastPasswordChangedDate">Last password changed date.</param>
@@ -45,70 +42,49 @@
         /// <param name="email">Email.</param>
         /// <param name="addresses">Collection of addresses.</param>
         /// <param name="phoneNumbers">Collection of phone numbers.</param>
-        public Administrator(int id,
-                             string department,
-                             string position,
-                             int personId,
-                             DateTime lastLoginDate,
-                             DateTime lastPasswordChangedDate,
-                             DateTime createdDate,
-                             string prefix,
-                             string firstName,
-                             string middleName,
-                             string lastName,
-                             string suffix,
-                             string login,
-                             string passwordHash,
-                             string passwordSalt,
-                             Email email,
-                             List<Address> addresses,
-                             List<Phone> phoneNumbers)
-            : base(personId, Role.Administrator, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers)
+        public Guardian(int id,
+                        int contactOrder,
+                        int personId,
+                        DateTime lastLoginDate,
+                        DateTime lastPasswordChangedDate,
+                        DateTime createdDate,
+                        string prefix,
+                        string firstName,
+                        string middleName,
+                        string lastName,
+                        string suffix,
+                        string login,
+                        string passwordHash,
+                        string passwordSalt,
+                        Email email,
+                        List<Address> addresses,
+                        List<Phone> phoneNumbers)
+            : base(personId, Role.Guardian, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers)
         {
             if (id < 1)
             {
                 throw new ArgumentException("The id must be greater than zero.", nameof(id));
             }
 
-            ValidateDepartment(department);
-            ValidatePosition(position);
+            ValidateContactOrder(contactOrder);
 
             m_id = id;
-            m_department = department;
-            m_position = position;
+            m_contactOrder = contactOrder;
         }
 
-        private void ValidateDepartment(string department)
+        private void ValidateContactOrder(int contactOrder)
         {
-            if (string.IsNullOrWhiteSpace(department))
+            if (contactOrder < 1)
             {
-                throw new ArgumentException("Department must be specified.", "Department");
-            }
-
-            if (department.Length > 128)
-            {
-                throw new ArgumentException("Address1 cannot be greater than 128 characters.", "Department");
-            }
-        }
-
-        private void ValidatePosition(string position)
-        {
-            if (string.IsNullOrWhiteSpace(position))
-            {
-                throw new ArgumentException("Department must be specified.", "Position");
-            }
-
-            if (position.Length > 128)
-            {
-                throw new ArgumentException("Address1 cannot be greater than 128 characters.", "Position");
+                throw new ArgumentException("Contact order must be greater than zero.", "ContactOrder");
             }
         }
 
         /// <summary>
-        /// Gets the database unique identifier for this administrator.
+        /// Gets the database unique identifier for this Guardian.
         /// </summary>
         /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
-        public int AdminId
+        public int GuardianId
         {
             get
             {
@@ -117,43 +93,26 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Department
+        int IGuardian.ContactOrder
         {
             get
             {
-                return m_department;
+                return m_contactOrder;
             }
 
             set
             {
-                ValidateDepartment(value);
+                ValidateContactOrder(value);
 
                 Modified = true;
-                m_department = value;
-            }
-        }
-
-        /// <inheritdoc/>
-        string IAdministrator.Position
-        {
-            get
-            {
-                return m_position;
-            }
-
-            set
-            {
-                ValidatePosition(value);
-
-                Modified = true;
-                m_position = value;
+                m_contactOrder = value;
             }
         }
 
         #region Implementation for IPerson Wrappers
 
         /// <inheritdoc/>
-        string IAdministrator.Prefix
+        string IGuardian.Prefix
         {
             get
             {
@@ -168,7 +127,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.FirstName
+        string IGuardian.FirstName
         {
             get
             {
@@ -183,7 +142,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.MiddleName
+        string IGuardian.MiddleName
         {
             get
             {
@@ -198,7 +157,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.LastName
+        string IGuardian.LastName
         {
             get
             {
@@ -213,7 +172,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Suffix
+        string IGuardian.Suffix
         {
             get
             {
@@ -228,7 +187,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Login
+        string IGuardian.Login
         {
             get
             {
@@ -243,7 +202,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.LastLoginDate
+        DateTime IGuardian.LastLoginDate
         {
             get
             {
@@ -252,7 +211,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.LastPasswordChangedDate
+        DateTime IGuardian.LastPasswordChangedDate
         {
             get
             {
@@ -261,7 +220,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.CreatedDate
+        DateTime IGuardian.CreatedDate
         {
             get
             {
@@ -270,7 +229,7 @@
         }
 
         /// <inheritdoc/>
-        Email IAdministrator.Email
+        Email IGuardian.Email
         {
             get
             {
@@ -279,7 +238,7 @@
         }
 
         /// <inheritdoc/>
-        IEnumerable<Address> IAdministrator.Addresses
+        IEnumerable<Address> IGuardian.Addresses
         {
             get
             {
@@ -288,7 +247,7 @@
         }
 
         /// <inheritdoc/>
-        IEnumerable<Phone> IAdministrator.PhoneNumbers
+        IEnumerable<Phone> IGuardian.PhoneNumbers
         {
             get
             {
@@ -297,7 +256,7 @@
         }
 
         /// <inheritdoc/>
-        bool IAdministrator.SetPassword(string password)
+        bool IGuardian.SetPassword(string password)
         {
             return SetPassword(password);
         }

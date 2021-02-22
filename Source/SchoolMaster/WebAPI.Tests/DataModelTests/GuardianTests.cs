@@ -7,13 +7,10 @@
     using Xunit;
 
     /// <summary>
-    /// Administrator unit tests.
+    /// Guardian unit tests.
     /// </summary>
-    public class AdministratorTests
+    public class GuardianTests
     {
-        // 129 characters long.
-        private const string c_veryLongString = "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678";
-
         // c_veryLongName is assigned a string of 51 characters.
         private const string c_veryLongName = "012345678901234567890123456789012345678901234567890";
 
@@ -34,38 +31,36 @@
             // Arrange.
 
             // Act.
-            Administrator admin = new Administrator();
+            Guardian guardian = new Guardian();
 
             // Assert.
 
-            Assert.NotNull(admin);
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.AdminId == -1);
-            Assert.True(admin.Modified == false);
+            Assert.True(guardian.GuardianId == -1);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).ContactOrder == -1);
 
-            Assert.True(((IAdministrator)admin).Department == null);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(guardian.Modified == false);
 
-            Assert.True(admin.Modified == false);
+            Assert.True(guardian.PersonId == -1);
+            Assert.True(guardian.Role == Role.Guardian);
+            Assert.True(guardian.LastLoginDate == DateTime.MinValue);
+            Assert.True(guardian.LastPasswordChangedDate == DateTime.MinValue);
+            Assert.True(guardian.CreatedDate == DateTime.MinValue);
 
-            Assert.True(admin.PersonId == -1);
-            Assert.True(admin.Role == Role.Administrator);
-            Assert.True(admin.LastLoginDate == DateTime.MinValue);
-            Assert.True(admin.LastPasswordChangedDate == DateTime.MinValue);
-            Assert.True(admin.CreatedDate == DateTime.MinValue);
+            Assert.True(guardian.Prefix == null);
+            Assert.True(guardian.FirstName == null);
+            Assert.True(guardian.MiddleName == null);
+            Assert.True(guardian.LastName == null);
+            Assert.True(guardian.Suffix == null);
+            Assert.True(guardian.Login == null);
+            Assert.NotNull(((IGuardian)guardian).Email);
 
-            Assert.True(admin.Prefix == null);
-            Assert.True(admin.FirstName == null);
-            Assert.True(admin.MiddleName == null);
-            Assert.True(admin.LastName == null);
-            Assert.True(admin.Suffix == null);
-            Assert.True(admin.Login == null);
-            Assert.NotNull(((IAdministrator)admin).Email);
-
-            Assert.NotNull(((IAdministrator)admin).Addresses);
-            Assert.True(((IAdministrator)admin).Addresses.Count() == 0);
-            Assert.NotNull(((IAdministrator)admin).PhoneNumbers);
-            Assert.True(((IAdministrator)admin).PhoneNumbers.Count() == 0);
+            Assert.NotNull(((IGuardian)guardian).Addresses);
+            Assert.True(((IGuardian)guardian).Addresses.Count() == 0);
+            Assert.NotNull(((IGuardian)guardian).PhoneNumbers);
+            Assert.True(((IGuardian)guardian).PhoneNumbers.Count() == 0);
         }
 
         /// <summary>
@@ -78,8 +73,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -105,36 +99,34 @@
             };
 
             // Act.
-            Administrator admin = new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers);
+            Guardian guardian = new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers);
 
-            List<Address> addressList = ((IAdministrator)admin).Addresses.ToList();
-            List<Phone> phoneList = ((IAdministrator)admin).PhoneNumbers.ToList();
+            List<Address> addressList = ((IGuardian)guardian).Addresses.ToList();
+            List<Phone> phoneList = ((IGuardian)guardian).PhoneNumbers.ToList();
 
             // Assert.
 
-            Assert.NotNull(admin);
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.AdminId == id);
-            Assert.True(admin.Modified == false);
+            Assert.True(guardian.GuardianId == id);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).ContactOrder == contactOrder);
 
-            Assert.True(((IAdministrator)admin).Department == department);
-            Assert.True(((IAdministrator)admin).Position == position);
+            Assert.True(id == guardian.PersonId);
+            Assert.True(guardian.Role == Role.Guardian);
+            Assert.True(lastLoginDate == ((IGuardian)guardian).LastLoginDate);
+            Assert.True(lastPasswordChangedDate == ((IGuardian)guardian).LastPasswordChangedDate);
+            Assert.True(createdDate == ((IGuardian)guardian).CreatedDate);
+            Assert.True(prefix == ((IGuardian)guardian).Prefix);
+            Assert.True(firstName == ((IGuardian)guardian).FirstName);
+            Assert.True(middleName == ((IGuardian)guardian).MiddleName);
+            Assert.True(lastName == ((IGuardian)guardian).LastName);
+            Assert.True(suffix == ((IGuardian)guardian).Suffix);
+            Assert.True(login == ((IGuardian)guardian).Login);
+            Assert.True(email == ((IGuardian)guardian).Email);
 
-            Assert.True(id == admin.PersonId);
-            Assert.True(admin.Role == Role.Administrator);
-            Assert.True(lastLoginDate == ((IAdministrator)admin).LastLoginDate);
-            Assert.True(lastPasswordChangedDate == ((IAdministrator)admin).LastPasswordChangedDate);
-            Assert.True(createdDate == ((IAdministrator)admin).CreatedDate);
-            Assert.True(prefix == ((IAdministrator)admin).Prefix);
-            Assert.True(firstName == ((IAdministrator)admin).FirstName);
-            Assert.True(middleName == ((IAdministrator)admin).MiddleName);
-            Assert.True(lastName == ((IAdministrator)admin).LastName);
-            Assert.True(suffix == ((IAdministrator)admin).Suffix);
-            Assert.True(login == ((IAdministrator)admin).Login);
-            Assert.True(email == ((IAdministrator)admin).Email);
-
-            Assert.True(addresses == ((IAdministrator)admin).Addresses);
-            Assert.True(((IAdministrator)admin).Addresses.Count() == 2);
+            Assert.True(addresses == ((IGuardian)guardian).Addresses);
+            Assert.True(((IGuardian)guardian).Addresses.Count() == 2);
 
             Assert.True(addressList[0].Id == 1);
             Assert.True(((IAddress)addressList[0]).Address1 == "10 Street Lane");
@@ -150,8 +142,8 @@
             Assert.True(((IAddress)addressList[1]).State == "MA");
             Assert.True(((IAddress)addressList[1]).Zip == "02124");
 
-            Assert.True(phoneNumbers == ((IAdministrator)admin).PhoneNumbers);
-            Assert.True(((IAdministrator)admin).PhoneNumbers.Count() == 2);
+            Assert.True(phoneNumbers == ((IGuardian)guardian).PhoneNumbers);
+            Assert.True(((IGuardian)guardian).PhoneNumbers.Count() == 2);
 
             Assert.True(phoneList[0].Id == 1);
             Assert.True(((IPhone)phoneList[0]).AreaCode == "111");
@@ -176,8 +168,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -195,32 +186,30 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act.
-            Administrator admin = new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers);
+            Guardian guardian = new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers);
 
             // Assert.
 
-            Assert.NotNull(admin);
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.AdminId == id);
-            Assert.True(admin.Modified == false);
+            Assert.True(guardian.GuardianId == id);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).ContactOrder == contactOrder);
 
-            Assert.True(((IAdministrator)admin).Department == department);
-            Assert.True(((IAdministrator)admin).Position == position);
-
-            Assert.True(id == admin.PersonId);
-            Assert.True(admin.Role == Role.Administrator);
-            Assert.True(lastLoginDate == ((IAdministrator)admin).LastLoginDate);
-            Assert.True(lastPasswordChangedDate == ((IAdministrator)admin).LastPasswordChangedDate);
-            Assert.True(createdDate == ((IAdministrator)admin).CreatedDate);
-            Assert.True(prefix == ((IAdministrator)admin).Prefix);
-            Assert.True(firstName == ((IAdministrator)admin).FirstName);
-            Assert.True(middleName == ((IAdministrator)admin).MiddleName);
-            Assert.True(lastName == ((IAdministrator)admin).LastName);
-            Assert.True(suffix == ((IAdministrator)admin).Suffix);
-            Assert.True(login == ((IAdministrator)admin).Login);
-            Assert.True(email == ((IAdministrator)admin).Email);
-            Assert.True(addresses == ((IAdministrator)admin).Addresses);
-            Assert.True(phoneNumbers == ((IAdministrator)admin).PhoneNumbers);
+            Assert.True(id == guardian.PersonId);
+            Assert.True(guardian.Role == Role.Guardian);
+            Assert.True(lastLoginDate == ((IGuardian)guardian).LastLoginDate);
+            Assert.True(lastPasswordChangedDate == ((IGuardian)guardian).LastPasswordChangedDate);
+            Assert.True(createdDate == ((IGuardian)guardian).CreatedDate);
+            Assert.True(prefix == ((IGuardian)guardian).Prefix);
+            Assert.True(firstName == ((IGuardian)guardian).FirstName);
+            Assert.True(middleName == ((IGuardian)guardian).MiddleName);
+            Assert.True(lastName == ((IGuardian)guardian).LastName);
+            Assert.True(suffix == ((IGuardian)guardian).Suffix);
+            Assert.True(login == ((IGuardian)guardian).Login);
+            Assert.True(email == ((IGuardian)guardian).Email);
+            Assert.True(addresses == ((IGuardian)guardian).Addresses);
+            Assert.True(phoneNumbers == ((IGuardian)guardian).PhoneNumbers);
         }
 
         /// <summary>
@@ -231,8 +220,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -250,7 +238,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentNullException>("email", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentNullException>("email", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -261,8 +249,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -280,7 +267,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentNullException>("addresses", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentNullException>("addresses", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -291,8 +278,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -310,7 +296,7 @@
             List<Phone> phoneNumbers = null;
 
             // Act and Assert.
-            Assert.Throws<ArgumentNullException>("phoneNumbers", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentNullException>("phoneNumbers", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -321,8 +307,7 @@
         {
             // Arrange.
             int id = 0;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -340,229 +325,52 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("id", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("id", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
-        /// Set_Department_Works tests.
+        /// Set_ContactOrder_Works tests.
         /// </summary>
         [Fact]
-        public void Set_Department_Works()
+        public void Set_ContactOrder_Works()
         {
             // Arrange.
-            string department = "Department";
+            int contactOrder = 1;
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).ContactOrder == -1);
 
-            ((IAdministrator)admin).Department = department;
+            ((IGuardian)guardian).ContactOrder = contactOrder;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Department == department);
+            Assert.True(guardian.Modified == true);
+            Assert.True(((IGuardian)guardian).ContactOrder == contactOrder);
         }
 
         /// <summary>
-        /// Set_Department_Fails_DepartmentNull tests.
+        /// Set_ContactOrder_Fails_LessThanOne tests.
         /// </summary>
         [Fact]
-        public void Set_Department_Fails_DepartmentNull()
-        {
-            // Arrange.
-
-            // Act and assert.
-
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
-
-            Assert.Throws<ArgumentException>("Department", () => (((IAdministrator)admin).Department = null));
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
-        }
-
-        /// <summary>
-        /// Set_Department_Fails_DepartmentEmpty tests.
-        /// </summary>
-        [Fact]
-        public void Set_Department_Fails_DepartmentEmpty()
+        public void Set_ContactOrder_Fails_LessThanOne()
         {
             // Arrange.
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).ContactOrder == -1);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IAdministrator)admin).Department = string.Empty));
+            Assert.Throws<ArgumentException>("ContactOrder", () => (((IGuardian)guardian).ContactOrder = 0));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
-        }
-
-        /// <summary>
-        /// Set_Department_Fails_DepartmentWhitespace tests.
-        /// </summary>
-        [Fact]
-        public void Set_Department_Fails_DepartmentWhitespace()
-        {
-            // Arrange.
-
-            // Act and assert.
-
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
-
-            Assert.Throws<ArgumentException>("Department", () => (((IAdministrator)admin).Department = "       "));
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
-        }
-
-        /// <summary>
-        /// Set_Department_Fails_DepartmentLong tests.
-        /// </summary>
-        [Fact]
-        public void Set_Department_Fails_DepartmentLong()
-        {
-            // Arrange.
-
-            // Act and assert.
-
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
-
-            Assert.Throws<ArgumentException>("Department", () => (((IAdministrator)admin).Department = c_veryLongString));
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
-        }
-
-        /// <summary>
-        /// Set_Position_Works tests.
-        /// </summary>
-        [Fact]
-        public void Set_Position_Works()
-        {
-            // Arrange.
-            string position = "Position";
-
-            // Act and assert.
-
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
-
-            ((IAdministrator)admin).Position = position;
-
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Position == position);
-        }
-
-        /// <summary>
-        /// Set_Position_Fails_PositionNull tests.
-        /// </summary>
-        [Fact]
-        public void Set_Position_Fails_PositionNull()
-        {
-            // Arrange.
-
-            // Act and assert.
-
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
-
-            Assert.Throws<ArgumentException>("Position", () => (((IAdministrator)admin).Position = null));
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
-        }
-
-        /// <summary>
-        /// Set_Position_Fails_PositionEmpty tests.
-        /// </summary>
-        [Fact]
-        public void Set_Position_Fails_PositionEmpty()
-        {
-            // Arrange.
-
-            // Act and assert.
-
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
-
-            Assert.Throws<ArgumentException>("Position", () => (((IAdministrator)admin).Position = string.Empty));
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
-        }
-
-        /// <summary>
-        /// Set_Department_Fails_PositionWhitespace tests.
-        /// </summary>
-        [Fact]
-        public void Set_Position_Fails_PositionWhitespace()
-        {
-            // Arrange.
-
-            // Act and assert.
-
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
-
-            Assert.Throws<ArgumentException>("Position", () => (((IAdministrator)admin).Position = "       "));
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
-        }
-
-        /// <summary>
-        /// Set_Position_Fails_PositionLong tests.
-        /// </summary>
-        [Fact]
-        public void Set_Position_Fails_PositionLong()
-        {
-            // Arrange.
-
-            // Act and assert.
-
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
-
-            Assert.Throws<ArgumentException>("Position", () => (((IAdministrator)admin).Position = c_veryLongString));
-
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).ContactOrder == -1);
         }
 
         #region Base Class Tests
@@ -575,8 +383,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 0;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -594,7 +401,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("personId", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("personId", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -605,8 +412,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -632,7 +438,7 @@
             };
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Prefix", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Prefix", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -643,8 +449,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -662,7 +467,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("FirstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -673,8 +478,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -692,7 +496,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("FirstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -703,8 +507,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -722,7 +525,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("FirstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -733,8 +536,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -752,7 +554,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("FirstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -763,8 +565,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -782,7 +583,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("MiddleName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("MiddleName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -793,8 +594,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -812,7 +612,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("LastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -823,8 +623,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -842,7 +641,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("LastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -853,8 +652,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -872,7 +670,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("LastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -883,8 +681,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -902,7 +699,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("LastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -913,8 +710,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -932,7 +728,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Suffix", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Suffix", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -943,8 +739,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -962,7 +757,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -973,8 +768,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -992,7 +786,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1003,8 +797,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -1022,7 +815,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1033,8 +826,7 @@
         {
             // Arrange.
             int id = 1;
-            string department = "Department";
-            string position = "Position";
+            int contactOrder = 1;
             int personId = 1;
             DateTime lastLoginDate = DateTime.UtcNow;
             DateTime lastPasswordChangedDate = DateTime.UtcNow;
@@ -1052,7 +844,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1065,16 +857,16 @@
             string prefix = "Mr.";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Prefix == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Prefix == null);
 
-            ((IAdministrator)admin).Prefix = prefix;
+            ((IGuardian)guardian).Prefix = prefix;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Prefix == prefix);
+            Assert.True(guardian.Modified == true);
+            Assert.True(((IGuardian)guardian).Prefix == prefix);
         }
 
         /// <summary>
@@ -1086,16 +878,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Prefix == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Prefix == null);
 
-            Assert.Throws<ArgumentException>("Prefix", () => (((IAdministrator)admin).Prefix = c_veryLongPrefix));
+            Assert.Throws<ArgumentException>("Prefix", () => (((IGuardian)guardian).Prefix = c_veryLongPrefix));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Prefix == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Prefix == null);
         }
 
         /// <summary>
@@ -1108,16 +900,16 @@
             string firstName = "John";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
 
-            ((IAdministrator)admin).FirstName = firstName;
+            ((IGuardian)guardian).FirstName = firstName;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).FirstName == firstName);
+            Assert.True(guardian.Modified == true);
+            Assert.True(((IGuardian)guardian).FirstName == firstName);
         }
 
         /// <summary>
@@ -1129,16 +921,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IAdministrator)admin).FirstName = null));
+            Assert.Throws<ArgumentException>("FirstName", () => (((IGuardian)guardian).FirstName = null));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
         }
 
         /// <summary>
@@ -1150,16 +942,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IAdministrator)admin).FirstName = string.Empty));
+            Assert.Throws<ArgumentException>("FirstName", () => (((IGuardian)guardian).FirstName = string.Empty));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
         }
 
         /// <summary>
@@ -1171,16 +963,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IAdministrator)admin).FirstName = "      "));
+            Assert.Throws<ArgumentException>("FirstName", () => (((IGuardian)guardian).FirstName = "      "));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
         }
 
         /// <summary>
@@ -1192,16 +984,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IAdministrator)admin).FirstName = c_veryLongName));
+            Assert.Throws<ArgumentException>("FirstName", () => (((IGuardian)guardian).FirstName = c_veryLongName));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).FirstName == null);
         }
 
         /// <summary>
@@ -1214,16 +1006,16 @@
             string middleName = "Joseph";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).MiddleName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).MiddleName == null);
 
-            ((IAdministrator)admin).MiddleName = middleName;
+            ((IGuardian)guardian).MiddleName = middleName;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).MiddleName == middleName);
+            Assert.True(guardian.Modified == true);
+            Assert.True(((IGuardian)guardian).MiddleName == middleName);
         }
 
         /// <summary>
@@ -1235,16 +1027,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).MiddleName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).MiddleName == null);
 
-            Assert.Throws<ArgumentException>("MiddleName", () => (((IAdministrator)admin).MiddleName = c_veryLongName));
+            Assert.Throws<ArgumentException>("MiddleName", () => (((IGuardian)guardian).MiddleName = c_veryLongName));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).MiddleName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).MiddleName == null);
         }
 
         /// <summary>
@@ -1257,16 +1049,16 @@
             string lastName = "Doe";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
 
-            ((IAdministrator)admin).LastName = lastName;
+            ((IGuardian)guardian).LastName = lastName;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).LastName == lastName);
+            Assert.True(guardian.Modified == true);
+            Assert.True(((IGuardian)guardian).LastName == lastName);
         }
 
         /// <summary>
@@ -1278,16 +1070,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IAdministrator)admin).LastName = null));
+            Assert.Throws<ArgumentException>("LastName", () => (((IGuardian)guardian).LastName = null));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
         }
 
         /// <summary>
@@ -1299,16 +1091,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IAdministrator)admin).LastName = string.Empty));
+            Assert.Throws<ArgumentException>("LastName", () => (((IGuardian)guardian).LastName = string.Empty));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
         }
 
         /// <summary>
@@ -1320,16 +1112,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IAdministrator)admin).LastName = "      "));
+            Assert.Throws<ArgumentException>("LastName", () => (((IGuardian)guardian).LastName = "      "));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
         }
 
         /// <summary>
@@ -1341,16 +1133,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IAdministrator)admin).LastName = c_veryLongName));
+            Assert.Throws<ArgumentException>("LastName", () => (((IGuardian)guardian).LastName = c_veryLongName));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).LastName == null);
         }
 
         /// <summary>
@@ -1363,16 +1155,16 @@
             string suffix = "Sr.";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Suffix == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Suffix == null);
 
-            ((IAdministrator)admin).Suffix = suffix;
+            ((IGuardian)guardian).Suffix = suffix;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Suffix == suffix);
+            Assert.True(guardian.Modified == true);
+            Assert.True(((IGuardian)guardian).Suffix == suffix);
         }
 
         /// <summary>
@@ -1384,16 +1176,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Suffix == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Suffix == null);
 
-            Assert.Throws<ArgumentException>("Suffix", () => (((IAdministrator)admin).Suffix = c_veryLongPrefix));
+            Assert.Throws<ArgumentException>("Suffix", () => (((IGuardian)guardian).Suffix = c_veryLongPrefix));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Suffix == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Suffix == null);
         }
 
         /// <summary>
@@ -1406,16 +1198,16 @@
             string login = "JDoe";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
 
-            ((IAdministrator)admin).Login = login;
+            ((IGuardian)guardian).Login = login;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Login == login);
+            Assert.True(guardian.Modified == true);
+            Assert.True(((IGuardian)guardian).Login == login);
         }
 
         /// <summary>
@@ -1427,16 +1219,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IAdministrator)admin).Login = null));
+            Assert.Throws<ArgumentException>("Login", () => (((IGuardian)guardian).Login = null));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
         }
 
         /// <summary>
@@ -1448,16 +1240,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IAdministrator)admin).Login = string.Empty));
+            Assert.Throws<ArgumentException>("Login", () => (((IGuardian)guardian).Login = string.Empty));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
         }
 
         /// <summary>
@@ -1469,16 +1261,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IAdministrator)admin).Login = "      "));
+            Assert.Throws<ArgumentException>("Login", () => (((IGuardian)guardian).Login = "      "));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
         }
 
         /// <summary>
@@ -1490,16 +1282,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Guardian guardian = new Guardian();
+            Assert.NotNull(guardian);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IAdministrator)admin).Login = c_veryLongLogin));
+            Assert.Throws<ArgumentException>("Login", () => (((IGuardian)guardian).Login = c_veryLongLogin));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(guardian.Modified == false);
+            Assert.True(((IGuardian)guardian).Login == null);
         }
         #endregion Base Class Tests
     }

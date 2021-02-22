@@ -4,9 +4,9 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Administrator class implementation.
+    /// Instructor class implementation.
     /// </summary>
-    public class Administrator : Person, IAdministrator
+    public class Instructor : Person, IInstructor
     {
         private readonly int m_id;
 
@@ -14,10 +14,10 @@
         private string m_position;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Administrator"/> class.
+        /// Initializes a new instance of the <see cref="Instructor"/> class.
         /// </summary>
-        public Administrator()
-            : base(Role.Administrator)
+        public Instructor()
+            : base(Role.Instructor)
         {
             m_id = -1;
             m_department = null;
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Administrator"/> class.
+        /// Initializes a new instance of the <see cref="Instructor"/> class.
         /// </summary>
         /// <param name="id">Unique id for this administrator in the database.</param>
         /// <param name="department">Department.</param>
@@ -45,25 +45,25 @@
         /// <param name="email">Email.</param>
         /// <param name="addresses">Collection of addresses.</param>
         /// <param name="phoneNumbers">Collection of phone numbers.</param>
-        public Administrator(int id,
-                             string department,
-                             string position,
-                             int personId,
-                             DateTime lastLoginDate,
-                             DateTime lastPasswordChangedDate,
-                             DateTime createdDate,
-                             string prefix,
-                             string firstName,
-                             string middleName,
-                             string lastName,
-                             string suffix,
-                             string login,
-                             string passwordHash,
-                             string passwordSalt,
-                             Email email,
-                             List<Address> addresses,
-                             List<Phone> phoneNumbers)
-            : base(personId, Role.Administrator, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers)
+        public Instructor(int id,
+                          string department,
+                          string position,
+                          int personId,
+                          DateTime lastLoginDate,
+                          DateTime lastPasswordChangedDate,
+                          DateTime createdDate,
+                          string prefix,
+                          string firstName,
+                          string middleName,
+                          string lastName,
+                          string suffix,
+                          string login,
+                          string passwordHash,
+                          string passwordSalt,
+                          Email email,
+                          List<Address> addresses,
+                          List<Phone> phoneNumbers)
+            : base(personId, Role.Instructor, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers)
         {
             if (id < 1)
             {
@@ -108,7 +108,7 @@
         /// Gets the database unique identifier for this administrator.
         /// </summary>
         /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
-        public int AdminId
+        public int InstructorId
         {
             get
             {
@@ -117,7 +117,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Department
+        string IInstructor.Department
         {
             get
             {
@@ -134,7 +134,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Position
+        string IInstructor.Position
         {
             get
             {
@@ -153,7 +153,7 @@
         #region Implementation for IPerson Wrappers
 
         /// <inheritdoc/>
-        string IAdministrator.Prefix
+        string IInstructor.Prefix
         {
             get
             {
@@ -168,7 +168,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.FirstName
+        string IInstructor.FirstName
         {
             get
             {
@@ -183,7 +183,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.MiddleName
+        string IInstructor.MiddleName
         {
             get
             {
@@ -198,7 +198,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.LastName
+        string IInstructor.LastName
         {
             get
             {
@@ -213,7 +213,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Suffix
+        string IInstructor.Suffix
         {
             get
             {
@@ -228,7 +228,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Login
+        string IInstructor.Login
         {
             get
             {
@@ -243,7 +243,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.LastLoginDate
+        DateTime IInstructor.LastLoginDate
         {
             get
             {
@@ -252,7 +252,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.LastPasswordChangedDate
+        DateTime IInstructor.LastPasswordChangedDate
         {
             get
             {
@@ -261,7 +261,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.CreatedDate
+        DateTime IInstructor.CreatedDate
         {
             get
             {
@@ -270,7 +270,7 @@
         }
 
         /// <inheritdoc/>
-        Email IAdministrator.Email
+        Email IInstructor.Email
         {
             get
             {
@@ -279,7 +279,7 @@
         }
 
         /// <inheritdoc/>
-        IEnumerable<Address> IAdministrator.Addresses
+        IEnumerable<Address> IInstructor.Addresses
         {
             get
             {
@@ -288,7 +288,7 @@
         }
 
         /// <inheritdoc/>
-        IEnumerable<Phone> IAdministrator.PhoneNumbers
+        IEnumerable<Phone> IInstructor.PhoneNumbers
         {
             get
             {
@@ -297,7 +297,7 @@
         }
 
         /// <inheritdoc/>
-        bool IAdministrator.SetPassword(string password)
+        bool IInstructor.SetPassword(string password)
         {
             return SetPassword(password);
         }
