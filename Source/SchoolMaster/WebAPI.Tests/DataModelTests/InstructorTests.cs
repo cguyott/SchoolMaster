@@ -7,9 +7,9 @@
     using Xunit;
 
     /// <summary>
-    /// Administrator unit tests.
+    /// InstructorTests unit tests.
     /// </summary>
-    public class AdministratorTests
+    public class InstructorTests
     {
         // 129 characters long.
         private const string c_veryLongString = "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678";
@@ -34,38 +34,38 @@
             // Arrange.
 
             // Act.
-            Administrator admin = new Administrator();
+            Instructor instructor = new Instructor();
 
             // Assert.
 
-            Assert.NotNull(admin);
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.AdminId == -1);
-            Assert.True(admin.Modified == false);
+            Assert.True(instructor.InstructorId == -1);
+            Assert.True(instructor.Modified == false);
 
-            Assert.True(((IAdministrator)admin).Department == null);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(((IInstructor)instructor).Department == null);
+            Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.True(admin.Modified == false);
+            Assert.True(instructor.Modified == false);
 
-            Assert.True(admin.PersonId == -1);
-            Assert.True(admin.Role == Role.Administrator);
-            Assert.True(admin.LastLoginDate == DateTime.MinValue);
-            Assert.True(admin.LastPasswordChangedDate == DateTime.MinValue);
-            Assert.True(admin.CreatedDate == DateTime.MinValue);
+            Assert.True(instructor.PersonId == -1);
+            Assert.True(instructor.Role == Role.Instructor);
+            Assert.True(instructor.LastLoginDate == DateTime.MinValue);
+            Assert.True(instructor.LastPasswordChangedDate == DateTime.MinValue);
+            Assert.True(instructor.CreatedDate == DateTime.MinValue);
 
-            Assert.True(admin.Prefix == null);
-            Assert.True(admin.FirstName == null);
-            Assert.True(admin.MiddleName == null);
-            Assert.True(admin.LastName == null);
-            Assert.True(admin.Suffix == null);
-            Assert.True(admin.Login == null);
-            Assert.NotNull(((IAdministrator)admin).Email);
+            Assert.True(instructor.Prefix == null);
+            Assert.True(instructor.FirstName == null);
+            Assert.True(instructor.MiddleName == null);
+            Assert.True(instructor.LastName == null);
+            Assert.True(instructor.Suffix == null);
+            Assert.True(instructor.Login == null);
+            Assert.NotNull(((IInstructor)instructor).Email);
 
-            Assert.NotNull(((IAdministrator)admin).Addresses);
-            Assert.True(((IAdministrator)admin).Addresses.Count() == 0);
-            Assert.NotNull(((IAdministrator)admin).PhoneNumbers);
-            Assert.True(((IAdministrator)admin).PhoneNumbers.Count() == 0);
+            Assert.NotNull(((IInstructor)instructor).Addresses);
+            Assert.True(((IInstructor)instructor).Addresses.Count() == 0);
+            Assert.NotNull(((IInstructor)instructor).PhoneNumbers);
+            Assert.True(((IInstructor)instructor).PhoneNumbers.Count() == 0);
         }
 
         /// <summary>
@@ -105,36 +105,36 @@
             };
 
             // Act.
-            Administrator admin = new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers);
+            Instructor instructor = new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers);
 
-            List<Address> addressList = ((IAdministrator)admin).Addresses.ToList();
-            List<Phone> phoneList = ((IAdministrator)admin).PhoneNumbers.ToList();
+            List<Address> addressList = ((IInstructor)instructor).Addresses.ToList();
+            List<Phone> phoneList = ((IInstructor)instructor).PhoneNumbers.ToList();
 
             // Assert.
 
-            Assert.NotNull(admin);
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.AdminId == id);
-            Assert.True(admin.Modified == false);
+            Assert.True(instructor.InstructorId == id);
+            Assert.True(instructor.Modified == false);
 
-            Assert.True(((IAdministrator)admin).Department == department);
-            Assert.True(((IAdministrator)admin).Position == position);
+            Assert.True(((IInstructor)instructor).Department == department);
+            Assert.True(((IInstructor)instructor).Position == position);
 
-            Assert.True(id == admin.PersonId);
-            Assert.True(admin.Role == Role.Administrator);
-            Assert.True(lastLoginDate == ((IAdministrator)admin).LastLoginDate);
-            Assert.True(lastPasswordChangedDate == ((IAdministrator)admin).LastPasswordChangedDate);
-            Assert.True(createdDate == ((IAdministrator)admin).CreatedDate);
-            Assert.True(prefix == ((IAdministrator)admin).Prefix);
-            Assert.True(firstName == ((IAdministrator)admin).FirstName);
-            Assert.True(middleName == ((IAdministrator)admin).MiddleName);
-            Assert.True(lastName == ((IAdministrator)admin).LastName);
-            Assert.True(suffix == ((IAdministrator)admin).Suffix);
-            Assert.True(login == ((IAdministrator)admin).Login);
-            Assert.True(email == ((IAdministrator)admin).Email);
+            Assert.True(id == instructor.PersonId);
+            Assert.True(instructor.Role == Role.Instructor);
+            Assert.True(lastLoginDate == ((IInstructor)instructor).LastLoginDate);
+            Assert.True(lastPasswordChangedDate == ((IInstructor)instructor).LastPasswordChangedDate);
+            Assert.True(createdDate == ((IInstructor)instructor).CreatedDate);
+            Assert.True(prefix == ((IInstructor)instructor).Prefix);
+            Assert.True(firstName == ((IInstructor)instructor).FirstName);
+            Assert.True(middleName == ((IInstructor)instructor).MiddleName);
+            Assert.True(lastName == ((IInstructor)instructor).LastName);
+            Assert.True(suffix == ((IInstructor)instructor).Suffix);
+            Assert.True(login == ((IInstructor)instructor).Login);
+            Assert.True(email == ((IInstructor)instructor).Email);
 
-            Assert.True(addresses == ((IAdministrator)admin).Addresses);
-            Assert.True(((IAdministrator)admin).Addresses.Count() == 2);
+            Assert.True(addresses == ((IInstructor)instructor).Addresses);
+            Assert.True(((IInstructor)instructor).Addresses.Count() == 2);
 
             Assert.True(addressList[0].Id == 1);
             Assert.True(((IAddress)addressList[0]).Address1 == "10 Street Lane");
@@ -150,8 +150,8 @@
             Assert.True(((IAddress)addressList[1]).State == "MA");
             Assert.True(((IAddress)addressList[1]).Zip == "02124");
 
-            Assert.True(phoneNumbers == ((IAdministrator)admin).PhoneNumbers);
-            Assert.True(((IAdministrator)admin).PhoneNumbers.Count() == 2);
+            Assert.True(phoneNumbers == ((IInstructor)instructor).PhoneNumbers);
+            Assert.True(((IInstructor)instructor).PhoneNumbers.Count() == 2);
 
             Assert.True(phoneList[0].Id == 1);
             Assert.True(((IPhone)phoneList[0]).AreaCode == "111");
@@ -195,32 +195,32 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act.
-            Administrator admin = new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers);
+            Instructor instructor = new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers);
 
             // Assert.
 
-            Assert.NotNull(admin);
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.AdminId == id);
-            Assert.True(admin.Modified == false);
+            Assert.True(instructor.InstructorId == id);
+            Assert.True(instructor.Modified == false);
 
-            Assert.True(((IAdministrator)admin).Department == department);
-            Assert.True(((IAdministrator)admin).Position == position);
+            Assert.True(((IInstructor)instructor).Department == department);
+            Assert.True(((IInstructor)instructor).Position == position);
 
-            Assert.True(id == admin.PersonId);
-            Assert.True(admin.Role == Role.Administrator);
-            Assert.True(lastLoginDate == ((IAdministrator)admin).LastLoginDate);
-            Assert.True(lastPasswordChangedDate == ((IAdministrator)admin).LastPasswordChangedDate);
-            Assert.True(createdDate == ((IAdministrator)admin).CreatedDate);
-            Assert.True(prefix == ((IAdministrator)admin).Prefix);
-            Assert.True(firstName == ((IAdministrator)admin).FirstName);
-            Assert.True(middleName == ((IAdministrator)admin).MiddleName);
-            Assert.True(lastName == ((IAdministrator)admin).LastName);
-            Assert.True(suffix == ((IAdministrator)admin).Suffix);
-            Assert.True(login == ((IAdministrator)admin).Login);
-            Assert.True(email == ((IAdministrator)admin).Email);
-            Assert.True(addresses == ((IAdministrator)admin).Addresses);
-            Assert.True(phoneNumbers == ((IAdministrator)admin).PhoneNumbers);
+            Assert.True(id == instructor.PersonId);
+            Assert.True(instructor.Role == Role.Instructor);
+            Assert.True(lastLoginDate == ((IInstructor)instructor).LastLoginDate);
+            Assert.True(lastPasswordChangedDate == ((IInstructor)instructor).LastPasswordChangedDate);
+            Assert.True(createdDate == ((IInstructor)instructor).CreatedDate);
+            Assert.True(prefix == ((IInstructor)instructor).Prefix);
+            Assert.True(firstName == ((IInstructor)instructor).FirstName);
+            Assert.True(middleName == ((IInstructor)instructor).MiddleName);
+            Assert.True(lastName == ((IInstructor)instructor).LastName);
+            Assert.True(suffix == ((IInstructor)instructor).Suffix);
+            Assert.True(login == ((IInstructor)instructor).Login);
+            Assert.True(email == ((IInstructor)instructor).Email);
+            Assert.True(addresses == ((IInstructor)instructor).Addresses);
+            Assert.True(phoneNumbers == ((IInstructor)instructor).PhoneNumbers);
         }
 
         /// <summary>
@@ -250,7 +250,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentNullException>("email", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentNullException>("email", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -280,7 +280,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentNullException>("addresses", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentNullException>("addresses", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -310,7 +310,7 @@
             List<Phone> phoneNumbers = null;
 
             // Act and Assert.
-            Assert.Throws<ArgumentNullException>("phoneNumbers", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentNullException>("phoneNumbers", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -340,7 +340,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("id", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("id", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -354,16 +354,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
 
-            ((IAdministrator)admin).Department = department;
+            ((IInstructor)instructor).Department = department;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Department == department);
+            Assert.True(instructor.Modified == true);
+            Assert.True(((IInstructor)instructor).Department == department);
         }
 
         /// <summary>
@@ -376,16 +376,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IAdministrator)admin).Department = null));
+            Assert.Throws<ArgumentException>("Department", () => (((IInstructor)instructor).Department = null));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
         }
 
         /// <summary>
@@ -398,16 +398,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IAdministrator)admin).Department = string.Empty));
+            Assert.Throws<ArgumentException>("Department", () => (((IInstructor)instructor).Department = string.Empty));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
         }
 
         /// <summary>
@@ -420,16 +420,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IAdministrator)admin).Department = "       "));
+            Assert.Throws<ArgumentException>("Department", () => (((IInstructor)instructor).Department = "       "));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
         }
 
         /// <summary>
@@ -442,16 +442,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IAdministrator)admin).Department = c_veryLongString));
+            Assert.Throws<ArgumentException>("Department", () => (((IInstructor)instructor).Department = c_veryLongString));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Department == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Department == null);
         }
 
         /// <summary>
@@ -465,16 +465,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
 
-            ((IAdministrator)admin).Position = position;
+            ((IInstructor)instructor).Position = position;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Position == position);
+            Assert.True(instructor.Modified == true);
+            Assert.True(((IInstructor)instructor).Position == position);
         }
 
         /// <summary>
@@ -487,16 +487,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.Throws<ArgumentException>("Position", () => (((IAdministrator)admin).Position = null));
+            Assert.Throws<ArgumentException>("Position", () => (((IInstructor)instructor).Position = null));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
         }
 
         /// <summary>
@@ -509,16 +509,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.Throws<ArgumentException>("Position", () => (((IAdministrator)admin).Position = string.Empty));
+            Assert.Throws<ArgumentException>("Position", () => (((IInstructor)instructor).Position = string.Empty));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
         }
 
         /// <summary>
@@ -531,16 +531,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.Throws<ArgumentException>("Position", () => (((IAdministrator)admin).Position = "       "));
+            Assert.Throws<ArgumentException>("Position", () => (((IInstructor)instructor).Position = "       "));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
         }
 
         /// <summary>
@@ -553,16 +553,16 @@
 
             // Act and assert.
 
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.Throws<ArgumentException>("Position", () => (((IAdministrator)admin).Position = c_veryLongString));
+            Assert.Throws<ArgumentException>("Position", () => (((IInstructor)instructor).Position = c_veryLongString));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Position == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Position == null);
         }
 
         #region Base Class Tests
@@ -594,7 +594,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("personId", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("personId", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -632,7 +632,7 @@
             };
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Prefix", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Prefix", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -662,7 +662,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("FirstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -692,7 +692,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("FirstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -722,7 +722,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("FirstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -752,7 +752,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("FirstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -782,7 +782,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("MiddleName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("MiddleName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -812,7 +812,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("LastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -842,7 +842,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("LastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -872,7 +872,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("LastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -902,7 +902,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("LastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -932,7 +932,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Suffix", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Suffix", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -962,7 +962,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -992,7 +992,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1022,7 +1022,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1052,7 +1052,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Administrator(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("Login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1065,16 +1065,16 @@
             string prefix = "Mr.";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Prefix == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Prefix == null);
 
-            ((IAdministrator)admin).Prefix = prefix;
+            ((IInstructor)instructor).Prefix = prefix;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Prefix == prefix);
+            Assert.True(instructor.Modified == true);
+            Assert.True(((IInstructor)instructor).Prefix == prefix);
         }
 
         /// <summary>
@@ -1086,16 +1086,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Prefix == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Prefix == null);
 
-            Assert.Throws<ArgumentException>("Prefix", () => (((IAdministrator)admin).Prefix = c_veryLongPrefix));
+            Assert.Throws<ArgumentException>("Prefix", () => (((IInstructor)instructor).Prefix = c_veryLongPrefix));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Prefix == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Prefix == null);
         }
 
         /// <summary>
@@ -1108,16 +1108,16 @@
             string firstName = "John";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
 
-            ((IAdministrator)admin).FirstName = firstName;
+            ((IInstructor)instructor).FirstName = firstName;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).FirstName == firstName);
+            Assert.True(instructor.Modified == true);
+            Assert.True(((IInstructor)instructor).FirstName == firstName);
         }
 
         /// <summary>
@@ -1129,16 +1129,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IAdministrator)admin).FirstName = null));
+            Assert.Throws<ArgumentException>("FirstName", () => (((IInstructor)instructor).FirstName = null));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
         }
 
         /// <summary>
@@ -1150,16 +1150,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IAdministrator)admin).FirstName = string.Empty));
+            Assert.Throws<ArgumentException>("FirstName", () => (((IInstructor)instructor).FirstName = string.Empty));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
         }
 
         /// <summary>
@@ -1171,16 +1171,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IAdministrator)admin).FirstName = "      "));
+            Assert.Throws<ArgumentException>("FirstName", () => (((IInstructor)instructor).FirstName = "      "));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
         }
 
         /// <summary>
@@ -1192,16 +1192,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IAdministrator)admin).FirstName = c_veryLongName));
+            Assert.Throws<ArgumentException>("FirstName", () => (((IInstructor)instructor).FirstName = c_veryLongName));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).FirstName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).FirstName == null);
         }
 
         /// <summary>
@@ -1214,16 +1214,16 @@
             string middleName = "Joseph";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).MiddleName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).MiddleName == null);
 
-            ((IAdministrator)admin).MiddleName = middleName;
+            ((IInstructor)instructor).MiddleName = middleName;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).MiddleName == middleName);
+            Assert.True(instructor.Modified == true);
+            Assert.True(((IInstructor)instructor).MiddleName == middleName);
         }
 
         /// <summary>
@@ -1235,16 +1235,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).MiddleName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).MiddleName == null);
 
-            Assert.Throws<ArgumentException>("MiddleName", () => (((IAdministrator)admin).MiddleName = c_veryLongName));
+            Assert.Throws<ArgumentException>("MiddleName", () => (((IInstructor)instructor).MiddleName = c_veryLongName));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).MiddleName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).MiddleName == null);
         }
 
         /// <summary>
@@ -1257,16 +1257,16 @@
             string lastName = "Doe";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
 
-            ((IAdministrator)admin).LastName = lastName;
+            ((IInstructor)instructor).LastName = lastName;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).LastName == lastName);
+            Assert.True(instructor.Modified == true);
+            Assert.True(((IInstructor)instructor).LastName == lastName);
         }
 
         /// <summary>
@@ -1278,16 +1278,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IAdministrator)admin).LastName = null));
+            Assert.Throws<ArgumentException>("LastName", () => (((IInstructor)instructor).LastName = null));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
         }
 
         /// <summary>
@@ -1299,16 +1299,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IAdministrator)admin).LastName = string.Empty));
+            Assert.Throws<ArgumentException>("LastName", () => (((IInstructor)instructor).LastName = string.Empty));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
         }
 
         /// <summary>
@@ -1320,16 +1320,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IAdministrator)admin).LastName = "      "));
+            Assert.Throws<ArgumentException>("LastName", () => (((IInstructor)instructor).LastName = "      "));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
         }
 
         /// <summary>
@@ -1341,16 +1341,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IAdministrator)admin).LastName = c_veryLongName));
+            Assert.Throws<ArgumentException>("LastName", () => (((IInstructor)instructor).LastName = c_veryLongName));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).LastName == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).LastName == null);
         }
 
         /// <summary>
@@ -1363,16 +1363,16 @@
             string suffix = "Sr.";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Suffix == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Suffix == null);
 
-            ((IAdministrator)admin).Suffix = suffix;
+            ((IInstructor)instructor).Suffix = suffix;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Suffix == suffix);
+            Assert.True(instructor.Modified == true);
+            Assert.True(((IInstructor)instructor).Suffix == suffix);
         }
 
         /// <summary>
@@ -1384,16 +1384,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Suffix == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Suffix == null);
 
-            Assert.Throws<ArgumentException>("Suffix", () => (((IAdministrator)admin).Suffix = c_veryLongPrefix));
+            Assert.Throws<ArgumentException>("Suffix", () => (((IInstructor)instructor).Suffix = c_veryLongPrefix));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Suffix == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Suffix == null);
         }
 
         /// <summary>
@@ -1406,16 +1406,16 @@
             string login = "JDoe";
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
 
-            ((IAdministrator)admin).Login = login;
+            ((IInstructor)instructor).Login = login;
 
-            Assert.True(admin.Modified == true);
-            Assert.True(((IAdministrator)admin).Login == login);
+            Assert.True(instructor.Modified == true);
+            Assert.True(((IInstructor)instructor).Login == login);
         }
 
         /// <summary>
@@ -1427,16 +1427,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IAdministrator)admin).Login = null));
+            Assert.Throws<ArgumentException>("Login", () => (((IInstructor)instructor).Login = null));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
         }
 
         /// <summary>
@@ -1448,16 +1448,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IAdministrator)admin).Login = string.Empty));
+            Assert.Throws<ArgumentException>("Login", () => (((IInstructor)instructor).Login = string.Empty));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
         }
 
         /// <summary>
@@ -1469,16 +1469,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IAdministrator)admin).Login = "      "));
+            Assert.Throws<ArgumentException>("Login", () => (((IInstructor)instructor).Login = "      "));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
         }
 
         /// <summary>
@@ -1490,16 +1490,16 @@
             // Arrange.
 
             // Act and assert.
-            Administrator admin = new Administrator();
-            Assert.NotNull(admin);
+            Instructor instructor = new Instructor();
+            Assert.NotNull(instructor);
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IAdministrator)admin).Login = c_veryLongLogin));
+            Assert.Throws<ArgumentException>("Login", () => (((IInstructor)instructor).Login = c_veryLongLogin));
 
-            Assert.True(admin.Modified == false);
-            Assert.True(((IAdministrator)admin).Login == null);
+            Assert.True(instructor.Modified == false);
+            Assert.True(((IInstructor)instructor).Login == null);
         }
         #endregion Base Class Tests
     }

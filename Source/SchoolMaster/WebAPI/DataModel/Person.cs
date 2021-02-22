@@ -31,7 +31,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Person"/> class.
         /// </summary>
-        public Person()
+        private Person()
         {
             m_id = -1;
             m_role = Role.Unknown;
@@ -52,6 +52,16 @@
             m_email = new Email();
             m_addresses = new List<Address>();
             m_phoneNumbers = new List<Phone>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class.
+        /// </summary>
+        /// <param name="role">Role.</param>
+        public Person(Role role)
+            : this()
+        {
+            m_role = role;
         }
 
         /// <summary>

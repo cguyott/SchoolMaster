@@ -4,32 +4,29 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Administrator class implementation.
+    /// Student class implementation.
     /// </summary>
-    public class Administrator : Person, IAdministrator
+    public class Student : Person, IStudent
     {
         private readonly int m_id;
 
-        private string m_department;
-        private string m_position;
+        private int m_gradeLevel;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Administrator"/> class.
+        /// Initializes a new instance of the <see cref="Student"/> class.
         /// </summary>
-        public Administrator()
-            : base(Role.Administrator)
+        public Student()
+            : base(Role.Student)
         {
             m_id = -1;
-            m_department = null;
-            m_position = null;
+            m_gradeLevel = -1;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Administrator"/> class.
+        /// Initializes a new instance of the <see cref="Student"/> class.
         /// </summary>
         /// <param name="id">Unique id for this administrator in the database.</param>
-        /// <param name="department">Department.</param>
-        /// <param name="position">Position.</param>
+        /// <param name="gradeLevel">Grade level.</param>
         /// <param name="personId">Unique id for this address in the database.</param>
         /// <param name="lastLoginDate">Last login date.</param>
         /// <param name="lastPasswordChangedDate">Last password changed date.</param>
@@ -45,62 +42,41 @@
         /// <param name="email">Email.</param>
         /// <param name="addresses">Collection of addresses.</param>
         /// <param name="phoneNumbers">Collection of phone numbers.</param>
-        public Administrator(int id,
-                             string department,
-                             string position,
-                             int personId,
-                             DateTime lastLoginDate,
-                             DateTime lastPasswordChangedDate,
-                             DateTime createdDate,
-                             string prefix,
-                             string firstName,
-                             string middleName,
-                             string lastName,
-                             string suffix,
-                             string login,
-                             string passwordHash,
-                             string passwordSalt,
-                             Email email,
-                             List<Address> addresses,
-                             List<Phone> phoneNumbers)
-            : base(personId, Role.Administrator, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers)
+        public Student(int id,
+                       int gradeLevel,
+                       int personId,
+                       DateTime lastLoginDate,
+                       DateTime lastPasswordChangedDate,
+                       DateTime createdDate,
+                       string prefix,
+                       string firstName,
+                       string middleName,
+                       string lastName,
+                       string suffix,
+                       string login,
+                       string passwordHash,
+                       string passwordSalt,
+                       Email email,
+                       List<Address> addresses,
+                       List<Phone> phoneNumbers)
+            : base(personId, Role.Student, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers)
         {
             if (id < 1)
             {
                 throw new ArgumentException("The id must be greater than zero.", nameof(id));
             }
 
-            ValidateDepartment(department);
-            ValidatePosition(position);
+            ValidateGradeLevel(gradeLevel);
 
             m_id = id;
-            m_department = department;
-            m_position = position;
+            m_gradeLevel = gradeLevel;
         }
 
-        private void ValidateDepartment(string department)
+        private void ValidateGradeLevel(int gradeLevel)
         {
-            if (string.IsNullOrWhiteSpace(department))
+            if (gradeLevel < 0)
             {
-                throw new ArgumentException("Department must be specified.", "Department");
-            }
-
-            if (department.Length > 128)
-            {
-                throw new ArgumentException("Address1 cannot be greater than 128 characters.", "Department");
-            }
-        }
-
-        private void ValidatePosition(string position)
-        {
-            if (string.IsNullOrWhiteSpace(position))
-            {
-                throw new ArgumentException("Department must be specified.", "Position");
-            }
-
-            if (position.Length > 128)
-            {
-                throw new ArgumentException("Address1 cannot be greater than 128 characters.", "Position");
+                throw new ArgumentException("GradeLevel must be zero or greater.", "GradeLevel");
             }
         }
 
@@ -108,7 +84,7 @@
         /// Gets the database unique identifier for this administrator.
         /// </summary>
         /// <remarks>This should be "internal", but that prevents the unit tests from working.</remarks>
-        public int AdminId
+        public int StudentId
         {
             get
             {
@@ -117,43 +93,26 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Department
+        int IStudent.GradeLevel
         {
             get
             {
-                return m_department;
+                return m_gradeLevel;
             }
 
             set
             {
-                ValidateDepartment(value);
+                ValidateGradeLevel(value);
 
                 Modified = true;
-                m_department = value;
-            }
-        }
-
-        /// <inheritdoc/>
-        string IAdministrator.Position
-        {
-            get
-            {
-                return m_position;
-            }
-
-            set
-            {
-                ValidatePosition(value);
-
-                Modified = true;
-                m_position = value;
+                m_gradeLevel = value;
             }
         }
 
         #region Implementation for IPerson Wrappers
 
         /// <inheritdoc/>
-        string IAdministrator.Prefix
+        string IStudent.Prefix
         {
             get
             {
@@ -168,7 +127,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.FirstName
+        string IStudent.FirstName
         {
             get
             {
@@ -183,7 +142,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.MiddleName
+        string IStudent.MiddleName
         {
             get
             {
@@ -198,7 +157,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.LastName
+        string IStudent.LastName
         {
             get
             {
@@ -213,7 +172,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Suffix
+        string IStudent.Suffix
         {
             get
             {
@@ -228,7 +187,7 @@
         }
 
         /// <inheritdoc/>
-        string IAdministrator.Login
+        string IStudent.Login
         {
             get
             {
@@ -243,7 +202,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.LastLoginDate
+        DateTime IStudent.LastLoginDate
         {
             get
             {
@@ -252,7 +211,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.LastPasswordChangedDate
+        DateTime IStudent.LastPasswordChangedDate
         {
             get
             {
@@ -261,7 +220,7 @@
         }
 
         /// <inheritdoc/>
-        DateTime IAdministrator.CreatedDate
+        DateTime IStudent.CreatedDate
         {
             get
             {
@@ -270,7 +229,7 @@
         }
 
         /// <inheritdoc/>
-        Email IAdministrator.Email
+        Email IStudent.Email
         {
             get
             {
@@ -279,7 +238,7 @@
         }
 
         /// <inheritdoc/>
-        IEnumerable<Address> IAdministrator.Addresses
+        IEnumerable<Address> IStudent.Addresses
         {
             get
             {
@@ -288,7 +247,7 @@
         }
 
         /// <inheritdoc/>
-        IEnumerable<Phone> IAdministrator.PhoneNumbers
+        IEnumerable<Phone> IStudent.PhoneNumbers
         {
             get
             {
@@ -297,7 +256,7 @@
         }
 
         /// <inheritdoc/>
-        bool IAdministrator.SetPassword(string password)
+        bool IStudent.SetPassword(string password)
         {
             return SetPassword(password);
         }
