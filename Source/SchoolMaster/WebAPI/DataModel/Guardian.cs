@@ -80,7 +80,7 @@
         {
             if (contactOrder < 1)
             {
-                throw new ArgumentException("Contact order must be greater than zero.", "ContactOrder");
+                throw new ArgumentException("Contact order must be greater than zero.", nameof(contactOrder));
             }
         }
 

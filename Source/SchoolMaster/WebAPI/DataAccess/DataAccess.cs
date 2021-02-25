@@ -191,17 +191,17 @@
             {
                 if (disposing)
                 {
-                    DisposeSqlObjects(m_sqlConnection, m_sqlCommand);
+                    DisposeSqlObjects();
                 }
 
                 m_disposed = true;
             }
         }
 
-        private void DisposeSqlObjects(SqlConnection sqlConnection, SqlCommand sqlCommand)
+        private void DisposeSqlObjects()
         {
-            sqlCommand?.Dispose();
-            sqlConnection?.Dispose();
+            m_sqlCommand?.Dispose();
+            m_sqlConnection?.Dispose();
         }
 
         /// <inheritdoc/>
@@ -209,6 +209,7 @@
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         #endregion IDisposable Support

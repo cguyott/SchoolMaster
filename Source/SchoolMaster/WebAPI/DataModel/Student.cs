@@ -80,7 +80,7 @@
         {
             if (gradeLevel < 0)
             {
-                throw new ArgumentException("GradeLevel must be zero or greater.", "GradeLevel");
+                throw new ArgumentException("GradeLevel must be zero or greater.", nameof(gradeLevel));
             }
         }
 

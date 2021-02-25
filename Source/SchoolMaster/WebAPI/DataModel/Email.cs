@@ -49,12 +49,12 @@
         {
             if (string.IsNullOrWhiteSpace(email))
             {
-                throw new ArgumentException("An email must be specified.", "Email");
+                throw new ArgumentException("An email must be specified.", nameof(email));
             }
 
             if (email.Length > 256)
             {
-                throw new ArgumentException("The email cannot be greater than 256 characters", "Email");
+                throw new ArgumentException("The email cannot be greater than 256 characters", nameof(email));
             }
         }
 

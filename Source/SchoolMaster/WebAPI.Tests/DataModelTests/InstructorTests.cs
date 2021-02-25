@@ -63,9 +63,9 @@
             Assert.NotNull(((IInstructor)instructor).Email);
 
             Assert.NotNull(((IInstructor)instructor).Addresses);
-            Assert.True(((IInstructor)instructor).Addresses.Count() == 0);
+            Assert.True(((IInstructor)instructor).Addresses.Any() == false);
             Assert.NotNull(((IInstructor)instructor).PhoneNumbers);
-            Assert.True(((IInstructor)instructor).PhoneNumbers.Count() == 0);
+            Assert.True(((IInstructor)instructor).PhoneNumbers.Any() == false);
         }
 
         /// <summary>
@@ -382,7 +382,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Department == null);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IInstructor)instructor).Department = null));
+            Assert.Throws<ArgumentException>("department", () => (((IInstructor)instructor).Department = null));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Department == null);
@@ -404,7 +404,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Department == null);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IInstructor)instructor).Department = string.Empty));
+            Assert.Throws<ArgumentException>("department", () => (((IInstructor)instructor).Department = string.Empty));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Department == null);
@@ -426,7 +426,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Department == null);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IInstructor)instructor).Department = "       "));
+            Assert.Throws<ArgumentException>("department", () => (((IInstructor)instructor).Department = "       "));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Department == null);
@@ -448,7 +448,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Department == null);
 
-            Assert.Throws<ArgumentException>("Department", () => (((IInstructor)instructor).Department = c_veryLongString));
+            Assert.Throws<ArgumentException>("department", () => (((IInstructor)instructor).Department = c_veryLongString));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Department == null);
@@ -493,7 +493,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.Throws<ArgumentException>("Position", () => (((IInstructor)instructor).Position = null));
+            Assert.Throws<ArgumentException>("position", () => (((IInstructor)instructor).Position = null));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Position == null);
@@ -515,7 +515,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.Throws<ArgumentException>("Position", () => (((IInstructor)instructor).Position = string.Empty));
+            Assert.Throws<ArgumentException>("position", () => (((IInstructor)instructor).Position = string.Empty));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Position == null);
@@ -537,7 +537,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.Throws<ArgumentException>("Position", () => (((IInstructor)instructor).Position = "       "));
+            Assert.Throws<ArgumentException>("position", () => (((IInstructor)instructor).Position = "       "));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Position == null);
@@ -559,7 +559,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Position == null);
 
-            Assert.Throws<ArgumentException>("Position", () => (((IInstructor)instructor).Position = c_veryLongString));
+            Assert.Throws<ArgumentException>("position", () => (((IInstructor)instructor).Position = c_veryLongString));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Position == null);
@@ -632,7 +632,7 @@
             };
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Prefix", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("prefix", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -662,7 +662,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("firstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -692,7 +692,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("firstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -722,7 +722,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("firstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -752,7 +752,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("firstName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -782,7 +782,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("MiddleName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("middleName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -812,7 +812,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("lastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -842,7 +842,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("lastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -872,7 +872,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("lastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -902,7 +902,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("lastName", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -932,7 +932,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Suffix", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("suffix", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -962,7 +962,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -992,7 +992,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1022,7 +1022,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1052,7 +1052,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("login", () => new Instructor(id, department, position, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -1092,7 +1092,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Prefix == null);
 
-            Assert.Throws<ArgumentException>("Prefix", () => (((IInstructor)instructor).Prefix = c_veryLongPrefix));
+            Assert.Throws<ArgumentException>("prefix", () => (((IInstructor)instructor).Prefix = c_veryLongPrefix));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Prefix == null);
@@ -1135,7 +1135,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IInstructor)instructor).FirstName = null));
+            Assert.Throws<ArgumentException>("firstName", () => (((IInstructor)instructor).FirstName = null));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).FirstName == null);
@@ -1156,7 +1156,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IInstructor)instructor).FirstName = string.Empty));
+            Assert.Throws<ArgumentException>("firstName", () => (((IInstructor)instructor).FirstName = string.Empty));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).FirstName == null);
@@ -1177,7 +1177,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IInstructor)instructor).FirstName = "      "));
+            Assert.Throws<ArgumentException>("firstName", () => (((IInstructor)instructor).FirstName = "      "));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).FirstName == null);
@@ -1198,7 +1198,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IInstructor)instructor).FirstName = c_veryLongName));
+            Assert.Throws<ArgumentException>("firstName", () => (((IInstructor)instructor).FirstName = c_veryLongName));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).FirstName == null);
@@ -1241,7 +1241,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).MiddleName == null);
 
-            Assert.Throws<ArgumentException>("MiddleName", () => (((IInstructor)instructor).MiddleName = c_veryLongName));
+            Assert.Throws<ArgumentException>("middleName", () => (((IInstructor)instructor).MiddleName = c_veryLongName));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).MiddleName == null);
@@ -1284,7 +1284,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IInstructor)instructor).LastName = null));
+            Assert.Throws<ArgumentException>("lastName", () => (((IInstructor)instructor).LastName = null));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).LastName == null);
@@ -1305,7 +1305,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IInstructor)instructor).LastName = string.Empty));
+            Assert.Throws<ArgumentException>("lastName", () => (((IInstructor)instructor).LastName = string.Empty));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).LastName == null);
@@ -1326,7 +1326,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IInstructor)instructor).LastName = "      "));
+            Assert.Throws<ArgumentException>("lastName", () => (((IInstructor)instructor).LastName = "      "));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).LastName == null);
@@ -1347,7 +1347,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IInstructor)instructor).LastName = c_veryLongName));
+            Assert.Throws<ArgumentException>("lastName", () => (((IInstructor)instructor).LastName = c_veryLongName));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).LastName == null);
@@ -1390,7 +1390,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Suffix == null);
 
-            Assert.Throws<ArgumentException>("Suffix", () => (((IInstructor)instructor).Suffix = c_veryLongPrefix));
+            Assert.Throws<ArgumentException>("suffix", () => (((IInstructor)instructor).Suffix = c_veryLongPrefix));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Suffix == null);
@@ -1433,7 +1433,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IInstructor)instructor).Login = null));
+            Assert.Throws<ArgumentException>("login", () => (((IInstructor)instructor).Login = null));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Login == null);
@@ -1454,7 +1454,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IInstructor)instructor).Login = string.Empty));
+            Assert.Throws<ArgumentException>("login", () => (((IInstructor)instructor).Login = string.Empty));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Login == null);
@@ -1475,7 +1475,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IInstructor)instructor).Login = "      "));
+            Assert.Throws<ArgumentException>("login", () => (((IInstructor)instructor).Login = "      "));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Login == null);
@@ -1496,7 +1496,7 @@
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IInstructor)instructor).Login = c_veryLongLogin));
+            Assert.Throws<ArgumentException>("login", () => (((IInstructor)instructor).Login = c_veryLongLogin));
 
             Assert.True(instructor.Modified == false);
             Assert.True(((IInstructor)instructor).Login == null);

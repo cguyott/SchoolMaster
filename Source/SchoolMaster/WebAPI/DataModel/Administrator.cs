@@ -86,12 +86,12 @@
         {
             if (string.IsNullOrWhiteSpace(department))
             {
-                throw new ArgumentException("Department must be specified.", "Department");
+                throw new ArgumentException("Department must be specified.", nameof(department));
             }
 
             if (department.Length > 128)
             {
-                throw new ArgumentException("Address1 cannot be greater than 128 characters.", "Department");
+                throw new ArgumentException("Department cannot be greater than 128 characters.", nameof(department));
             }
         }
 
@@ -103,12 +103,12 @@
         {
             if (string.IsNullOrWhiteSpace(position))
             {
-                throw new ArgumentException("Department must be specified.", "Position");
+                throw new ArgumentException("Position must be specified.", nameof(position));
             }
 
             if (position.Length > 128)
             {
-                throw new ArgumentException("Address1 cannot be greater than 128 characters.", "Position");
+                throw new ArgumentException("Position cannot be greater than 128 characters.", nameof(position));
             }
         }
 

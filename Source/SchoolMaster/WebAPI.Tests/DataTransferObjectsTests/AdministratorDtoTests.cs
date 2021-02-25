@@ -46,9 +46,9 @@
             Assert.True(adminDto.Email == null);
 
             Assert.NotNull(adminDto.Addresses);
-            Assert.True(adminDto.Addresses.Count() == 0);
+            Assert.True(adminDto.Addresses.Any() == false);
             Assert.NotNull(adminDto.PhoneNumbers);
-            Assert.True(adminDto.PhoneNumbers.Count() == 0);
+            Assert.True(adminDto.PhoneNumbers.Any() == false);
         }
 
         /// <summary>
