@@ -72,7 +72,11 @@
             m_contactOrder = contactOrder;
         }
 
-        private void ValidateContactOrder(int contactOrder)
+        /// <summary>
+        /// Validate contact order.
+        /// </summary>
+        /// <param name="contactOrder">Contact order to be validated.</param>
+        public static void ValidateContactOrder(int contactOrder)
         {
             if (contactOrder < 1)
             {

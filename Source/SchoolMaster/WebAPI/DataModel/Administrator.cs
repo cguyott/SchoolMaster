@@ -78,7 +78,11 @@
             m_position = position;
         }
 
-        private void ValidateDepartment(string department)
+        /// <summary>
+        /// Validate department.
+        /// </summary>
+        /// <param name="department">Department to be validated.</param>
+        public static void ValidateDepartment(string department)
         {
             if (string.IsNullOrWhiteSpace(department))
             {
@@ -91,7 +95,11 @@
             }
         }
 
-        private void ValidatePosition(string position)
+        /// <summary>
+        /// Validate position.
+        /// </summary>
+        /// <param name="position">Position to be validated.</param>
+        public static void ValidatePosition(string position)
         {
             if (string.IsNullOrWhiteSpace(position))
             {

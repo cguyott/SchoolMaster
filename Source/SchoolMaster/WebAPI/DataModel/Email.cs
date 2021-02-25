@@ -41,7 +41,11 @@
             m_email = email;
         }
 
-        private void ValidateEmail(string email)
+        /// <summary>
+        /// Validate an email address.
+        /// </summary>
+        /// <param name="email">Email address to validate.</param>
+        public static void ValidateEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
             {

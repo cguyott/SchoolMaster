@@ -60,7 +60,11 @@
             m_contactOrder = contactOrder;
         }
 
-        private void ValidateAreaCode(string areaCode)
+        /// <summary>
+        /// Validate area code.
+        /// </summary>
+        /// <param name="areaCode">Area code to be validated.</param>
+        public static void ValidateAreaCode(string areaCode)
         {
             if (string.IsNullOrWhiteSpace(areaCode))
             {
@@ -78,7 +82,11 @@
             }
         }
 
-        private void ValidateExchangeCode(string exchangeCode)
+        /// <summary>
+        /// Validate exchange code.
+        /// </summary>
+        /// <param name="exchangeCode">Exchange code to be validated.</param>
+        public static void ValidateExchangeCode(string exchangeCode)
         {
             if (string.IsNullOrWhiteSpace(exchangeCode))
             {
@@ -96,7 +104,11 @@
             }
         }
 
-        private void ValidateSubscriberNumber(string subscriberNumber)
+        /// <summary>
+        /// Validate subscriber number.
+        /// </summary>
+        /// <param name="subscriberNumber">Subscriber number to be validated.</param>
+        public static void ValidateSubscriberNumber(string subscriberNumber)
         {
             if (string.IsNullOrWhiteSpace(subscriberNumber))
             {

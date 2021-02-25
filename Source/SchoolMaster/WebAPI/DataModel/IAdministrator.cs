@@ -9,13 +9,13 @@
     public interface IAdministrator
     {
         /// <summary>
-        /// Gets or sets department.
+        /// Gets or sets Department.
         /// </summary>
         /// <remarks>Cannot exceed 128 characters in length. Cannot be null, empty string, or whitespace.</remarks>
         string Department { get; set; }
 
         /// <summary>
-        /// Gets or sets position.
+        /// Gets or sets Position.
         /// </summary>
         /// <remarks>Cannot exceed 128 characters in length. Cannot be null, empty string, or whitespace.</remarks>
         string Position { get; set; }
@@ -57,32 +57,32 @@
         string Login { get; set; }
 
         /// <summary>
-        /// Gets lastLoginDate.
+        /// Gets LastLoginDate.
         /// </summary>
         DateTime LastLoginDate { get; }
 
         /// <summary>
-        /// Gets lastPasswordChangedDate.
+        /// Gets LastPasswordChangedDate.
         /// </summary>
         DateTime LastPasswordChangedDate { get; }
 
         /// <summary>
-        /// Gets createdDate.
+        /// Gets CreatedDate.
         /// </summary>
         DateTime CreatedDate { get; }
 
         /// <summary>
-        /// Gets email.
+        /// Gets Email.
         /// </summary>
         Email Email { get; }
 
         /// <summary>
-        /// Gets addresses.
+        /// Gets Addresses.
         /// </summary>
         IEnumerable<Address> Addresses { get; }
 
         /// <summary>
-        /// Gets phone numbers.
+        /// Gets PhoneNumbers.
         /// </summary>
         IEnumerable<Phone> PhoneNumbers { get; }
 

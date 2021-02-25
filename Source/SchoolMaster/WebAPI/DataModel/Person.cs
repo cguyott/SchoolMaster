@@ -142,7 +142,12 @@
             m_passwordSalt = passwordSalt;
         }
 
-        private string ValidatePrefix(string prefix)
+        /// <summary>
+        /// Validate prefix.
+        /// </summary>
+        /// <param name="prefix">Prefix to be validated.</param>
+        /// <returns>Updated prefix.</returns>
+        public static string ValidatePrefix(string prefix)
         {
             if (string.IsNullOrWhiteSpace(prefix))
             {
@@ -156,7 +161,11 @@
             return prefix;
         }
 
-        private void ValidateFirstName(string firstName)
+        /// <summary>
+        /// Validate first name.
+        /// </summary>
+        /// <param name="firstName">First name to be validated.</param>
+        public static void ValidateFirstName(string firstName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
             {
@@ -169,7 +178,12 @@
             }
         }
 
-        private string ValidateMiddleName(string middleName)
+        /// <summary>
+        /// Validate middle name.
+        /// </summary>
+        /// <param name="middleName">Middle name to be validated.</param>
+        /// <returns>Updated middle name.</returns>
+        public static string ValidateMiddleName(string middleName)
         {
             if (string.IsNullOrWhiteSpace(middleName))
             {
@@ -183,7 +197,11 @@
             return middleName;
         }
 
-        private void ValidateLastName(string lastName)
+        /// <summary>
+        /// Validate last name.
+        /// </summary>
+        /// <param name="lastName">Last name to be validated.</param>
+        public static void ValidateLastName(string lastName)
         {
             if (string.IsNullOrWhiteSpace(lastName))
             {
@@ -196,7 +214,12 @@
             }
         }
 
-        private string ValidateSuffix(string suffix)
+        /// <summary>
+        /// Validate suffix.
+        /// </summary>
+        /// <param name="suffix">Suffix to be validated.</param>
+        /// <returns>Updated suffix.</returns>
+        public static string ValidateSuffix(string suffix)
         {
             if (string.IsNullOrWhiteSpace(suffix))
             {
@@ -210,7 +233,11 @@
             return suffix;
         }
 
-        private void ValidateLogin(string login)
+        /// <summary>
+        /// Validate login.
+        /// </summary>
+        /// <param name="login">Login to be validated.</param>
+        public static void ValidateLogin(string login)
         {
             if (string.IsNullOrWhiteSpace(login))
             {
@@ -223,7 +250,11 @@
             }
         }
 
-        private void ValidatePasswordHash(string passwordHash)
+        /// <summary>
+        /// Validate password hash.
+        /// </summary>
+        /// <param name="passwordHash">Password hash to be validated.</param>
+        public static void ValidatePasswordHash(string passwordHash)
         {
             if (string.IsNullOrWhiteSpace(passwordHash))
             {
@@ -236,7 +267,11 @@
             }
         }
 
-        private void ValidatePasswordSalt(string paswordSalt)
+        /// <summary>
+        /// Validate password salt.
+        /// </summary>
+        /// <param name="paswordSalt">Password salt to be validated.</param>
+        public static void ValidatePasswordSalt(string paswordSalt)
         {
             if (string.IsNullOrWhiteSpace(paswordSalt))
             {

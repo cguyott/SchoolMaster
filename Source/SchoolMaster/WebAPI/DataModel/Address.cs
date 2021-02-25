@@ -66,7 +66,11 @@
             m_zip = zip;
         }
 
-        private void ValidateAddress1(string address)
+        /// <summary>
+        /// Validate address line 1.
+        /// </summary>
+        /// <param name="address">Address line 1 to validate.</param>
+        public static void ValidateAddress1(string address)
         {
             if (string.IsNullOrWhiteSpace(address))
             {
@@ -79,7 +83,12 @@
             }
         }
 
-        private string ValidateAddress2(string address)
+        /// <summary>
+        /// Validate address line 2.
+        /// </summary>
+        /// <param name="address">Address line 2 to validate.</param>
+        /// <returns>Updated address line 2.</returns>
+        public static string ValidateAddress2(string address)
         {
             if (string.IsNullOrWhiteSpace(address))
             {
@@ -93,7 +102,11 @@
             return address;
         }
 
-        private void ValidateCity(string city)
+        /// <summary>
+        /// Validate city.
+        /// </summary>
+        /// <param name="city">City to be validated.</param>
+        public static void ValidateCity(string city)
         {
             if (string.IsNullOrWhiteSpace(city))
             {
@@ -106,7 +119,11 @@
             }
         }
 
-        private void ValidateState(string state)
+        /// <summary>
+        /// Validate state.
+        /// </summary>
+        /// <param name="state">State to be validated.</param>
+        public static void ValidateState(string state)
         {
             if (string.IsNullOrWhiteSpace(state))
             {
@@ -119,7 +136,11 @@
             }
         }
 
-        private void ValidateZip(string zip)
+        /// <summary>
+        /// Validate zip.
+        /// </summary>
+        /// <param name="zip">Zip to be validated.</param>
+        public static void ValidateZip(string zip)
         {
             if (string.IsNullOrWhiteSpace(zip))
             {

@@ -6,7 +6,7 @@
     public interface IEmail
     {
         /// <summary>
-        /// Gets or sets email.
+        /// Gets or sets Email.
         /// </summary>
         /// <remarks>Cannot exceed 256 characters in length.</remarks>
         string Email { get; set; }

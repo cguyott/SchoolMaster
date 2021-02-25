@@ -72,7 +72,11 @@
             m_gradeLevel = gradeLevel;
         }
 
-        private void ValidateGradeLevel(int gradeLevel)
+        /// <summary>
+        /// Validate grade level.
+        /// </summary>
+        /// <param name="gradeLevel">Grade level to be validated.</param>
+        public static void ValidateGradeLevel(int gradeLevel)
         {
             if (gradeLevel < 0)
             {
