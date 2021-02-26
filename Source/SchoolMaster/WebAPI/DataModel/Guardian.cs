@@ -72,11 +72,15 @@
             m_contactOrder = contactOrder;
         }
 
-        private void ValidateContactOrder(int contactOrder)
+        /// <summary>
+        /// Validate contact order.
+        /// </summary>
+        /// <param name="contactOrder">Contact order to be validated.</param>
+        public static void ValidateContactOrder(int contactOrder)
         {
             if (contactOrder < 1)
             {
-                throw new ArgumentException("Contact order must be greater than zero.", "ContactOrder");
+                throw new ArgumentException("Contact order must be greater than zero.", nameof(contactOrder));
             }
         }
 
@@ -109,7 +113,7 @@
             }
         }
 
-        #region Implementation for IPerson Wrappers
+        #region Implementation for Person Wrappers
 
         /// <inheritdoc/>
         string IGuardian.Prefix
@@ -260,6 +264,7 @@
         {
             return SetPassword(password);
         }
-        #endregion Implementation for IPerson Wrappers
+
+        #endregion Implementation for Person Wrappers
     }
 }

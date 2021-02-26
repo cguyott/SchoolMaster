@@ -2,8 +2,8 @@
 {
     using System;
     using FakeItEasy;
-    using Microservice.Data.Sql;
     using Microsoft.Extensions.Logging;
+    using SchoolMaster.WebAPI.DataAccess;
     using Xunit;
 
     /// <summary>

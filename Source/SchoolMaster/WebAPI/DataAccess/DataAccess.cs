@@ -1,4 +1,4 @@
-﻿namespace Microservice.Data.Sql
+﻿namespace SchoolMaster.WebAPI.DataAccess
 {
     using System;
     using System.Collections.Generic;
@@ -25,9 +25,8 @@
         /// </summary>
         /// <param name="logger"> The logger. </param>
         /// <param name="sqlConnectionString"> The SQL connection string. </param>
-        public DataAccess(
-            ILogger<DataAccess> logger,
-            string sqlConnectionString)
+        public DataAccess(ILogger<DataAccess> logger,
+                          string sqlConnectionString)
         {
             m_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
@@ -41,13 +40,15 @@
         }
 
         /// <inheritdoc/>
-        IDataReader IDataAccess.ExecuteQuery(string procedure, IEnumerable<IDataParameter> parameters)
+        IDataReader IDataAccess.ExecuteQuery(string procedure,
+                                             IEnumerable<IDataParameter> parameters)
         {
             return AsyncHelper.RunSync(() => m_thisAsIDataAccess.ExecuteQueryAsync(procedure, parameters));
         }
 
         /// <inheritdoc/>
-        async Task<IDataReader> IDataAccess.ExecuteQueryAsync(string procedure, IEnumerable<IDataParameter> parameters)
+        async Task<IDataReader> IDataAccess.ExecuteQueryAsync(string procedure,
+                                                              IEnumerable<IDataParameter> parameters)
         {
             if (procedure == null)
             {
@@ -80,13 +81,15 @@
         }
 
         /// <inheritdoc/>
-        object IDataAccess.ExecuteCommand(string procedure, IEnumerable<IDataParameter> parameters)
+        object IDataAccess.ExecuteCommand(string procedure,
+                                          IEnumerable<IDataParameter> parameters)
         {
             return AsyncHelper.RunSync(() => m_thisAsIDataAccess.ExecuteCommandAsync(procedure, parameters));
         }
 
         /// <inheritdoc/>
-        async Task<object> IDataAccess.ExecuteCommandAsync(string procedure, IEnumerable<IDataParameter> parameters)
+        async Task<object> IDataAccess.ExecuteCommandAsync(string procedure,
+                                                           IEnumerable<IDataParameter> parameters)
         {
             if (procedure == null)
             {
@@ -118,7 +121,8 @@
             return numberOfRowsAffected;
         }
 
-        private async Task InitializeCommandAsync(string procedure, IEnumerable<IDataParameter> parameters)
+        private async Task InitializeCommandAsync(string procedure,
+                                                  IEnumerable<IDataParameter> parameters)
         {
             ClearSqlCommandAndConnection();
 
@@ -191,17 +195,17 @@
             {
                 if (disposing)
                 {
-                    DisposeSqlObjects(m_sqlConnection, m_sqlCommand);
+                    DisposeSqlObjects();
                 }
 
                 m_disposed = true;
             }
         }
 
-        private void DisposeSqlObjects(SqlConnection sqlConnection, SqlCommand sqlCommand)
+        private void DisposeSqlObjects()
         {
-            sqlCommand?.Dispose();
-            sqlConnection?.Dispose();
+            m_sqlCommand?.Dispose();
+            m_sqlConnection?.Dispose();
         }
 
         /// <inheritdoc/>
@@ -209,6 +213,7 @@
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         #endregion IDisposable Support

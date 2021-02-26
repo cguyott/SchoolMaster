@@ -98,7 +98,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Address1", () => new Address(1, null, null, "Boston", "MA", "02124"));
+            Assert.Throws<ArgumentException>("address1", () => new Address(1, null, null, "Boston", "MA", "02124"));
         }
 
         /// <summary>
@@ -110,7 +110,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Address1", () => new Address(1, string.Empty, null, "Boston", "MA", "02124"));
+            Assert.Throws<ArgumentException>("address1", () => new Address(1, string.Empty, null, "Boston", "MA", "02124"));
         }
 
         /// <summary>
@@ -122,7 +122,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Address1", () => new Address(1, "    ", null, "Boston", "MA", "02124"));
+            Assert.Throws<ArgumentException>("address1", () => new Address(1, "    ", null, "Boston", "MA", "02124"));
         }
 
         /// <summary>
@@ -134,7 +134,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Address1", () => new Address(1, c_veryLongAddress, null, "Boston", "MA", "02124"));
+            Assert.Throws<ArgumentException>("address1", () => new Address(1, c_veryLongAddress, null, "Boston", "MA", "02124"));
         }
 
         /// <summary>
@@ -146,7 +146,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Address2", () => new Address(1, "10 Street Lane", c_veryLongAddress, "Boston", "MA", "02124"));
+            Assert.Throws<ArgumentException>("address2", () => new Address(1, "10 Street Lane", c_veryLongAddress, "Boston", "MA", "02124"));
         }
 
         /// <summary>
@@ -158,7 +158,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("City", () => new Address(1, "10 Street Lane", null, null, "MA", "02124"));
+            Assert.Throws<ArgumentException>("city", () => new Address(1, "10 Street Lane", null, null, "MA", "02124"));
         }
 
         /// <summary>
@@ -170,7 +170,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("City", () => new Address(1, "10 Street Lane", null, string.Empty, "MA", "02124"));
+            Assert.Throws<ArgumentException>("city", () => new Address(1, "10 Street Lane", null, string.Empty, "MA", "02124"));
         }
 
         /// <summary>
@@ -182,7 +182,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("City", () => new Address(1, "10 Street Lane", null, "     ", "MA", "02124"));
+            Assert.Throws<ArgumentException>("city", () => new Address(1, "10 Street Lane", null, "     ", "MA", "02124"));
         }
 
         /// <summary>
@@ -194,7 +194,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("City", () => new Address(1, "10 Street Lane", null, c_veryLongCity, "MA", "02124"));
+            Assert.Throws<ArgumentException>("city", () => new Address(1, "10 Street Lane", null, c_veryLongCity, "MA", "02124"));
         }
 
         /// <summary>
@@ -206,7 +206,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("State", () => new Address(1, "10 Street Lane", null, "Boston", null, "02124"));
+            Assert.Throws<ArgumentException>("state", () => new Address(1, "10 Street Lane", null, "Boston", null, "02124"));
         }
 
         /// <summary>
@@ -218,7 +218,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("State", () => new Address(1, "10 Street Lane", null, "Boston", string.Empty, "02124"));
+            Assert.Throws<ArgumentException>("state", () => new Address(1, "10 Street Lane", null, "Boston", string.Empty, "02124"));
         }
 
         /// <summary>
@@ -230,7 +230,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("State", () => new Address(1, "10 Street Lane", null, "Boston", "  ", "02124"));
+            Assert.Throws<ArgumentException>("state", () => new Address(1, "10 Street Lane", null, "Boston", "  ", "02124"));
         }
 
         /// <summary>
@@ -242,7 +242,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("State", () => new Address(1, "10 Street Lane", null, "Boston", "M", "02124"));
+            Assert.Throws<ArgumentException>("state", () => new Address(1, "10 Street Lane", null, "Boston", "M", "02124"));
         }
 
         /// <summary>
@@ -254,7 +254,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("State", () => new Address(1, "10 Street Lane", null, "Boston", "MAA", "02124"));
+            Assert.Throws<ArgumentException>("state", () => new Address(1, "10 Street Lane", null, "Boston", "MAA", "02124"));
         }
 
         /// <summary>
@@ -266,7 +266,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", null));
+            Assert.Throws<ArgumentException>("zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", null));
         }
 
         /// <summary>
@@ -278,7 +278,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", string.Empty));
+            Assert.Throws<ArgumentException>("zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", string.Empty));
         }
 
         /// <summary>
@@ -290,7 +290,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "     "));
+            Assert.Throws<ArgumentException>("zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "     "));
         }
 
         /// <summary>
@@ -302,7 +302,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "02124-0"));
+            Assert.Throws<ArgumentException>("zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "02124-0"));
         }
 
         /// <summary>
@@ -314,7 +314,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "0212a"));
+            Assert.Throws<ArgumentException>("zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "0212a"));
         }
 
         /// <summary>
@@ -326,7 +326,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "0212a-0123"));
+            Assert.Throws<ArgumentException>("zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "0212a-0123"));
         }
 
         /// <summary>
@@ -338,7 +338,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "0212440123"));
+            Assert.Throws<ArgumentException>("zip", () => new Address(1, "10 Street Lane", null, "Boston", "MA", "0212440123"));
         }
 
         /// <summary>
@@ -380,7 +380,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address1 == null);
 
-            Assert.Throws<ArgumentException>("Address1", () => (((IAddress)address).Address1 = null));
+            Assert.Throws<ArgumentException>("address1", () => (((IAddress)address).Address1 = null));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address1 == null);
@@ -402,7 +402,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address1 == null);
 
-            Assert.Throws<ArgumentException>("Address1", () => (((IAddress)address).Address1 = string.Empty));
+            Assert.Throws<ArgumentException>("address1", () => (((IAddress)address).Address1 = string.Empty));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address1 == null);
@@ -424,7 +424,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address1 == null);
 
-            Assert.Throws<ArgumentException>("Address1", () => (((IAddress)address).Address1 = "      "));
+            Assert.Throws<ArgumentException>("address1", () => (((IAddress)address).Address1 = "      "));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address1 == null);
@@ -446,7 +446,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address1 == null);
 
-            Assert.Throws<ArgumentException>("Address1", () => (((IAddress)address).Address1 = c_veryLongAddress));
+            Assert.Throws<ArgumentException>("address1", () => (((IAddress)address).Address1 = c_veryLongAddress));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address1 == null);
@@ -491,7 +491,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address2 == null);
 
-            Assert.Throws<ArgumentException>("Address2", () => (((IAddress)address).Address2 = c_veryLongAddress));
+            Assert.Throws<ArgumentException>("address2", () => (((IAddress)address).Address2 = c_veryLongAddress));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Address2 == null);
@@ -536,7 +536,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).City == null);
 
-            Assert.Throws<ArgumentException>("City", () => (((IAddress)address).City = null));
+            Assert.Throws<ArgumentException>("city", () => (((IAddress)address).City = null));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).City == null);
@@ -558,7 +558,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).City == null);
 
-            Assert.Throws<ArgumentException>("City", () => (((IAddress)address).City = string.Empty));
+            Assert.Throws<ArgumentException>("city", () => (((IAddress)address).City = string.Empty));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).City == null);
@@ -580,7 +580,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).City == null);
 
-            Assert.Throws<ArgumentException>("City", () => (((IAddress)address).City = "      "));
+            Assert.Throws<ArgumentException>("city", () => (((IAddress)address).City = "      "));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).City == null);
@@ -602,7 +602,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).City == null);
 
-            Assert.Throws<ArgumentException>("City", () => (((IAddress)address).City = c_veryLongCity));
+            Assert.Throws<ArgumentException>("city", () => (((IAddress)address).City = c_veryLongCity));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).City == null);
@@ -647,7 +647,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
 
-            Assert.Throws<ArgumentException>("State", () => (((IAddress)address).State = null));
+            Assert.Throws<ArgumentException>("state", () => (((IAddress)address).State = null));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
@@ -669,7 +669,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
 
-            Assert.Throws<ArgumentException>("State", () => (((IAddress)address).State = string.Empty));
+            Assert.Throws<ArgumentException>("state", () => (((IAddress)address).State = string.Empty));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
@@ -691,7 +691,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
 
-            Assert.Throws<ArgumentException>("State", () => (((IAddress)address).State = "  "));
+            Assert.Throws<ArgumentException>("state", () => (((IAddress)address).State = "  "));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
@@ -713,7 +713,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
 
-            Assert.Throws<ArgumentException>("State", () => (((IAddress)address).State = "M"));
+            Assert.Throws<ArgumentException>("state", () => (((IAddress)address).State = "M"));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
@@ -735,7 +735,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
 
-            Assert.Throws<ArgumentException>("State", () => (((IAddress)address).State = "MAA"));
+            Assert.Throws<ArgumentException>("state", () => (((IAddress)address).State = "MAA"));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).State == null);
@@ -781,7 +781,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
 
-            Assert.Throws<ArgumentException>("Zip", () => (((IAddress)address).Zip = null));
+            Assert.Throws<ArgumentException>("zip", () => (((IAddress)address).Zip = null));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
@@ -803,7 +803,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
 
-            Assert.Throws<ArgumentException>("Zip", () => (((IAddress)address).Zip = string.Empty));
+            Assert.Throws<ArgumentException>("zip", () => (((IAddress)address).Zip = string.Empty));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
@@ -825,7 +825,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
 
-            Assert.Throws<ArgumentException>("Zip", () => (((IAddress)address).Zip = "     "));
+            Assert.Throws<ArgumentException>("zip", () => (((IAddress)address).Zip = "     "));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
@@ -847,7 +847,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
 
-            Assert.Throws<ArgumentException>("Zip", () => (((IAddress)address).Zip = "02124-0"));
+            Assert.Throws<ArgumentException>("zip", () => (((IAddress)address).Zip = "02124-0"));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
@@ -869,7 +869,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
 
-            Assert.Throws<ArgumentException>("Zip", () => (((IAddress)address).Zip = "0212a"));
+            Assert.Throws<ArgumentException>("zip", () => (((IAddress)address).Zip = "0212a"));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
@@ -891,7 +891,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
 
-            Assert.Throws<ArgumentException>("Zip", () => (((IAddress)address).Zip = "0212a-0123"));
+            Assert.Throws<ArgumentException>("zip", () => (((IAddress)address).Zip = "0212a-0123"));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
@@ -913,7 +913,7 @@
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);
 
-            Assert.Throws<ArgumentException>("Zip", () => (((IAddress)address).Zip = "0212440123"));
+            Assert.Throws<ArgumentException>("zip", () => (((IAddress)address).Zip = "0212440123"));
 
             Assert.True(address.Modified == false);
             Assert.True(((IAddress)address).Zip == null);

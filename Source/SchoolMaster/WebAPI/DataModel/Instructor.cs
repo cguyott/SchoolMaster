@@ -78,29 +78,37 @@
             m_position = position;
         }
 
-        private void ValidateDepartment(string department)
+        /// <summary>
+        /// Validate department.
+        /// </summary>
+        /// <param name="department">Department to be validated.</param>
+        public static void ValidateDepartment(string department)
         {
             if (string.IsNullOrWhiteSpace(department))
             {
-                throw new ArgumentException("Department must be specified.", "Department");
+                throw new ArgumentException("Department must be specified.", nameof(department));
             }
 
             if (department.Length > 128)
             {
-                throw new ArgumentException("Address1 cannot be greater than 128 characters.", "Department");
+                throw new ArgumentException("Department cannot be greater than 128 characters.", nameof(department));
             }
         }
 
-        private void ValidatePosition(string position)
+        /// <summary>
+        /// Validate position.
+        /// </summary>
+        /// <param name="position">Position to be validated.</param>
+        public static void ValidatePosition(string position)
         {
             if (string.IsNullOrWhiteSpace(position))
             {
-                throw new ArgumentException("Department must be specified.", "Position");
+                throw new ArgumentException("Position must be specified.", nameof(position));
             }
 
             if (position.Length > 128)
             {
-                throw new ArgumentException("Address1 cannot be greater than 128 characters.", "Position");
+                throw new ArgumentException("Position cannot be greater than 128 characters.", nameof(position));
             }
         }
 
@@ -150,7 +158,7 @@
             }
         }
 
-        #region Implementation for IPerson Wrappers
+        #region Implementation for Person Wrappers
 
         /// <inheritdoc/>
         string IInstructor.Prefix
@@ -301,6 +309,7 @@
         {
             return SetPassword(password);
         }
-        #endregion Implementation for IPerson Wrappers
+
+        #endregion Implementation for Person Wrappers
     }
 }

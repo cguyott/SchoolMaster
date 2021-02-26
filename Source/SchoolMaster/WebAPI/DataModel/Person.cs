@@ -142,7 +142,12 @@
             m_passwordSalt = passwordSalt;
         }
 
-        private string ValidatePrefix(string prefix)
+        /// <summary>
+        /// Validate prefix.
+        /// </summary>
+        /// <param name="prefix">Prefix to be validated.</param>
+        /// <returns>Updated prefix.</returns>
+        public static string ValidatePrefix(string prefix)
         {
             if (string.IsNullOrWhiteSpace(prefix))
             {
@@ -150,26 +155,35 @@
             }
             else if (prefix.Length > 6)
             {
-                throw new ArgumentException("Prefix cannot be greater than 6 characters.", "Prefix");
+                throw new ArgumentException("Prefix cannot be greater than 6 characters.", nameof(prefix));
             }
 
             return prefix;
         }
 
-        private void ValidateFirstName(string firstName)
+        /// <summary>
+        /// Validate first name.
+        /// </summary>
+        /// <param name="firstName">First name to be validated.</param>
+        public static void ValidateFirstName(string firstName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                throw new ArgumentException("First name must be specified.", "FirstName");
+                throw new ArgumentException("First name must be specified.", nameof(firstName));
             }
 
             if (firstName.Length > 50)
             {
-                throw new ArgumentException("First name cannot be greater than 50 characters.", "FirstName");
+                throw new ArgumentException("First name cannot be greater than 50 characters.", nameof(firstName));
             }
         }
 
-        private string ValidateMiddleName(string middleName)
+        /// <summary>
+        /// Validate middle name.
+        /// </summary>
+        /// <param name="middleName">Middle name to be validated.</param>
+        /// <returns>Updated middle name.</returns>
+        public static string ValidateMiddleName(string middleName)
         {
             if (string.IsNullOrWhiteSpace(middleName))
             {
@@ -177,26 +191,35 @@
             }
             else if (middleName.Length > 50)
             {
-                throw new ArgumentException("Middle name cannot be greater than 50 characters.", "MiddleName");
+                throw new ArgumentException("Middle name cannot be greater than 50 characters.", nameof(middleName));
             }
 
             return middleName;
         }
 
-        private void ValidateLastName(string lastName)
+        /// <summary>
+        /// Validate last name.
+        /// </summary>
+        /// <param name="lastName">Last name to be validated.</param>
+        public static void ValidateLastName(string lastName)
         {
             if (string.IsNullOrWhiteSpace(lastName))
             {
-                throw new ArgumentException("First name must be specified.", "LastName");
+                throw new ArgumentException("First name must be specified.", nameof(lastName));
             }
 
             if (lastName.Length > 50)
             {
-                throw new ArgumentException("Last name cannot be greater than 50 characters.", "LastName");
+                throw new ArgumentException("Last name cannot be greater than 50 characters.", nameof(lastName));
             }
         }
 
-        private string ValidateSuffix(string suffix)
+        /// <summary>
+        /// Validate suffix.
+        /// </summary>
+        /// <param name="suffix">Suffix to be validated.</param>
+        /// <returns>Updated suffix.</returns>
+        public static string ValidateSuffix(string suffix)
         {
             if (string.IsNullOrWhiteSpace(suffix))
             {
@@ -204,48 +227,60 @@
             }
             else if (suffix.Length > 6)
             {
-                throw new ArgumentException("Suffix cannot be greater than 6 characters.", "Suffix");
+                throw new ArgumentException("Suffix cannot be greater than 6 characters.", nameof(suffix));
             }
 
             return suffix;
         }
 
-        private void ValidateLogin(string login)
+        /// <summary>
+        /// Validate login.
+        /// </summary>
+        /// <param name="login">Login to be validated.</param>
+        public static void ValidateLogin(string login)
         {
             if (string.IsNullOrWhiteSpace(login))
             {
-                throw new ArgumentException("Login must be specified.", "Login");
+                throw new ArgumentException("Login must be specified.", nameof(login));
             }
 
             if (login.Length > 64)
             {
-                throw new ArgumentException("Login cannot be greater than 64 characters.", "Login");
+                throw new ArgumentException("Login cannot be greater than 64 characters.", nameof(login));
             }
         }
 
-        private void ValidatePasswordHash(string passwordHash)
+        /// <summary>
+        /// Validate password hash.
+        /// </summary>
+        /// <param name="passwordHash">Password hash to be validated.</param>
+        public static void ValidatePasswordHash(string passwordHash)
         {
             if (string.IsNullOrWhiteSpace(passwordHash))
             {
-                throw new ArgumentException("Password hash must be specified.", "PasswordHash");
+                throw new ArgumentException("Password hash must be specified.", nameof(passwordHash));
             }
 
             if (passwordHash.Length > 30)
             {
-                throw new ArgumentException("Password hash cannot be greater than 30 characters.", "PasswordHash");
+                throw new ArgumentException("Password hash cannot be greater than 30 characters.", nameof(passwordHash));
             }
         }
 
-        private void ValidatePasswordSalt(string paswordSalt)
+        /// <summary>
+        /// Validate password salt.
+        /// </summary>
+        /// <param name="passwordSalt">Password salt to be validated.</param>
+        public static void ValidatePasswordSalt(string passwordSalt)
         {
-            if (string.IsNullOrWhiteSpace(paswordSalt))
+            if (string.IsNullOrWhiteSpace(passwordSalt))
             {
-                throw new ArgumentException("Password salt must be specified.", "PasswordSalt");
+                throw new ArgumentException("Password salt must be specified.", nameof(passwordSalt));
             }
 
-            if (paswordSalt.Length > 30)
+            if (passwordSalt.Length > 30)
             {
-                throw new ArgumentException("Password salt cannot be greater than 30 characters.", "PasswordSalt");
+                throw new ArgumentException("Password salt cannot be greater than 30 characters.", nameof(passwordSalt));
             }
         }
 

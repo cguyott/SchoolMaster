@@ -75,7 +75,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Email", () => new Email(1, null));
+            Assert.Throws<ArgumentException>("email", () => new Email(1, null));
         }
 
         /// <summary>
@@ -87,7 +87,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Email", () => new Email(1, string.Empty));
+            Assert.Throws<ArgumentException>("email", () => new Email(1, string.Empty));
         }
 
         /// <summary>
@@ -99,7 +99,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Email", () => new Email(1, "       "));
+            Assert.Throws<ArgumentException>("email", () => new Email(1, "       "));
         }
 
         /// <summary>
@@ -111,7 +111,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Email", () => new Email(1, c_veryLongEmail));
+            Assert.Throws<ArgumentException>("email", () => new Email(1, c_veryLongEmail));
         }
 
         /// <summary>
@@ -151,7 +151,7 @@
             Assert.True(email.Modified == false);
             Assert.True(((IEmail)email).Email == null);
 
-            Assert.Throws<ArgumentException>("Email", () => (((IEmail)email).Email = null));
+            Assert.Throws<ArgumentException>("email", () => (((IEmail)email).Email = null));
 
             Assert.True(email.Modified == false);
             Assert.True(((IEmail)email).Email == null);
@@ -172,7 +172,7 @@
             Assert.True(email.Modified == false);
             Assert.True(((IEmail)email).Email == null);
 
-            Assert.Throws<ArgumentException>("Email", () => (((IEmail)email).Email = string.Empty));
+            Assert.Throws<ArgumentException>("email", () => (((IEmail)email).Email = string.Empty));
 
             Assert.True(email.Modified == false);
             Assert.True(((IEmail)email).Email == null);
@@ -193,7 +193,7 @@
             Assert.True(email.Modified == false);
             Assert.True(((IEmail)email).Email == null);
 
-            Assert.Throws<ArgumentException>("Email", () => (((IEmail)email).Email = "     "));
+            Assert.Throws<ArgumentException>("email", () => (((IEmail)email).Email = "     "));
 
             Assert.True(email.Modified == false);
             Assert.True(((IEmail)email).Email == null);
@@ -214,7 +214,7 @@
             Assert.True(email.Modified == false);
             Assert.True(((IEmail)email).Email == null);
 
-            Assert.Throws<ArgumentException>("Email", () => (((IEmail)email).Email = c_veryLongEmail));
+            Assert.Throws<ArgumentException>("email", () => (((IEmail)email).Email = c_veryLongEmail));
 
             Assert.True(email.Modified == false);
             Assert.True(((IEmail)email).Email == null);

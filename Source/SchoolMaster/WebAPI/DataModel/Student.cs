@@ -72,11 +72,15 @@
             m_gradeLevel = gradeLevel;
         }
 
-        private void ValidateGradeLevel(int gradeLevel)
+        /// <summary>
+        /// Validate grade level.
+        /// </summary>
+        /// <param name="gradeLevel">Grade level to be validated.</param>
+        public static void ValidateGradeLevel(int gradeLevel)
         {
             if (gradeLevel < 0)
             {
-                throw new ArgumentException("GradeLevel must be zero or greater.", "GradeLevel");
+                throw new ArgumentException("GradeLevel must be zero or greater.", nameof(gradeLevel));
             }
         }
 
@@ -109,7 +113,7 @@
             }
         }
 
-        #region Implementation for IPerson Wrappers
+        #region Implementation for Person Wrappers
 
         /// <inheritdoc/>
         string IStudent.Prefix
@@ -260,6 +264,7 @@
         {
             return SetPassword(password);
         }
-        #endregion Implementation for IPerson Wrappers
+
+        #endregion Implementation for Person Wrappers
     }
 }

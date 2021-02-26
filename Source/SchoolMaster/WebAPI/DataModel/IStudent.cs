@@ -50,32 +50,32 @@
         string Login { get; set; }
 
         /// <summary>
-        /// Gets lastLoginDate.
+        /// Gets LastLoginDate.
         /// </summary>
         DateTime LastLoginDate { get; }
 
         /// <summary>
-        /// Gets lastPasswordChangedDate.
+        /// Gets LastPasswordChangedDate.
         /// </summary>
         DateTime LastPasswordChangedDate { get; }
 
         /// <summary>
-        /// Gets createdDate.
+        /// Gets CreatedDate.
         /// </summary>
         DateTime CreatedDate { get; }
 
         /// <summary>
-        /// Gets email.
+        /// Gets Email.
         /// </summary>
         Email Email { get; }
 
         /// <summary>
-        /// Gets addresses.
+        /// Gets Addresses.
         /// </summary>
         IEnumerable<Address> Addresses { get; }
 
         /// <summary>
-        /// Gets phone numbers.
+        /// Gets PhoneNumbers.
         /// </summary>
         IEnumerable<Phone> PhoneNumbers { get; }
 

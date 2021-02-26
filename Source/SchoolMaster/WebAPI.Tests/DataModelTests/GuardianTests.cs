@@ -58,9 +58,9 @@
             Assert.NotNull(((IGuardian)guardian).Email);
 
             Assert.NotNull(((IGuardian)guardian).Addresses);
-            Assert.True(((IGuardian)guardian).Addresses.Count() == 0);
+            Assert.True(((IGuardian)guardian).Addresses.Any() == false);
             Assert.NotNull(((IGuardian)guardian).PhoneNumbers);
-            Assert.True(((IGuardian)guardian).PhoneNumbers.Count() == 0);
+            Assert.True(((IGuardian)guardian).PhoneNumbers.Any() == false);
         }
 
         /// <summary>
@@ -367,7 +367,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).ContactOrder == -1);
 
-            Assert.Throws<ArgumentException>("ContactOrder", () => (((IGuardian)guardian).ContactOrder = 0));
+            Assert.Throws<ArgumentException>("contactOrder", () => (((IGuardian)guardian).ContactOrder = 0));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).ContactOrder == -1);
@@ -438,7 +438,7 @@
             };
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Prefix", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("prefix", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -467,7 +467,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("firstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -496,7 +496,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("firstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -525,7 +525,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("firstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -554,7 +554,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("FirstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("firstName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -583,7 +583,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("MiddleName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("middleName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -612,7 +612,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("lastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -641,7 +641,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("lastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -670,7 +670,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("lastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -699,7 +699,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("LastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("lastName", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -728,7 +728,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Suffix", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("suffix", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -757,7 +757,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -786,7 +786,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -815,7 +815,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -844,7 +844,7 @@
             List<Phone> phoneNumbers = new List<Phone>();
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("Login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
+            Assert.Throws<ArgumentException>("login", () => new Guardian(id, contactOrder, personId, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, passwordHash, passwordSalt, email, addresses, phoneNumbers));
         }
 
         /// <summary>
@@ -884,7 +884,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Prefix == null);
 
-            Assert.Throws<ArgumentException>("Prefix", () => (((IGuardian)guardian).Prefix = c_veryLongPrefix));
+            Assert.Throws<ArgumentException>("prefix", () => (((IGuardian)guardian).Prefix = c_veryLongPrefix));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Prefix == null);
@@ -927,7 +927,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IGuardian)guardian).FirstName = null));
+            Assert.Throws<ArgumentException>("firstName", () => (((IGuardian)guardian).FirstName = null));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).FirstName == null);
@@ -948,7 +948,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IGuardian)guardian).FirstName = string.Empty));
+            Assert.Throws<ArgumentException>("firstName", () => (((IGuardian)guardian).FirstName = string.Empty));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).FirstName == null);
@@ -969,7 +969,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IGuardian)guardian).FirstName = "      "));
+            Assert.Throws<ArgumentException>("firstName", () => (((IGuardian)guardian).FirstName = "      "));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).FirstName == null);
@@ -990,7 +990,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).FirstName == null);
 
-            Assert.Throws<ArgumentException>("FirstName", () => (((IGuardian)guardian).FirstName = c_veryLongName));
+            Assert.Throws<ArgumentException>("firstName", () => (((IGuardian)guardian).FirstName = c_veryLongName));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).FirstName == null);
@@ -1033,7 +1033,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).MiddleName == null);
 
-            Assert.Throws<ArgumentException>("MiddleName", () => (((IGuardian)guardian).MiddleName = c_veryLongName));
+            Assert.Throws<ArgumentException>("middleName", () => (((IGuardian)guardian).MiddleName = c_veryLongName));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).MiddleName == null);
@@ -1076,7 +1076,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IGuardian)guardian).LastName = null));
+            Assert.Throws<ArgumentException>("lastName", () => (((IGuardian)guardian).LastName = null));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).LastName == null);
@@ -1097,7 +1097,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IGuardian)guardian).LastName = string.Empty));
+            Assert.Throws<ArgumentException>("lastName", () => (((IGuardian)guardian).LastName = string.Empty));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).LastName == null);
@@ -1118,7 +1118,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IGuardian)guardian).LastName = "      "));
+            Assert.Throws<ArgumentException>("lastName", () => (((IGuardian)guardian).LastName = "      "));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).LastName == null);
@@ -1139,7 +1139,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).LastName == null);
 
-            Assert.Throws<ArgumentException>("LastName", () => (((IGuardian)guardian).LastName = c_veryLongName));
+            Assert.Throws<ArgumentException>("lastName", () => (((IGuardian)guardian).LastName = c_veryLongName));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).LastName == null);
@@ -1182,7 +1182,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Suffix == null);
 
-            Assert.Throws<ArgumentException>("Suffix", () => (((IGuardian)guardian).Suffix = c_veryLongPrefix));
+            Assert.Throws<ArgumentException>("suffix", () => (((IGuardian)guardian).Suffix = c_veryLongPrefix));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Suffix == null);
@@ -1225,7 +1225,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IGuardian)guardian).Login = null));
+            Assert.Throws<ArgumentException>("login", () => (((IGuardian)guardian).Login = null));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Login == null);
@@ -1246,7 +1246,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IGuardian)guardian).Login = string.Empty));
+            Assert.Throws<ArgumentException>("login", () => (((IGuardian)guardian).Login = string.Empty));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Login == null);
@@ -1267,7 +1267,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IGuardian)guardian).Login = "      "));
+            Assert.Throws<ArgumentException>("login", () => (((IGuardian)guardian).Login = "      "));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Login == null);
@@ -1288,7 +1288,7 @@
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Login == null);
 
-            Assert.Throws<ArgumentException>("Login", () => (((IGuardian)guardian).Login = c_veryLongLogin));
+            Assert.Throws<ArgumentException>("login", () => (((IGuardian)guardian).Login = c_veryLongLogin));
 
             Assert.True(guardian.Modified == false);
             Assert.True(((IGuardian)guardian).Login == null);

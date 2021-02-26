@@ -6,25 +6,25 @@
     public interface IPhone
     {
         /// <summary>
-        /// Gets or sets area code.
+        /// Gets or sets AreaCode.
         /// </summary>
         /// <remarks>Must be exactly 3 digits.</remarks>
         string AreaCode { get; set; }
 
         /// <summary>
-        /// Gets or sets exchange code.
+        /// Gets or sets ExchangeCode.
         /// </summary>
         /// <remarks>Must be exactly 3 digits.</remarks>
         string ExchangeCode { get; set; }
 
         /// <summary>
-        /// Gets or sets subscriber number.
+        /// Gets or sets SubscriberNumber.
         /// </summary>
         /// <remarks>Must be exactly 4 digits.</remarks>
         string SubscriberNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets contact order.
+        /// Gets or sets ContactOrder.
         /// </summary>
         int ContactOrder { get; set; }
     }

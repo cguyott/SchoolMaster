@@ -94,7 +94,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("AreaCode", () => new Phone(1, null, "222", "3333", 1));
+            Assert.Throws<ArgumentException>("areaCode", () => new Phone(1, null, "222", "3333", 1));
         }
 
         /// <summary>
@@ -106,7 +106,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("AreaCode", () => new Phone(1, string.Empty, "222", "3333", 1));
+            Assert.Throws<ArgumentException>("areaCode", () => new Phone(1, string.Empty, "222", "3333", 1));
         }
 
         /// <summary>
@@ -118,7 +118,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("AreaCode", () => new Phone(1, "   ", "222", "3333", 1));
+            Assert.Throws<ArgumentException>("areaCode", () => new Phone(1, "   ", "222", "3333", 1));
         }
 
         /// <summary>
@@ -130,7 +130,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("AreaCode", () => new Phone(1, "11", "222", "3333", 1));
+            Assert.Throws<ArgumentException>("areaCode", () => new Phone(1, "11", "222", "3333", 1));
         }
 
         /// <summary>
@@ -142,7 +142,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("AreaCode", () => new Phone(1, "1111", "222", "3333", 1));
+            Assert.Throws<ArgumentException>("areaCode", () => new Phone(1, "1111", "222", "3333", 1));
         }
 
         /// <summary>
@@ -154,7 +154,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("AreaCode", () => new Phone(1, "aaa", "222", "3333", 1));
+            Assert.Throws<ArgumentException>("areaCode", () => new Phone(1, "aaa", "222", "3333", 1));
         }
 
         /// <summary>
@@ -166,7 +166,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("ExchangeCode", () => new Phone(1, "111", null, "3333", 1));
+            Assert.Throws<ArgumentException>("exchangeCode", () => new Phone(1, "111", null, "3333", 1));
         }
 
         /// <summary>
@@ -178,7 +178,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("ExchangeCode", () => new Phone(1, "111", string.Empty, "3333", 1));
+            Assert.Throws<ArgumentException>("exchangeCode", () => new Phone(1, "111", string.Empty, "3333", 1));
         }
 
         /// <summary>
@@ -190,7 +190,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("ExchangeCode", () => new Phone(1, "111", "   ", "3333", 1));
+            Assert.Throws<ArgumentException>("exchangeCode", () => new Phone(1, "111", "   ", "3333", 1));
         }
 
         /// <summary>
@@ -202,7 +202,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("ExchangeCode", () => new Phone(1, "111", "22", "3333", 1));
+            Assert.Throws<ArgumentException>("exchangeCode", () => new Phone(1, "111", "22", "3333", 1));
         }
 
         /// <summary>
@@ -214,7 +214,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("ExchangeCode", () => new Phone(1, "111", "2222", "3333", 1));
+            Assert.Throws<ArgumentException>("exchangeCode", () => new Phone(1, "111", "2222", "3333", 1));
         }
 
         /// <summary>
@@ -226,7 +226,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("ExchangeCode", () => new Phone(1, "111", "aaa", "3333", 1));
+            Assert.Throws<ArgumentException>("exchangeCode", () => new Phone(1, "111", "aaa", "3333", 1));
         }
 
         /// <summary>
@@ -238,7 +238,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => new Phone(1, "111", "222", null, 1));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => new Phone(1, "111", "222", null, 1));
         }
 
         /// <summary>
@@ -250,7 +250,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => new Phone(1, "111", "222", string.Empty, 1));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => new Phone(1, "111", "222", string.Empty, 1));
         }
 
         /// <summary>
@@ -262,7 +262,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => new Phone(1, "111", "222", "    ", 1));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => new Phone(1, "111", "222", "    ", 1));
         }
 
         /// <summary>
@@ -274,7 +274,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => new Phone(1, "111", "222", "333", 1));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => new Phone(1, "111", "222", "333", 1));
         }
 
         /// <summary>
@@ -286,7 +286,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => new Phone(1, "111", "222", "33333", 1));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => new Phone(1, "111", "222", "33333", 1));
         }
 
         /// <summary>
@@ -298,7 +298,7 @@
             // Arrange.
 
             // Act and Assert.
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => new Phone(1, "111", "222", "aaaa", 1));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => new Phone(1, "111", "222", "aaaa", 1));
         }
 
         /// <summary>
@@ -340,7 +340,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
 
-            Assert.Throws<ArgumentException>("AreaCode", () => (((IPhone)phone).AreaCode = null));
+            Assert.Throws<ArgumentException>("areaCode", () => (((IPhone)phone).AreaCode = null));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
@@ -362,7 +362,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
 
-            Assert.Throws<ArgumentException>("AreaCode", () => (((IPhone)phone).AreaCode = string.Empty));
+            Assert.Throws<ArgumentException>("areaCode", () => (((IPhone)phone).AreaCode = string.Empty));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
@@ -384,7 +384,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
 
-            Assert.Throws<ArgumentException>("AreaCode", () => (((IPhone)phone).AreaCode = "   "));
+            Assert.Throws<ArgumentException>("areaCode", () => (((IPhone)phone).AreaCode = "   "));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
@@ -406,7 +406,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
 
-            Assert.Throws<ArgumentException>("AreaCode", () => (((IPhone)phone).AreaCode = "88"));
+            Assert.Throws<ArgumentException>("areaCode", () => (((IPhone)phone).AreaCode = "88"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
@@ -428,7 +428,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
 
-            Assert.Throws<ArgumentException>("AreaCode", () => (((IPhone)phone).AreaCode = "8888"));
+            Assert.Throws<ArgumentException>("areaCode", () => (((IPhone)phone).AreaCode = "8888"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
@@ -450,7 +450,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
 
-            Assert.Throws<ArgumentException>("AreaCode", () => (((IPhone)phone).AreaCode = "aaa"));
+            Assert.Throws<ArgumentException>("areaCode", () => (((IPhone)phone).AreaCode = "aaa"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).AreaCode == null);
@@ -495,7 +495,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
 
-            Assert.Throws<ArgumentException>("ExchangeCode", () => (((IPhone)phone).ExchangeCode = null));
+            Assert.Throws<ArgumentException>("exchangeCode", () => (((IPhone)phone).ExchangeCode = null));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
@@ -517,7 +517,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
 
-            Assert.Throws<ArgumentException>("ExchangeCode", () => (((IPhone)phone).ExchangeCode = string.Empty));
+            Assert.Throws<ArgumentException>("exchangeCode", () => (((IPhone)phone).ExchangeCode = string.Empty));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
@@ -539,7 +539,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
 
-            Assert.Throws<ArgumentException>("ExchangeCode", () => (((IPhone)phone).ExchangeCode = "   "));
+            Assert.Throws<ArgumentException>("exchangeCode", () => (((IPhone)phone).ExchangeCode = "   "));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
@@ -561,7 +561,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
 
-            Assert.Throws<ArgumentException>("ExchangeCode", () => (((IPhone)phone).ExchangeCode = "88"));
+            Assert.Throws<ArgumentException>("exchangeCode", () => (((IPhone)phone).ExchangeCode = "88"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
@@ -583,7 +583,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
 
-            Assert.Throws<ArgumentException>("ExchangeCode", () => (((IPhone)phone).ExchangeCode = "8888"));
+            Assert.Throws<ArgumentException>("exchangeCode", () => (((IPhone)phone).ExchangeCode = "8888"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
@@ -605,7 +605,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
 
-            Assert.Throws<ArgumentException>("ExchangeCode", () => (((IPhone)phone).ExchangeCode = "aaa"));
+            Assert.Throws<ArgumentException>("exchangeCode", () => (((IPhone)phone).ExchangeCode = "aaa"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).ExchangeCode == null);
@@ -650,7 +650,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
 
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => (((IPhone)phone).SubscriberNumber = null));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => (((IPhone)phone).SubscriberNumber = null));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
@@ -672,7 +672,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
 
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => (((IPhone)phone).SubscriberNumber = string.Empty));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => (((IPhone)phone).SubscriberNumber = string.Empty));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
@@ -694,7 +694,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
 
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => (((IPhone)phone).SubscriberNumber = "    "));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => (((IPhone)phone).SubscriberNumber = "    "));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
@@ -716,7 +716,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
 
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => (((IPhone)phone).SubscriberNumber = "888"));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => (((IPhone)phone).SubscriberNumber = "888"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
@@ -738,7 +738,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
 
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => (((IPhone)phone).SubscriberNumber = "88888"));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => (((IPhone)phone).SubscriberNumber = "88888"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
@@ -760,7 +760,7 @@
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);
 
-            Assert.Throws<ArgumentException>("SubscriberNumber", () => (((IPhone)phone).SubscriberNumber = "aaaa"));
+            Assert.Throws<ArgumentException>("subscriberNumber", () => (((IPhone)phone).SubscriberNumber = "aaaa"));
 
             Assert.True(phone.Modified == false);
             Assert.True(((IPhone)phone).SubscriberNumber == null);

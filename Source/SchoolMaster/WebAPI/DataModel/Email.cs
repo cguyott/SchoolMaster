@@ -41,16 +41,20 @@
             m_email = email;
         }
 
-        private void ValidateEmail(string email)
+        /// <summary>
+        /// Validate an email address.
+        /// </summary>
+        /// <param name="email">Email address to validate.</param>
+        public static void ValidateEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
             {
-                throw new ArgumentException("An email must be specified.", "Email");
+                throw new ArgumentException("An email must be specified.", nameof(email));
             }
 
             if (email.Length > 256)
             {
-                throw new ArgumentException("The email cannot be greater than 256 characters", "Email");
+                throw new ArgumentException("The email cannot be greater than 256 characters", nameof(email));
             }
         }
 

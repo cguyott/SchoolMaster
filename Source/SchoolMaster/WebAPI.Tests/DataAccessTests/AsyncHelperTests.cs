@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Microservice.Data.Sql;
+    using SchoolMaster.WebAPI.DataAccess;
     using Xunit;
 
     /// <summary>

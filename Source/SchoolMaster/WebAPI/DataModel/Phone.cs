@@ -60,57 +60,69 @@
             m_contactOrder = contactOrder;
         }
 
-        private void ValidateAreaCode(string areaCode)
+        /// <summary>
+        /// Validate area code.
+        /// </summary>
+        /// <param name="areaCode">Area code to be validated.</param>
+        public static void ValidateAreaCode(string areaCode)
         {
             if (string.IsNullOrWhiteSpace(areaCode))
             {
-                throw new ArgumentException("A three digit area code must be specified.", "AreaCode");
+                throw new ArgumentException("A three digit area code must be specified.", nameof(areaCode));
             }
 
             if (areaCode.Length != 3)
             {
-                throw new ArgumentException("The area code must be three digits.", "AreaCode");
+                throw new ArgumentException("The area code must be three digits.", nameof(areaCode));
             }
 
             if (int.TryParse(areaCode, out int _) == false)
             {
-                throw new ArgumentException("The area code must be numeric.", "AreaCode");
+                throw new ArgumentException("The area code must be numeric.", nameof(areaCode));
             }
         }
 
-        private void ValidateExchangeCode(string exchangeCode)
+        /// <summary>
+        /// Validate exchange code.
+        /// </summary>
+        /// <param name="exchangeCode">Exchange code to be validated.</param>
+        public static void ValidateExchangeCode(string exchangeCode)
         {
             if (string.IsNullOrWhiteSpace(exchangeCode))
             {
-                throw new ArgumentException("A three digit exchange code must be specified.", "ExchangeCode");
+                throw new ArgumentException("A three digit exchange code must be specified.", nameof(exchangeCode));
             }
 
             if (exchangeCode.Length != 3)
             {
-                throw new ArgumentException("The exchange code must be three digits.", "ExchangeCode");
+                throw new ArgumentException("The exchange code must be three digits.", nameof(exchangeCode));
             }
 
             if (int.TryParse(exchangeCode, out int _) == false)
             {
-                throw new ArgumentException("The exchange code must be numeric.", "ExchangeCode");
+                throw new ArgumentException("The exchange code must be numeric.", nameof(exchangeCode));
             }
         }
 
-        private void ValidateSubscriberNumber(string subscriberNumber)
+        /// <summary>
+        /// Validate subscriber number.
+        /// </summary>
+        /// <param name="subscriberNumber">Subscriber number to be validated.</param>
+        public static void ValidateSubscriberNumber(string subscriberNumber)
         {
             if (string.IsNullOrWhiteSpace(subscriberNumber))
             {
-                throw new ArgumentException("A four digit subscriber number must be specified.", "SubscriberNumber");
+                throw new ArgumentException("A four digit subscriber number must be specified.", nameof(subscriberNumber));
             }
 
             if (subscriberNumber.Length != 4)
             {
-                throw new ArgumentException("The subscriber number must be four digits.", "SubscriberNumber");
+                throw new ArgumentException("The subscriber number must be four digits.", nameof(subscriberNumber));
             }
 
             if (int.TryParse(subscriberNumber, out int _) == false)
             {
-                throw new ArgumentException("The subscriber number must be numeric.", "SubscriberNumber");
+                throw new ArgumentException("The subscriber number must be numeric.", nameof(subscriberNumber));
             }
         }
 
