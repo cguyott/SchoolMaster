@@ -1,4 +1,4 @@
-﻿namespace Microservice.Data.Sql
+﻿namespace SchoolMaster.WebAPI.DataAccess
 {
     using System;
     using System.Threading;

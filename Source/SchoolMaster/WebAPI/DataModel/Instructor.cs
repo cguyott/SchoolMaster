@@ -158,7 +158,7 @@
             }
         }
 
-        #region Implementation for IPerson Wrappers
+        #region Implementation for Person Wrappers
 
         /// <inheritdoc/>
         string IInstructor.Prefix
@@ -309,6 +309,7 @@
         {
             return SetPassword(password);
         }
-        #endregion Implementation for IPerson Wrappers
+
+        #endregion Implementation for Person Wrappers
     }
 }

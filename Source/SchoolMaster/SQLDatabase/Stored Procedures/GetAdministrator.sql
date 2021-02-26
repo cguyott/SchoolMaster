@@ -13,23 +13,6 @@ BEGIN
 	INNER JOIN [dbo].[Person] p ON a.[PersonId] = p.[Id]
 	WHERE a.[Id] = @AdminId;
 
-	SELECT a.[Id]
-		  ,a.[Department]
-		  ,a.[Position]
-		  ,p.[Prefix]
-		  ,p.[FirstName]
-		  ,p.[MiddleName]
-		  ,p.[LastName]
-		  ,p.[Suffix]
-		  ,p.[Login]
-		  ,p.[LastLoginDate]
-		  ,p.[CreatedDate]
-		  ,e.[Email]
-	FROM [dbo].[Administrator] a
-	INNER JOIN [dbo].[Person] p ON a.[PersonId] = p.[Id]
-	LEFT JOIN [dbo].[Email] e ON a.[PersonId] = e.[PersonId]
-	WHERE a.[Id] = @AdminId;
-
 	SELECT p.[AreaCode]
 		  ,p.[ExchangeCode]
 		  ,p.[SubscriberNumber]
@@ -46,4 +29,20 @@ BEGIN
 	FROM [dbo].[Address] a
 	WHERE a.[PersonId] = @PersonId;
 
+	SELECT a.[Id]
+		  ,a.[Department]
+		  ,a.[Position]
+		  ,p.[Prefix]
+		  ,p.[FirstName]
+		  ,p.[MiddleName]
+		  ,p.[LastName]
+		  ,p.[Suffix]
+		  ,p.[Login]
+		  ,p.[LastLoginDate]
+		  ,p.[CreatedDate]
+		  ,e.[Email]
+	FROM [dbo].[Administrator] a
+	INNER JOIN [dbo].[Person] p ON a.[PersonId] = p.[Id]
+	LEFT JOIN [dbo].[Email] e ON a.[PersonId] = e.[PersonId]
+	WHERE a.[Id] = @AdminId;
 END

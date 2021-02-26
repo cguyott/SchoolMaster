@@ -113,7 +113,7 @@
             }
         }
 
-        #region Implementation for IPerson Wrappers
+        #region Implementation for Person Wrappers
 
         /// <inheritdoc/>
         string IStudent.Prefix
@@ -264,6 +264,7 @@
         {
             return SetPassword(password);
         }
-        #endregion Implementation for IPerson Wrappers
+
+        #endregion Implementation for Person Wrappers
     }
 }

@@ -1,6 +1,4 @@
-﻿// ReSharper disable UnusedMember.Global
-
-namespace Microservice.Data.Sql
+﻿namespace SchoolMaster.WebAPI.DataAccess
 {
     using System;
     using System.Collections.Generic;

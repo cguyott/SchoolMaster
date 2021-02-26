@@ -82,87 +82,87 @@
         }
 
         /// <summary>
-        /// Gets or sets Id.
+        /// Gets Id.
         /// </summary>
-        public int Id { get; set; }
+        public int Id { get; init; }
 
         /// <summary>
-        /// Gets or sets Department.
-        /// </summary>
-        /// <remarks>Cannot exceed 128 characters in length. Cannot be null, empty string, or whitespace.</remarks>
-        public string Department { get; set; }
-
-        /// <summary>
-        /// Gets or sets Position.
+        /// Gets Department.
         /// </summary>
         /// <remarks>Cannot exceed 128 characters in length. Cannot be null, empty string, or whitespace.</remarks>
-        public string Position { get; set; }
+        public string Department { get; init; }
 
         /// <summary>
-        /// Gets or sets Prefix.
+        /// Gets Position.
+        /// </summary>
+        /// <remarks>Cannot exceed 128 characters in length. Cannot be null, empty string, or whitespace.</remarks>
+        public string Position { get; init; }
+
+        /// <summary>
+        /// Gets Prefix.
         /// </summary>
         /// <remarks>Cannot exceed 6 characters in length.</remarks>
-        public string Prefix { get; set; }
+        public string Prefix { get; init; }
 
         /// <summary>
-        /// Gets or sets FirstName.
+        /// Gets FirstName.
         /// </summary>
         /// <remarks>Cannot exceed 50 characters in length.</remarks>
-        public string FirstName { get; set; }
+        public string FirstName { get; init; }
 
         /// <summary>
-        /// Gets or sets MiddleName.
+        /// Gets MiddleName.
         /// </summary>
         /// <remarks>Cannot exceed 50 characters in length.</remarks>
-        public string MiddleName { get; set; }
+        public string MiddleName { get; init; }
 
         /// <summary>
-        /// Gets or sets LastName.
+        /// Gets LastName.
         /// </summary>
         /// <remarks>Cannot exceed 50 characters in length.</remarks>
-        public string LastName { get; set; }
+        public string LastName { get; init; }
 
         /// <summary>
-        /// Gets or sets Suffix.
+        /// Gets Suffix.
         /// </summary>
         /// <remarks>Cannot exceed 6 characters in length.</remarks>
-        public string Suffix { get; set; }
+        public string Suffix { get; init; }
 
         /// <summary>
-        /// Gets or sets Login.
+        /// Gets Login.
         /// </summary>
         /// <remarks>Cannot exceed 64 characters in length.</remarks>
-        public string Login { get; set; }
+        public string Login { get; init; }
 
         /// <summary>
         /// Gets LastLoginDate.
         /// </summary>
-        public DateTime LastLoginDate { get; }
+        public DateTime LastLoginDate { get; init; }
 
         /// <summary>
         /// Gets LastPasswordChangedDate.
         /// </summary>
-        public DateTime LastPasswordChangedDate { get; }
+        public DateTime LastPasswordChangedDate { get; init; }
 
         /// <summary>
         /// Gets CreatedDate.
         /// </summary>
-        public DateTime CreatedDate { get; }
+        public DateTime CreatedDate { get; init; }
 
         /// <summary>
-        /// Gets or sets Email.
+        /// Gets Email.
         /// </summary>
         /// <remarks>Cannot exceed 256 characters in length.</remarks>
-        public string Email { get; set; }
+        public string Email { get; init; }
 
         /// <summary>
         /// Gets Addresses.
         /// </summary>
-        public IEnumerable<AddressDto> Addresses { get; }
+        public IEnumerable<AddressDto> Addresses { get; init; }
 
         /// <summary>
         /// Gets PhoneNumbers.
         /// </summary>
-        public IEnumerable<PhoneDto> PhoneNumbers { get; }
+        public IEnumerable<PhoneDto> PhoneNumbers { get; init; }
     }
 }

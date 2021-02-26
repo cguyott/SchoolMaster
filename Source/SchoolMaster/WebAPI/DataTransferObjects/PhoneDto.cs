@@ -36,26 +36,26 @@
         }
 
         /// <summary>
-        /// Gets or sets AreaCode.
+        /// Gets AreaCode.
         /// </summary>
         /// <remarks>Must be exactly 3 digits.</remarks>
-        public string AreaCode { get; set; }
+        public string AreaCode { get; init; }
 
         /// <summary>
-        /// Gets or sets ExchangeCode.
+        /// Gets ExchangeCode.
         /// </summary>
         /// <remarks>Must be exactly 3 digits.</remarks>
-        public string ExchangeCode { get; set; }
+        public string ExchangeCode { get; init; }
 
         /// <summary>
-        /// Gets or sets SubscriberNumber.
+        /// Gets SubscriberNumber.
         /// </summary>
         /// <remarks>Must be exactly 4 digits.</remarks>
-        public string SubscriberNumber { get; set; }
+        public string SubscriberNumber { get; init; }
 
         /// <summary>
-        /// Gets or sets ContactOrder.
+        /// Gets ContactOrder.
         /// </summary>
-        public int ContactOrder { get; set; }
+        public int ContactOrder { get; init; }
     }
 }

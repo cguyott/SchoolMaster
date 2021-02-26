@@ -39,33 +39,33 @@
         }
 
         /// <summary>
-        /// Gets or sets Address1.
+        /// Gets Address1.
         /// </summary>
         /// <remarks>Cannot exceed 95 characters in length. Cannot be null, empty string, or whitespace.</remarks>
-        public string Address1 { get; set; }
+        public string Address1 { get; init; }
 
         /// <summary>
-        /// Gets or sets Address2.
+        /// Gets Address2.
         /// </summary>
         /// <remarks>Cannot exceed 95 characters in length. Can be null. Cannot be empty string or whitespace. Attempting to set this property to whitespace or an empty string will set it to null.</remarks>
-        public string Address2 { get; set; }
+        public string Address2 { get; init; }
 
         /// <summary>
-        /// Gets or sets City.
+        /// Gets City.
         /// </summary>
         /// <remarks>Cannot exceed 50 characters in length.</remarks>
-        public string City { get; set; }
+        public string City { get; init; }
 
         /// <summary>
-        /// Gets or sets State.
+        /// Gets State.
         /// </summary>
         /// <remarks>Must be exactly 2 characters.</remarks>
-        public string State { get; set; }
+        public string State { get; init; }
 
         /// <summary>
-        /// Gets or sets Zip.
+        /// Gets Zip.
         /// </summary>
         /// <remarks>Must be either 5 characters (#####) or 10 characters (#####-####).</remarks>
-        public string Zip { get; set; }
+        public string Zip { get; init; }
     }
 }
