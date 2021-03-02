@@ -6,7 +6,7 @@
     /// <summary>
     /// Guardian class implementation.
     /// </summary>
-    public class Guardian : Person, IGuardian
+    public sealed class Guardian : Person, IGuardian
     {
         private readonly int m_id;
 

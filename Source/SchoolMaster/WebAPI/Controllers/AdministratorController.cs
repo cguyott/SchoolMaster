@@ -70,12 +70,18 @@
 
                 string sqlConnection = m_configuration.GetValue<string>("SQL:connectString");
                 using IDataAccess dataAccess = new DataAccess(m_dataAccessLogger, sqlConnection);
-                using IDataReader results = await dataAccess.ExecuteQueryAsync("GetAdministrator", parameters);
+                using IDataReader results = await dataAccess.ExecuteQueryAsync("GetAdministrator", parameters).ConfigureAwait(false);
 
-                IList<PhoneDto> phoneDto = PhoneDtoHelper.GetPhoneDtos(results);
+                IEnumerable<PhoneDto> phoneDtos = PhoneDtoHelper.GetPhoneDtos(results);
                 results.NextResult();
 
-                return StatusCode(StatusCodes.Status500InternalServerError, "Success");
+                IEnumerable<AddressDto> addressDtos = AddressDtoHelper.GetAddressDtos(results);
+                results.NextResult();
+
+                AdministratorDto administratorDto = AdministratorDtoHelper.GetAdministratorDto(results, phoneDtos, addressDtos);
+                results.Close();
+
+                return new JsonResult(administratorDto);
             }
             catch (SqlException sqlException)
             {

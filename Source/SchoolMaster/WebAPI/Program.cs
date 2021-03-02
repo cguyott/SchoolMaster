@@ -10,7 +10,7 @@ namespace SchoolMaster.WebAPI
     /// <summary>
     /// Main class for the SchoolMaster Web API.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// Gets the web service configuration file.

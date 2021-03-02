@@ -8,18 +8,21 @@
     <Copyright>Copyright © 2021 Briarwood Consulting</Copyright>
     <Product>School Master</Product>
     <NeutralLanguage>en-US</NeutralLanguage>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>5.0</AnalysisLevel>
+	<LangVersion>latest</LangVersion>
+	<AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <OutputPath>bin\Debug\netcoreapp3.1\</OutputPath>
-    <DocumentationFile>bin\Debug\netcoreapp3.1\SchoolMaster.WebAPI.xml</DocumentationFile>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>bin\Debug\SchoolMaster.WebAPI.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <OutputPath>bin\Release\netcoreapp3.1\</OutputPath>
-    <DocumentationFile>bin\Release\netcoreapp3.1\SchoolMaster.WebAPI.xml</DocumentationFile>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>bin\Release\SchoolMaster.WebAPI.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

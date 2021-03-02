@@ -5,7 +5,7 @@
     /// <summary>
     /// Email class implementation.
     /// </summary>
-    public class Email : IEmail
+    public sealed class Email : IEmail
     {
         private readonly int m_id;
 

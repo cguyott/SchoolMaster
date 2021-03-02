@@ -19,6 +19,8 @@
                                                      int index,
                                                      string defaultValue = null)
         {
+            _ = dataRecord ?? throw new ArgumentNullException(nameof(dataRecord));
+
             if (dataRecord.IsDBNull(index))
             {
                 return defaultValue;
@@ -38,6 +40,8 @@
                                                  int index,
                                                  int defaultValue)
         {
+            _ = dataRecord ?? throw new ArgumentNullException(nameof(dataRecord));
+
             if (dataRecord.IsDBNull(index))
             {
                 return defaultValue;
@@ -57,6 +61,8 @@
                                                          int index,
                                                          DateTime defaultValue)
         {
+            _ = dataRecord ?? throw new ArgumentNullException(nameof(dataRecord));
+
             if (dataRecord.IsDBNull(index))
             {
                 return defaultValue;

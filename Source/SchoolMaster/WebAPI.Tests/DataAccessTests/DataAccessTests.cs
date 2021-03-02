@@ -26,6 +26,8 @@
 
             // Assert.
             Assert.NotNull(dataAccess);
+
+            dataAccess.Dispose();   // Calling dispose to get rid of a compiler warning.
         }
 
         /// <summary>
@@ -49,7 +51,7 @@
             ILogger<DataAccess> logger = loggerFake.FakedObject;
 
             // Act and Assert
-            Assert.Throws<ArgumentNullException>("sqlConnectionString", () => new DataAccess(logger, null));
+            Assert.Throws<ArgumentException>("sqlConnectionString", () => new DataAccess(logger, null));
         }
 
         /// <summary>

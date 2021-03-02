@@ -39,6 +39,7 @@ BEGIN
 		  ,p.[Suffix]
 		  ,p.[Login]
 		  ,p.[LastLoginDate]
+		  ,p.[LastPasswordChangedDate]
 		  ,p.[CreatedDate]
 		  ,e.[Email]
 	FROM [dbo].[Administrator] a

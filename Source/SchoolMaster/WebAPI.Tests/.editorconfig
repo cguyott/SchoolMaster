@@ -1,0 +1,10 @@
+[*.cs]
+
+# CA1724: Type names should not match namespace
+dotnet_diagnostic.CA1724.severity = none
+
+# IDE0057: Use range operator.  Range operator not available in .NET Standard 2.0
+dotnet_diagnostic.IDE0057.severity = none
+
+# CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none

@@ -31,6 +31,8 @@
         /// <returns>Task.</returns>
         public async Task Invoke(HttpContext context)
         {
+            _ = context ?? throw new ArgumentNullException(nameof(context));
+
             try
             {
                 await m_next(context).ConfigureAwait(true);

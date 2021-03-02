@@ -52,6 +52,9 @@ namespace SchoolMaster.WebAPI
         /// <param name="env">Web host environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            _ = app ?? throw new ArgumentNullException(nameof(app));
+            _ = env ?? throw new ArgumentNullException(nameof(env));
+
             // Inject middleware to handle all exceptions.
             ILogger errorHandlingLogger = app.ApplicationServices.GetService<ILogger<ErrorHandlingMiddleware>>();
             app.UseMiddleware<ErrorHandlingMiddleware>(errorHandlingLogger);

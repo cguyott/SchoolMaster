@@ -5,7 +5,7 @@
     /// <summary>
     /// Phone class implementation.
     /// </summary>
-    public class Phone : IPhone
+    public sealed class Phone : IPhone
     {
         private readonly int m_id;
 

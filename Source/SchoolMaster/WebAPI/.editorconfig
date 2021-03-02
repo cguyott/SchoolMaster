@@ -1,0 +1,10 @@
+[*.cs]
+
+# CA1724: Type names should not match namespace
+dotnet_diagnostic.CA1724.severity = none
+
+# CA1031: Do not catch general exception types
+dotnet_diagnostic.CA1031.severity = none
+
+# CA1002: Do not expose generic lists
+dotnet_diagnostic.CA1002.severity = none
