@@ -44,17 +44,17 @@
         /// <param name="adminId">The id of the administrator who's detailed information has been requested.</param>
         /// <returns>An instance of the AdministratorDto class.</returns>
         [HttpGet]
-        [Route("api/v1/Administrator/{adminId}")]
+        [Route("api/v1/Administrator")]
         [ProducesResponseType(typeof(AdministratorDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<AdministratorDto>> GetAdministrator([FromRoute] int adminId)
+        public async Task<ActionResult<AdministratorDto>> GetAdministrator([FromQuery] int adminId)
         {
             if (adminId < 1)
             {
-                string errorMessage = "adminId cannot be less than 1.";
+                string errorMessage = "AdminId cannot be less than 1.";
                 m_logger.LogError("AdministratorController.GetAdministrator: " + errorMessage);
                 return StatusCode(StatusCodes.Status400BadRequest, errorMessage);
             }
@@ -80,6 +80,14 @@
 
                 AdministratorDto administratorDto = AdministratorDtoHelper.GetAdministratorDto(results, phoneDtos, addressDtos);
                 results.Close();
+
+                // This is a stupid hack because IDataReader does not have an implementation of "HasRows".
+                if (administratorDto == null)
+                {
+                    string errorMessage = "Specified AdminId not found.";
+                    m_logger.LogError("AdministratorController.GetAdministrator: " + errorMessage);
+                    return StatusCode(StatusCodes.Status404NotFound, errorMessage);
+                }
 
                 return new JsonResult(administratorDto);
             }

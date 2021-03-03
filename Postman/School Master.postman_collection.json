@@ -4,6 +4,38 @@
 		"name": "School Master",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
-	"item": [],
-	"protocolProfileBehavior": {}
+	"item": [
+		{
+			"name": "Administrator",
+			"item": [
+				{
+					"name": "GetAdministrator by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44334/api/v1/Administrator?AdminId=4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44334",
+							"path": [
+								"api",
+								"v1",
+								"Administrator"
+							],
+							"query": [
+								{
+									"key": "AdminId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }

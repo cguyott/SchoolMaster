@@ -70,6 +70,7 @@
     <Folder Include="Tables" />
     <Folder Include="SSMS Scripts - Not Deployed" />
     <Folder Include="Stored Procedures" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -114,5 +115,8 @@
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeployment.sql" />
   </ItemGroup>
 </Project>

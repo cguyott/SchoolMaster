@@ -21,7 +21,8 @@
         {
             AdministratorDto results = null;
 
-            if (dataReader != null)
+            if ((dataReader != null)
+              && dataReader.Read())
             {
                 int idIndex = dataReader.GetOrdinal("Id");
                 int departmentIndex = dataReader.GetOrdinal("Department");
