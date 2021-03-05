@@ -6,7 +6,7 @@
     /// <summary>
     /// Student class implementation.
     /// </summary>
-    public class Student : Person, IStudent
+    public sealed class Student : Person, IStudent
     {
         private readonly int m_id;
 

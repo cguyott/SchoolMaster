@@ -5,7 +5,7 @@
     /// <summary>
     /// Address class implementation.
     /// </summary>
-    public class Address : IAddress
+    public sealed class Address : IAddress
     {
         private readonly int m_id;
 

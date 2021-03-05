@@ -6,7 +6,7 @@
     /// <summary>
     /// Administrator class implementation.
     /// </summary>
-    public class Administrator : Person, IAdministrator
+    public sealed class Administrator : Person, IAdministrator
     {
         private readonly int m_id;
 

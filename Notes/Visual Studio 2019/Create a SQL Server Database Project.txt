@@ -12,12 +12,14 @@
 3a. If you have an existing solution, right click on "Solution '...'" and select "Add" and then "New Project...".
 3b. If this is the first project in the solution, go to file menu, select new, select project.
 
-4. Under "Installed" open "Query Language"
+4. Set drop down menues to the following values:
+
+	Query Language		Windows		Web
 
 5. Select a "SQL Server Database Project", and click "next".
 
    Set "Project Name:" to be "SQLDatabase" and set the "Location" to be the solution
-   folder (which is the default).
+   folder (which is the default if you have already created a solution).
 
    Click on the "Create" button.
 

@@ -44,7 +44,7 @@
         /// A collection instance that supports ICollection and contains IDataParameter objects.
         /// </param>
         /// <returns>An object.</returns>
-        object ExecuteCommand(string procedure, IEnumerable<IDataParameter> parameters);
+        int ExecuteCommand(string procedure, IEnumerable<IDataParameter> parameters);
 
         /// <summary>
         /// Asynchronously executes a stored procedure and returns a value if appropriate.
@@ -56,6 +56,6 @@
         /// A collection instance that supports ICollection and contains IDataParameter objects.
         /// </param>
         /// <returns>An object.</returns>
-        Task<object> ExecuteCommandAsync(string procedure, IEnumerable<IDataParameter> parameters);
+        Task<int> ExecuteCommandAsync(string procedure, IEnumerable<IDataParameter> parameters);
     }
 }

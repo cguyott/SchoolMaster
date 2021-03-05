@@ -31,13 +31,13 @@
         private async Task DoNothing()
         {
             // No operation
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
         }
 
         private async Task<string> DoNothingWithString()
         {
             // No operation
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
 
             return string.Empty;
         }

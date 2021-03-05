@@ -61,8 +61,8 @@
                                 string suffix,
                                 string login,
                                 string email,
-                                List<AddressDto> addresses,
-                                List<PhoneDto> phoneNumbers)
+                                IEnumerable<AddressDto> addresses,
+                                IEnumerable<PhoneDto> phoneNumbers)
         {
             Id = id;
             Department = department;

@@ -11,14 +11,14 @@
     /// <summary>
     /// IDataAccess implementation for interacting with a Microsoft SQL Server database.
     /// </summary>
-    public class DataAccess : IDataAccess
+    public sealed class DataAccess : IDataAccess
     {
         private readonly ILogger<DataAccess> m_logger;
         private readonly string m_sqlConnectionString;
         private readonly IDataAccess m_thisAsIDataAccess;
 
-        private SqlConnection m_sqlConnection = null;
-        private SqlCommand m_sqlCommand = null;
+        private SqlConnection m_sqlConnection;
+        private SqlCommand m_sqlCommand;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataAccess"/> class.
@@ -30,11 +30,12 @@
         {
             m_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-            m_sqlConnectionString = sqlConnectionString ?? throw new ArgumentNullException(nameof(sqlConnectionString));
             if (string.IsNullOrWhiteSpace(sqlConnectionString))
             {
-                throw new ArgumentException("Argument cannot be whitespace or the empty string.", nameof(sqlConnectionString));
+                throw new ArgumentException("Argument cannot be null, whitespace, or the empty string.", nameof(sqlConnectionString));
             }
+
+            m_sqlConnectionString = sqlConnectionString;
 
             m_thisAsIDataAccess = this;
         }
@@ -81,15 +82,15 @@
         }
 
         /// <inheritdoc/>
-        object IDataAccess.ExecuteCommand(string procedure,
+        int IDataAccess.ExecuteCommand(string procedure,
                                           IEnumerable<IDataParameter> parameters)
         {
             return AsyncHelper.RunSync(() => m_thisAsIDataAccess.ExecuteCommandAsync(procedure, parameters));
         }
 
         /// <inheritdoc/>
-        async Task<object> IDataAccess.ExecuteCommandAsync(string procedure,
-                                                           IEnumerable<IDataParameter> parameters)
+        async Task<int> IDataAccess.ExecuteCommandAsync(string procedure,
+                                                        IEnumerable<IDataParameter> parameters)
         {
             if (procedure == null)
             {
@@ -133,10 +134,12 @@
 
             await m_sqlConnection.OpenAsync().ConfigureAwait(false);
 
+#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
             m_sqlCommand = new SqlCommand(procedure, m_sqlConnection)
             {
                 CommandType = CommandType.StoredProcedure,
             };
+#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
 
             foreach (var parameter in parameters)
             {
@@ -183,13 +186,13 @@
         /// <summary>
         /// Detects redundant calls.
         /// </summary>
-        private bool m_disposed = false;
+        private bool m_disposed;
 
         /// <summary>
         /// Dispose method implementation.
         /// </summary>
         /// <param name="disposing">Indicates where we are being called from.</param>
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (m_disposed == false)
             {

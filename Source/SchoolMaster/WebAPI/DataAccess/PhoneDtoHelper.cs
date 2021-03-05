@@ -14,7 +14,7 @@
         /// </summary>
         /// <param name="dataReader">Data reader.</param>
         /// <returns>Collection of phone dtos.</returns>
-        public static IList<PhoneDto> GetPhoneDtos(IDataReader dataReader)
+        public static IEnumerable<PhoneDto> GetPhoneDtos(IDataReader dataReader)
         {
             List<PhoneDto> results = new List<PhoneDto>();
 

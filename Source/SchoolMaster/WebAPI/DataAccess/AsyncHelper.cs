@@ -23,21 +23,29 @@
         /// <param name="func">The function to be invoked.</param>
         /// <returns>The data returned by the asynchronous function upon completion.</returns>
         public static TResult RunSync<TResult>(Func<Task<TResult>> func)
-            => s_localTaskFactory
-                .StartNew(func)
-                .Unwrap()
-                .GetAwaiter()
-                .GetResult();
+        {
+#pragma warning disable CA2008 // Do not create tasks without passing a TaskScheduler
+            return s_localTaskFactory
+                           .StartNew(func)
+#pragma warning restore CA2008 // Do not create tasks without passing a TaskScheduler
+                           .Unwrap()
+                           .GetAwaiter()
+                           .GetResult();
+        }
 
         /// <summary>
         /// Synchronously invoke an asynchronous function.
         /// </summary>
         /// <param name="func">The function to be invoked.</param>
         public static void RunSync(Func<Task> func)
-            => s_localTaskFactory
-                .StartNew(func)
-                .Unwrap()
-                .GetAwaiter()
-                .GetResult();
+        {
+#pragma warning disable CA2008 // Do not create tasks without passing a TaskScheduler
+            s_localTaskFactory
+                           .StartNew(func)
+#pragma warning restore CA2008 // Do not create tasks without passing a TaskScheduler
+                           .Unwrap()
+                           .GetAwaiter()
+                           .GetResult();
+        }
     }
 }

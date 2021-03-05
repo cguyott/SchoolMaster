@@ -6,7 +6,7 @@
     /// <summary>
     /// Instructor class implementation.
     /// </summary>
-    public class Instructor : Person, IInstructor
+    public sealed class Instructor : Person, IInstructor
     {
         private readonly int m_id;
 

@@ -58,7 +58,7 @@
         /// Initializes a new instance of the <see cref="Person"/> class.
         /// </summary>
         /// <param name="role">Role.</param>
-        public Person(Role role)
+        protected Person(Role role)
             : this()
         {
             m_role = role;
@@ -85,7 +85,7 @@
         /// <param name="email">Email.</param>
         /// <param name="addresses">Collection of addresses.</param>
         /// <param name="phoneNumbers">Collection of phone numbers.</param>
-        public Person(int personId,
+        protected Person(int personId,
                       Role role,
                       DateTime lastLoginDate,
                       DateTime lastPasswordChangedDate,

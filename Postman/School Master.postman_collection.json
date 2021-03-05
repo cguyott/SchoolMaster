@@ -4,6 +4,94 @@
 		"name": "School Master",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
-	"item": [],
-	"protocolProfileBehavior": {}
+	"item": [
+		{
+			"name": "Administrator",
+			"item": [
+				{
+					"name": "GetAdministratorById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44334/api/v1/Administrator/ById?AdminId=4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44334",
+							"path": [
+								"api",
+								"v1",
+								"Administrator",
+								"ById"
+							],
+							"query": [
+								{
+									"key": "AdminId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAdministratorByLogin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44334/api/v1/Administrator/ByLogin?AdminLogin=Person02Login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44334",
+							"path": [
+								"api",
+								"v1",
+								"Administrator",
+								"ByLogin"
+							],
+							"query": [
+								{
+									"key": "AdminLogin",
+									"value": "Person02Login"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAdministrator",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44334/api/v1/Administrator?AdminId=3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44334",
+							"path": [
+								"api",
+								"v1",
+								"Administrator"
+							],
+							"query": [
+								{
+									"key": "AdminId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }

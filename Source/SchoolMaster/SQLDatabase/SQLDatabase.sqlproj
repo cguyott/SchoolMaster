@@ -70,6 +70,7 @@
     <Folder Include="Tables" />
     <Folder Include="SSMS Scripts - Not Deployed" />
     <Folder Include="Stored Procedures" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -111,8 +112,13 @@
     <Build Include="Tables\Student.sql" />
     <Build Include="Tables\StudentGuardianMap.sql" />
     <Build Include="Stored Procedures\GetAdministrator.sql" />
+    <Build Include="Stored Procedures\GetAdministratorByLogin.sql" />
+    <Build Include="Stored Procedures\DeleteAdministrator.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeployment.sql" />
   </ItemGroup>
 </Project>
