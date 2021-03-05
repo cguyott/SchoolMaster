@@ -112,6 +112,8 @@
     <Build Include="Tables\Student.sql" />
     <Build Include="Tables\StudentGuardianMap.sql" />
     <Build Include="Stored Procedures\GetAdministrator.sql" />
+    <Build Include="Stored Procedures\GetAdministratorByLogin.sql" />
+    <Build Include="Stored Procedures\DeleteAdministrator.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />

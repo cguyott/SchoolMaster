@@ -82,15 +82,15 @@
         }
 
         /// <inheritdoc/>
-        object IDataAccess.ExecuteCommand(string procedure,
+        int IDataAccess.ExecuteCommand(string procedure,
                                           IEnumerable<IDataParameter> parameters)
         {
             return AsyncHelper.RunSync(() => m_thisAsIDataAccess.ExecuteCommandAsync(procedure, parameters));
         }
 
         /// <inheritdoc/>
-        async Task<object> IDataAccess.ExecuteCommandAsync(string procedure,
-                                                           IEnumerable<IDataParameter> parameters)
+        async Task<int> IDataAccess.ExecuteCommandAsync(string procedure,
+                                                        IEnumerable<IDataParameter> parameters)
         {
             if (procedure == null)
             {

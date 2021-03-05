@@ -44,7 +44,7 @@
         /// <param name="adminId">The id of the administrator who's detailed information has been requested.</param>
         /// <returns>An instance of the AdministratorDto class.</returns>
         [HttpGet]
-        [Route("api/v1/Administrator")]
+        [Route("api/v1/Administrator/ById")]
         [ProducesResponseType(typeof(AdministratorDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -62,8 +62,9 @@
             try
             {
                 List<SqlParameter> parameters = new List<SqlParameter>();
-                SqlParameter parameter = new SqlParameter("AdminId", System.Data.SqlDbType.Int)
+                SqlParameter parameter = new SqlParameter("AdminId", SqlDbType.Int)
                 {
+                    Direction = ParameterDirection.Input,
                     Value = adminId,
                 };
                 parameters.Add(parameter);
@@ -94,6 +95,133 @@
             catch (SqlException sqlException)
             {
                 m_logger.LogError("AdministratorController.GetAdministrator: " + sqlException.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, sqlException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the detailed information for the specified administrator.
+        /// </summary>
+        /// <param name="adminLogin">The login of the administrator who's detailed information has been requested.</param>
+        /// <returns>An instance of the AdministratorDto class.</returns>
+        [HttpGet]
+        [Route("api/v1/Administrator/ByLogin")]
+        [ProducesResponseType(typeof(AdministratorDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<AdministratorDto>> GetAdministratorByLogin([FromQuery] string adminLogin)
+        {
+            if (string.IsNullOrWhiteSpace(adminLogin))
+            {
+                string errorMessage = "A valid AdminLogin must be specified.";
+                m_logger.LogError("AdministratorController.GetAdministratorByLogin: " + errorMessage);
+                return StatusCode(StatusCodes.Status400BadRequest, errorMessage);
+            }
+
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                SqlParameter parameter = new SqlParameter("AdminLogin", SqlDbType.NVarChar, 64)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = adminLogin,
+                };
+                parameters.Add(parameter);
+
+                string sqlConnection = m_configuration.GetValue<string>("SQL:connectString");
+                using IDataAccess dataAccess = new DataAccess(m_dataAccessLogger, sqlConnection);
+                using IDataReader results = await dataAccess.ExecuteQueryAsync("GetAdministratorByLogin", parameters).ConfigureAwait(false);
+
+                IEnumerable<PhoneDto> phoneDtos = PhoneDtoHelper.GetPhoneDtos(results);
+                results.NextResult();
+
+                IEnumerable<AddressDto> addressDtos = AddressDtoHelper.GetAddressDtos(results);
+                results.NextResult();
+
+                AdministratorDto administratorDto = AdministratorDtoHelper.GetAdministratorDto(results, phoneDtos, addressDtos);
+                results.Close();
+
+                // This is a stupid hack because IDataReader does not have an implementation of "HasRows".
+                if (administratorDto == null)
+                {
+                    string errorMessage = "Specified AdminLogin not found.";
+                    m_logger.LogError("AdministratorController.GetAdministratorByLogin: " + errorMessage);
+                    return StatusCode(StatusCodes.Status404NotFound, errorMessage);
+                }
+
+                return new JsonResult(administratorDto);
+            }
+            catch (SqlException sqlException)
+            {
+                m_logger.LogError("AdministratorController.GetAdministratorByLogin: " + sqlException.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, sqlException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Deletes the specified administrator and all related data.
+        /// </summary>
+        /// <param name="adminId">The id of the administrator who will be deleted.</param>
+        /// <returns>An HTTP 200 success status code.</returns>
+        /// <remarks>This operation cannot be undone.</remarks>
+        [HttpDelete]
+        [Route("api/v1/Administrator")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteAdministrator([FromQuery] int adminId)
+        {
+            if (adminId < 1)
+            {
+                string errorMessage = "AdminId cannot be less than 1.";
+                m_logger.LogError("AdministratorController.DeleteAdministrator: " + errorMessage);
+                return StatusCode(StatusCodes.Status400BadRequest, errorMessage);
+            }
+
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                SqlParameter parameter = new SqlParameter("AdminId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = adminId,
+                };
+                parameters.Add(parameter);
+
+                parameter = new SqlParameter("Results", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output,
+                };
+                parameters.Add(parameter);
+
+                int resultsIndex = parameters.Count - 1;
+
+                string sqlConnection = m_configuration.GetValue<string>("SQL:connectString");
+                using IDataAccess dataAccess = new DataAccess(m_dataAccessLogger, sqlConnection);
+                _ = await dataAccess.ExecuteCommandAsync("DeleteAdministrator", parameters).ConfigureAwait(false);
+
+                int results = (int)(parameters[resultsIndex].Value);
+
+                switch (results)
+                {
+                    case 0:
+                        m_logger.LogError("AdministratorController.DeleteAdministrator: Requested administrator successfully deleted.");
+                        return StatusCode(StatusCodes.Status200OK);
+                    case 1:
+                        m_logger.LogError("AdministratorController.DeleteAdministrator: Requested administrator not found.");
+                        return StatusCode(StatusCodes.Status404NotFound);
+                    default:
+                        m_logger.LogError("AdministratorController.DeleteAdministrator: Unexpected status was returned from the database.");
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Unexpected status returned from the database.");
+                }
+            }
+            catch (SqlException sqlException)
+            {
+                m_logger.LogError("AdministratorController.DeleteAdministrator: " + sqlException.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, sqlException.Message);
             }
         }
