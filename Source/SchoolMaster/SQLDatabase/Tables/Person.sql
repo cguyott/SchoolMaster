@@ -7,12 +7,13 @@
     [LastName] NVARCHAR(50) NOT NULL, 
     [Suffix] NVARCHAR(6) NULL, 
     [Login] NVARCHAR(64) NOT NULL, 
-    [LastLoginDate] DATETIME2 NOT NULL, 
-    [PasswordHash] NVARCHAR(30) NOT NULL, 
-    [PasswordSalt] NVARCHAR(30) NOT NULL, 
-    [LastPasswordChangedDate] DATETIME2 NOT NULL, 
+    [LastLoginDate] DATETIME2 NULL, 
+    [PasswordHash] NVARCHAR(30) NULL, 
+    [PasswordSalt] NVARCHAR(30) NULL, 
+    [LastPasswordChangedDate] DATETIME2 NULL, 
     [CreatedDate] DATETIME2 NOT NULL, 
     CONSTRAINT [PK_Person] PRIMARY KEY ([Id]),
+    CONSTRAINT [UNQ_Login] UNIQUE NONCLUSTERED ([Login] ASC)
 );
 GO
 

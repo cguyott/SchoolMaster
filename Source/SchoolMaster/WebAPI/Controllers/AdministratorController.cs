@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
+    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -45,12 +46,12 @@
         /// <returns>An instance of the AdministratorDto class.</returns>
         [HttpGet]
         [Route("api/v1/Administrator/ById")]
-        [ProducesResponseType(typeof(AdministratorDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AdministratorResponseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<AdministratorDto>> GetAdministrator([FromQuery] int adminId)
+        public async Task<ActionResult<AdministratorResponseDto>> GetAdministrator([FromQuery] int adminId)
         {
             if (adminId < 1)
             {
@@ -79,7 +80,7 @@
                 IEnumerable<AddressDto> addressDtos = AddressDtoHelper.GetAddressDtos(results);
                 results.NextResult();
 
-                AdministratorDto administratorDto = AdministratorDtoHelper.GetAdministratorDto(results, phoneDtos, addressDtos);
+                AdministratorResponseDto administratorDto = AdministratorDtoHelper.GetAdministratorDto(results, phoneDtos, addressDtos);
                 results.Close();
 
                 // This is a stupid hack because IDataReader does not have an implementation of "HasRows".
@@ -106,12 +107,12 @@
         /// <returns>An instance of the AdministratorDto class.</returns>
         [HttpGet]
         [Route("api/v1/Administrator/ByLogin")]
-        [ProducesResponseType(typeof(AdministratorDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AdministratorResponseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<AdministratorDto>> GetAdministratorByLogin([FromQuery] string adminLogin)
+        public async Task<ActionResult<AdministratorResponseDto>> GetAdministratorByLogin([FromQuery] string adminLogin)
         {
             if (string.IsNullOrWhiteSpace(adminLogin))
             {
@@ -140,7 +141,7 @@
                 IEnumerable<AddressDto> addressDtos = AddressDtoHelper.GetAddressDtos(results);
                 results.NextResult();
 
-                AdministratorDto administratorDto = AdministratorDtoHelper.GetAdministratorDto(results, phoneDtos, addressDtos);
+                AdministratorResponseDto administratorDto = AdministratorDtoHelper.GetAdministratorDto(results, phoneDtos, addressDtos);
                 results.Close();
 
                 // This is a stupid hack because IDataReader does not have an implementation of "HasRows".
@@ -222,6 +223,301 @@
             catch (SqlException sqlException)
             {
                 m_logger.LogError("AdministratorController.DeleteAdministrator: " + sqlException.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, sqlException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Creates the specified administrator and all related data.
+        /// </summary>
+        /// <param name="newAdmin">The data related to the administrator to be created.</param>
+        /// <returns>An HTTP 200 success status code.</returns>
+        /// <remarks>This operation cannot be undone.</remarks>
+        [HttpPost]
+        [Route("api/v1/Administrator")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        public async Task<ActionResult<int>> CreateAdministrator([FromBody] AdministratorRequestDto newAdmin)
+        {
+            if (newAdmin == null)
+            {
+                string errorMessage = "Administrator data is not valid.";
+                m_logger.LogError("AdministratorController.CreateAdministrator: " + errorMessage);
+                return StatusCode(StatusCodes.Status400BadRequest, errorMessage);
+            }
+
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+
+                SqlParameter parameter = new SqlParameter("Prefix", SqlDbType.NVarChar, 6)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = (newAdmin.Prefix == null) ? DBNull.Value : newAdmin.Prefix,
+                };
+                parameters.Add(parameter);
+
+                if (string.IsNullOrWhiteSpace(newAdmin.Department))
+                {
+                    throw new ArgumentException("Department cannot be null, empty, or whitespace.");
+                }
+
+                parameter = new SqlParameter("Department", SqlDbType.NVarChar, 128)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = newAdmin.Department,
+                };
+                parameters.Add(parameter);
+
+                if (string.IsNullOrWhiteSpace(newAdmin.Position))
+                {
+                    throw new ArgumentException("Position cannot be null, empty, or whitespace.");
+                }
+
+                parameter = new SqlParameter("Position", SqlDbType.NVarChar, 128)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = newAdmin.Position,
+                };
+                parameters.Add(parameter);
+
+                if (string.IsNullOrWhiteSpace(newAdmin.FirstName))
+                {
+                    throw new ArgumentException("FirstName cannot be null, empty, or whitespace.");
+                }
+
+                parameter = new SqlParameter("FirstName", SqlDbType.NVarChar, 50)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = newAdmin.FirstName,
+                };
+                parameters.Add(parameter);
+
+                parameter = new SqlParameter("MiddleName", SqlDbType.NVarChar, 50)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = (newAdmin.MiddleName == null) ? DBNull.Value : newAdmin.MiddleName,
+                };
+                parameters.Add(parameter);
+
+                if (string.IsNullOrWhiteSpace(newAdmin.LastName))
+                {
+                    throw new ArgumentException("LastName cannot be null, empty, or whitespace.");
+                }
+
+                parameter = new SqlParameter("LastName", SqlDbType.NVarChar, 50)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = newAdmin.LastName,
+                };
+                parameters.Add(parameter);
+
+                parameter = new SqlParameter("Suffix", SqlDbType.NVarChar, 6)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = (newAdmin.Suffix == null) ? DBNull.Value : newAdmin.Suffix,
+                };
+                parameters.Add(parameter);
+
+                if (string.IsNullOrWhiteSpace(newAdmin.Login))
+                {
+                    throw new ArgumentException("Login cannot be null, empty, or whitespace.");
+                }
+
+                parameter = new SqlParameter("Login", SqlDbType.NVarChar, 64)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = newAdmin.Login,
+                };
+                parameters.Add(parameter);
+
+                if (string.IsNullOrWhiteSpace(newAdmin.Email))
+                {
+                    throw new ArgumentException("Email cannot be null, empty, or whitespace.");
+                }
+
+                parameter = new SqlParameter("Email", SqlDbType.NVarChar, 256)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = newAdmin.Email,
+                };
+                parameters.Add(parameter);
+
+                if (newAdmin.Addresses != null && newAdmin.Addresses.Any())
+                {
+                    using DataTable addressTable = new DataTable("AddressTable");
+                    addressTable.Columns.Add("Address1", typeof(string));
+                    addressTable.Columns.Add("Address2", typeof(string));
+                    addressTable.Columns.Add("City", typeof(string));
+                    addressTable.Columns.Add("State", typeof(string));
+                    addressTable.Columns.Add("Zip", typeof(string));
+
+                    foreach (AddressDto address in newAdmin.Addresses)
+                    {
+                        if (string.IsNullOrWhiteSpace(address.Address1))
+                        {
+                            throw new ArgumentException("Address1 cannot be null, empty, or whitespace.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(address.City))
+                        {
+                            throw new ArgumentException("City cannot be null, empty, or whitespace.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(address.State))
+                        {
+                            throw new ArgumentException("State cannot be null, empty, or whitespace.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(address.Zip))
+                        {
+                            throw new ArgumentException("Zip cannot be null, empty, or whitespace.");
+                        }
+
+                        object address2 = (address.Address2 == null) ? DBNull.Value : address.Address2;
+
+                        addressTable.Rows.Add(address.Address1, address2, address.City, address.State, address.Zip);
+                    }
+
+                    parameter = new SqlParameter("Addresses", SqlDbType.Structured)
+                    {
+                        Value = addressTable,
+                    };
+
+                    parameters.Add(parameter);
+                }
+
+                if (newAdmin.PhoneNumbers != null && newAdmin.PhoneNumbers.Any())
+                {
+                    using DataTable phoneTable = new DataTable("PhoneTable");
+                    phoneTable.Columns.Add("AreaCode", typeof(string));
+                    phoneTable.Columns.Add("ExchangeCode", typeof(string));
+                    phoneTable.Columns.Add("SubscriberNumber", typeof(string));
+                    phoneTable.Columns.Add("ContactOrder", typeof(int));
+
+                    foreach (PhoneDto phoneNumber in newAdmin.PhoneNumbers)
+                    {
+                        if (string.IsNullOrWhiteSpace(phoneNumber.AreaCode))
+                        {
+                            throw new ArgumentException("AreaCode cannot be null, empty, or whitespace.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(phoneNumber.ExchangeCode))
+                        {
+                            throw new ArgumentException("ExchangeCode cannot be null, empty, or whitespace.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(phoneNumber.SubscriberNumber))
+                        {
+                            throw new ArgumentException("SubscriberNumber cannot be null, empty, or whitespace.");
+                        }
+
+                        if (phoneNumber.ContactOrder < 0)
+                        {
+                            throw new ArgumentException("ContactOrder must be greater than or equal to zero.");
+                        }
+
+                        phoneTable.Rows.Add(phoneNumber.AreaCode, phoneNumber.ExchangeCode, phoneNumber.SubscriberNumber, phoneNumber.ContactOrder);
+                    }
+
+                    parameter = new SqlParameter("PhoneNumbers", SqlDbType.Structured)
+                    {
+                        Value = phoneTable,
+                    };
+
+                    parameters.Add(parameter);
+                }
+
+                parameter = new SqlParameter("AdministratorId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output,
+                };
+                parameters.Add(parameter);
+
+                int administratorIdIndex = parameters.Count - 1;
+
+                parameter = new SqlParameter("Results", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output,
+                };
+                parameters.Add(parameter);
+
+                int resultsIndex = parameters.Count - 1;
+
+                string sqlConnection = m_configuration.GetValue<string>("SQL:connectString");
+                using IDataAccess dataAccess = new DataAccess(m_dataAccessLogger, sqlConnection);
+                _ = await dataAccess.ExecuteQueryAsync("CreateAdministrator", parameters).ConfigureAwait(false);
+
+                int administratorId = (int)(parameters[administratorIdIndex].Value);
+                int results = (int)(parameters[resultsIndex].Value);
+
+                switch (results)
+                {
+                    case 0:
+                        m_logger.LogError("AdministratorController.CreateAdministrator: Requested administrator successfully created.");
+                        return new JsonResult(administratorId); // Returns a StatusCodes.Status200OK.
+                    case 1:
+                        m_logger.LogError("AdministratorController.CreateAdministrator: Requested administrator already exists.");
+                        return StatusCode(StatusCodes.Status409Conflict);
+                    default:
+                        m_logger.LogError("AdministratorController.CreateAdministrator: Unexpected status was returned from the database.");
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Unexpected status returned from the database.");
+                }
+            }
+            catch (ArgumentException argExeption)
+            {
+                m_logger.LogError("AdministratorController.CreateAdministrator: " + argExeption.Message);
+                return StatusCode(StatusCodes.Status400BadRequest, argExeption.Message);
+            }
+            catch (SqlException sqlException)
+            {
+                m_logger.LogError("AdministratorController.CreateAdministrator: " + sqlException.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, sqlException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Updates the specified administrator and all related data.
+        /// </summary>
+        /// <param name="adminId">adminId.</param>
+        /// <param name="updatedAdmin">The data related to the administrator to be updated.</param>
+        /// <returns>An HTTP 200 success status code.</returns>
+        /// <remarks>This operation cannot be undone.</remarks>
+        [HttpPut]
+        [Route("api/v1/Administrator")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<ActionResult> UpdateAdministrator([FromQuery] int adminId, [FromBody] AdministratorRequestDto updatedAdmin)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
+            if (adminId < 1)
+            {
+                string errorMessage = "AdminId must be greater than zero.";
+                m_logger.LogError("AdministratorController.UpdateAdministrator: " + errorMessage);
+                return StatusCode(StatusCodes.Status400BadRequest, errorMessage);
+            }
+
+            if (updatedAdmin == null)
+            {
+                string errorMessage = "Administrator data is not specified.";
+                m_logger.LogError("AdministratorController.UpdateAdministrator: " + errorMessage);
+                return StatusCode(StatusCodes.Status400BadRequest, errorMessage);
+            }
+
+            try
+            {
+                return StatusCode(StatusCodes.Status200OK);
+            }
+            catch (SqlException sqlException)
+            {
+                m_logger.LogError("AdministratorController.UpdateAdministrator: " + sqlException.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, sqlException.Message);
             }
         }

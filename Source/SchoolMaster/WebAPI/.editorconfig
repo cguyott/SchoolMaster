@@ -8,3 +8,6 @@ dotnet_diagnostic.CA1031.severity = none
 
 # CA1002: Do not expose generic lists
 dotnet_diagnostic.CA1002.severity = none
+
+# IDE0029: Use coalesce expression
+dotnet_diagnostic.IDE0029.severity = none

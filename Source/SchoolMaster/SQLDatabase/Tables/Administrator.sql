@@ -5,5 +5,6 @@
     [Department] NVARCHAR(128) NOT NULL, 
     [Position] NVARCHAR(128) NOT NULL, 
     CONSTRAINT [PK_Administrator] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_Administrator_PersonId] FOREIGN KEY ([PersonId]) REFERENCES [Person]([Id])
+    CONSTRAINT [FK_Administrator_PersonId] FOREIGN KEY ([PersonId]) REFERENCES [Person]([Id]),
+    CONSTRAINT [UNQ_Aministrator_PersonId] UNIQUE(PersonId)
 )

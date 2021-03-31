@@ -4,6 +4,6 @@
     [PersonId] INT NOT NULL, 
     [Email] NVARCHAR(256) NOT NULL,
     CONSTRAINT [PK_Email] PRIMARY KEY ([Id]),
-    CONSTRAINT [UNQ_PersonId] UNIQUE(PersonId),
-    CONSTRAINT [FK_Email_PersonId] FOREIGN KEY ([PersonId]) REFERENCES [Person]([Id])
+    CONSTRAINT [FK_Email_PersonId] FOREIGN KEY ([PersonId]) REFERENCES [Person]([Id]),
+    CONSTRAINT [UNQ_Email_PersonId] UNIQUE(PersonId)
 )

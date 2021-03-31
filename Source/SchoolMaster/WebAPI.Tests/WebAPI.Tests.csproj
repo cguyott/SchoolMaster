@@ -6,9 +6,12 @@
     <AssemblyName>SchoolMaster.WebAPI.Tests</AssemblyName>
     <RootNamespace>SchoolMaster.WebAPI.Tests</RootNamespace>
     <Authors>Briarwood Consulting</Authors>
+	<Company>Briarwood Consulting</Company>
     <Product>School Master</Product>
     <Copyright>Copyright © 2021 Briarwood Consulting</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
+	<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+	<Nullable>disable</Nullable>
 	<EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisLevel>5.0</AnalysisLevel>
 	<LangVersion>latest</LangVersion>
@@ -16,22 +19,10 @@
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>bin\Debug\SchoolMaster.WebAPI.Tests.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>bin\Release\SchoolMaster.WebAPI.Tests.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AutoFixture.AutoFakeItEasy" Version="4.15.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.15.0" />
     <PackageReference Include="FakeItEasy" Version="6.2.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.8.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
