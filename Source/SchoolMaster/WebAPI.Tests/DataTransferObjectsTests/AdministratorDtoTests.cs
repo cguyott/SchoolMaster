@@ -22,7 +22,7 @@
             // Arrange.
 
             // Act.
-            AdministratorDto adminDto = new AdministratorDto();
+            AdministratorResponseDto adminDto = new AdministratorResponseDto();
 
             // Assert.
 
@@ -85,7 +85,7 @@
             };
 
             // Act.
-            AdministratorDto adminDto = new AdministratorDto(id, department, position, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, email, addresses, phoneNumbers);
+            AdministratorResponseDto adminDto = new AdministratorResponseDto(id, department, position, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, email, addresses, phoneNumbers);
 
             List<AddressDto> addressList = adminDto.Addresses.ToList();
             List<PhoneDto> phoneList = adminDto.PhoneNumbers.ToList();

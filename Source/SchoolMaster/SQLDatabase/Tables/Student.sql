@@ -4,5 +4,6 @@
     [PersonId] INT NOT NULL, 
     [GradeLevel] INT NOT NULL,
     CONSTRAINT [PK_Student] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_Student_PersonId] FOREIGN KEY ([PersonId]) REFERENCES [Person]([Id])
+    CONSTRAINT [FK_Student_PersonId] FOREIGN KEY ([PersonId]) REFERENCES [Person]([Id]),
+    CONSTRAINT [UNQ_Student_PersonId] UNIQUE(PersonId)
 )

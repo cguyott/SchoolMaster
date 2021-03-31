@@ -90,6 +90,72 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "CreateAdministrator",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"department\": \"Department99\",\r\n    \"position\": \"Position99\",\r\n    \"prefix\": \"Mr.\",\r\n    \"firstName\": \"FirstName99\",\r\n    \"middleName\": \"MiddleName99\",\r\n    \"lastName\": \"LastName99\",\r\n    \"suffix\": null,\r\n    \"login\": \"Person99Login\",\r\n    \"email\": \"address99@email.com\",\r\n    \"addresses\": [\r\n        {\r\n            \"address1\": \"Address199\",\r\n            \"address2\": null,\r\n            \"city\": \"City99\",\r\n            \"state\": \"MA\",\r\n            \"zip\": \"99999\"\r\n        },\r\n        {\r\n            \"address1\": \"Address299\",\r\n            \"address2\": null,\r\n            \"city\": \"City99\",\r\n            \"state\": \"MA\",\r\n            \"zip\": \"99999\"\r\n        }\r\n    ],\r\n    \"phoneNumbers\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44334/api/v1/Administrator",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44334",
+							"path": [
+								"api",
+								"v1",
+								"Administrator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAdministrator",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"department\": \"Department01\",\r\n    \"position\": \"Position02\",\r\n    \"prefix\": null,\r\n    \"firstName\": \"FirstName04\",\r\n    \"middleName\": \"MiddleName04\",\r\n    \"lastName\": \"LastName04A\",\r\n    \"suffix\": null,\r\n    \"login\": \"Person04Login\",\r\n    \"email\": null,\r\n    \"addresses\": [\r\n        {\r\n            \"address1\": \"Address104\",\r\n            \"address2\": null,\r\n            \"city\": \"City04\",\r\n            \"state\": \"MA\",\r\n            \"zip\": \"44444\"\r\n        },\r\n        {\r\n            \"address1\": \"Address204\",\r\n            \"address2\": null,\r\n            \"city\": \"City04\",\r\n            \"state\": \"MA\",\r\n            \"zip\": \"44444\"\r\n        }\r\n    ],\r\n    \"phoneNumbers\": [\r\n        {\r\n            \"areaCode\": \"44A\",\r\n            \"exchangeCode\": \"44A\",\r\n            \"subscriberNumber\": \"444A\",\r\n            \"contactOrder\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44334/api/v1/Administrator?AdminId=4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44334",
+							"path": [
+								"api",
+								"v1",
+								"Administrator"
+							],
+							"query": [
+								{
+									"key": "AdminId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

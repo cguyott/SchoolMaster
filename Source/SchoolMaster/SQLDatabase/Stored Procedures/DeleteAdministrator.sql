@@ -6,6 +6,7 @@
 AS
 BEGIN
 	SET NOCOUNT ON;
+	SET XACT_ABORT ON;
 
 	DECLARE @PersonId INT;
 	DECLARE @RoleCount INT;
@@ -20,7 +21,7 @@ BEGIN
 		BEGIN TRY
 			SELECT @RoleCount = COUNT(*) FROM [dbo].[PersonRoleMap] WHERE [PersonId] = @PersonId;
 
-			BEGIN TRANSACTION PROCESSDELETE;
+			BEGIN TRANSACTION
 				IF (@RoleCount = 1)
 				BEGIN
 					DELETE FROM [dbo].[Address] WHERE [PersonId] = @PersonId;
@@ -35,13 +36,13 @@ BEGIN
 					DELETE FROM [dbo].[PersonRoleMap] WHERE [PersonId] = @PersonId AND [RoleId] = 1;
 					DELETE FROM [dbo].[Administrator] WHERE [PersonId] = @PersonId;
 				END
-			COMMIT TRANSACTION PROCESSDELETE;
+			COMMIT TRANSACTION
 			SET @Results = 0;
 		END TRY
 		BEGIN CATCH
 			IF (@@TRANCOUNT > 0)
 			BEGIN
-				ROLLBACK TRANSACTION PROCESSDELETE;
+				ROLLBACK TRANSACTION
 				THROW;
 			END
 		END CATCH;

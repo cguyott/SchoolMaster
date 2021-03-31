@@ -17,9 +17,9 @@
         /// <param name="phoneDtos">Collection of phone dtos.</param>
         /// <param name="addressDtos">Collection of address dtos.</param>
         /// <returns>An administrator dto.</returns>
-        public static AdministratorDto GetAdministratorDto(IDataReader dataReader, IEnumerable<PhoneDto> phoneDtos, IEnumerable<AddressDto> addressDtos)
+        public static AdministratorResponseDto GetAdministratorDto(IDataReader dataReader, IEnumerable<PhoneDto> phoneDtos, IEnumerable<AddressDto> addressDtos)
         {
-            AdministratorDto results = null;
+            AdministratorResponseDto results = null;
 
             if ((dataReader != null)
               && dataReader.Read())
@@ -54,7 +54,7 @@
                 DateTime createdDate = DataAccessHelper.GetDateTimeFromCurrentRow(currentRow, createdDateIndex, DateTime.MinValue);
                 string email = DataAccessHelper.GetStringFromCurrentRow(currentRow, emailIndex);
 
-                results = new AdministratorDto(id, department, position, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, email, addressDtos, phoneDtos);
+                results = new AdministratorResponseDto(id, department, position, lastLoginDate, lastPasswordChangedDate, createdDate, prefix, firstName, middleName, lastName, suffix, login, email, addressDtos, phoneDtos);
             }
 
             return results;

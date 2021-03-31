@@ -6,12 +6,12 @@
     /// <summary>
     /// Administrator data transfer object.
     /// </summary>
-    public class AdministratorDto
+    public class AdministratorResponseDto
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdministratorDto"/> class.
+        /// Initializes a new instance of the <see cref="AdministratorResponseDto"/> class.
         /// </summary>
-        public AdministratorDto()
+        public AdministratorResponseDto()
         {
             Id = -1;
             Department = null;
@@ -31,7 +31,7 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdministratorDto"/> class.
+        /// Initializes a new instance of the <see cref="AdministratorResponseDto"/> class.
         /// </summary>
         /// <param name="id">Unique id for this administrator in the database.</param>
         /// <param name="department">Department.</param>
@@ -48,7 +48,7 @@
         /// <param name="email">Email.</param>
         /// <param name="addresses">Collection of addresses.</param>
         /// <param name="phoneNumbers">Collection of phone numbers.</param>
-        public AdministratorDto(int id,
+        public AdministratorResponseDto(int id,
                                 string department,
                                 string position,
                                 DateTime lastLoginDate,
