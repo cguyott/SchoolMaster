@@ -253,19 +253,23 @@
             {
                 List<SqlParameter> parameters = new List<SqlParameter>();
 
-                SqlParameter parameter = new SqlParameter("Prefix", SqlDbType.NVarChar, 6)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = (newAdmin.Prefix == null) ? DBNull.Value : newAdmin.Prefix,
-                };
-                parameters.Add(parameter);
+                ControllerHelpers.SetPersonSqlParameters(parameters,
+                                                         newAdmin.Prefix,
+                                                         newAdmin.FirstName,
+                                                         newAdmin.MiddleName,
+                                                         newAdmin.LastName,
+                                                         newAdmin.Suffix,
+                                                         newAdmin.Login,
+                                                         newAdmin.Email,
+                                                         newAdmin.Addresses,
+                                                         newAdmin.PhoneNumbers);
 
                 if (string.IsNullOrWhiteSpace(newAdmin.Department))
                 {
                     throw new ArgumentException("Department cannot be null, empty, or whitespace.");
                 }
 
-                parameter = new SqlParameter("Department", SqlDbType.NVarChar, 128)
+                SqlParameter parameter = new SqlParameter("Department", SqlDbType.NVarChar, 128)
                 {
                     Direction = ParameterDirection.Input,
                     Value = newAdmin.Department,
@@ -283,153 +287,6 @@
                     Value = newAdmin.Position,
                 };
                 parameters.Add(parameter);
-
-                if (string.IsNullOrWhiteSpace(newAdmin.FirstName))
-                {
-                    throw new ArgumentException("FirstName cannot be null, empty, or whitespace.");
-                }
-
-                parameter = new SqlParameter("FirstName", SqlDbType.NVarChar, 50)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = newAdmin.FirstName,
-                };
-                parameters.Add(parameter);
-
-                parameter = new SqlParameter("MiddleName", SqlDbType.NVarChar, 50)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = (newAdmin.MiddleName == null) ? DBNull.Value : newAdmin.MiddleName,
-                };
-                parameters.Add(parameter);
-
-                if (string.IsNullOrWhiteSpace(newAdmin.LastName))
-                {
-                    throw new ArgumentException("LastName cannot be null, empty, or whitespace.");
-                }
-
-                parameter = new SqlParameter("LastName", SqlDbType.NVarChar, 50)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = newAdmin.LastName,
-                };
-                parameters.Add(parameter);
-
-                parameter = new SqlParameter("Suffix", SqlDbType.NVarChar, 6)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = (newAdmin.Suffix == null) ? DBNull.Value : newAdmin.Suffix,
-                };
-                parameters.Add(parameter);
-
-                if (string.IsNullOrWhiteSpace(newAdmin.Login))
-                {
-                    throw new ArgumentException("Login cannot be null, empty, or whitespace.");
-                }
-
-                parameter = new SqlParameter("Login", SqlDbType.NVarChar, 64)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = newAdmin.Login,
-                };
-                parameters.Add(parameter);
-
-                if (string.IsNullOrWhiteSpace(newAdmin.Email))
-                {
-                    throw new ArgumentException("Email cannot be null, empty, or whitespace.");
-                }
-
-                parameter = new SqlParameter("Email", SqlDbType.NVarChar, 256)
-                {
-                    Direction = ParameterDirection.Input,
-                    Value = newAdmin.Email,
-                };
-                parameters.Add(parameter);
-
-                if (newAdmin.Addresses != null && newAdmin.Addresses.Any())
-                {
-                    using DataTable addressTable = new DataTable("AddressTable");
-                    addressTable.Columns.Add("Address1", typeof(string));
-                    addressTable.Columns.Add("Address2", typeof(string));
-                    addressTable.Columns.Add("City", typeof(string));
-                    addressTable.Columns.Add("State", typeof(string));
-                    addressTable.Columns.Add("Zip", typeof(string));
-
-                    foreach (AddressDto address in newAdmin.Addresses)
-                    {
-                        if (string.IsNullOrWhiteSpace(address.Address1))
-                        {
-                            throw new ArgumentException("Address1 cannot be null, empty, or whitespace.");
-                        }
-
-                        if (string.IsNullOrWhiteSpace(address.City))
-                        {
-                            throw new ArgumentException("City cannot be null, empty, or whitespace.");
-                        }
-
-                        if (string.IsNullOrWhiteSpace(address.State))
-                        {
-                            throw new ArgumentException("State cannot be null, empty, or whitespace.");
-                        }
-
-                        if (string.IsNullOrWhiteSpace(address.Zip))
-                        {
-                            throw new ArgumentException("Zip cannot be null, empty, or whitespace.");
-                        }
-
-                        object address2 = (address.Address2 == null) ? DBNull.Value : address.Address2;
-
-                        addressTable.Rows.Add(address.Address1, address2, address.City, address.State, address.Zip);
-                    }
-
-                    parameter = new SqlParameter("Addresses", SqlDbType.Structured)
-                    {
-                        Value = addressTable,
-                    };
-
-                    parameters.Add(parameter);
-                }
-
-                if (newAdmin.PhoneNumbers != null && newAdmin.PhoneNumbers.Any())
-                {
-                    using DataTable phoneTable = new DataTable("PhoneTable");
-                    phoneTable.Columns.Add("AreaCode", typeof(string));
-                    phoneTable.Columns.Add("ExchangeCode", typeof(string));
-                    phoneTable.Columns.Add("SubscriberNumber", typeof(string));
-                    phoneTable.Columns.Add("ContactOrder", typeof(int));
-
-                    foreach (PhoneDto phoneNumber in newAdmin.PhoneNumbers)
-                    {
-                        if (string.IsNullOrWhiteSpace(phoneNumber.AreaCode))
-                        {
-                            throw new ArgumentException("AreaCode cannot be null, empty, or whitespace.");
-                        }
-
-                        if (string.IsNullOrWhiteSpace(phoneNumber.ExchangeCode))
-                        {
-                            throw new ArgumentException("ExchangeCode cannot be null, empty, or whitespace.");
-                        }
-
-                        if (string.IsNullOrWhiteSpace(phoneNumber.SubscriberNumber))
-                        {
-                            throw new ArgumentException("SubscriberNumber cannot be null, empty, or whitespace.");
-                        }
-
-                        if (phoneNumber.ContactOrder < 0)
-                        {
-                            throw new ArgumentException("ContactOrder must be greater than or equal to zero.");
-                        }
-
-                        phoneTable.Rows.Add(phoneNumber.AreaCode, phoneNumber.ExchangeCode, phoneNumber.SubscriberNumber, phoneNumber.ContactOrder);
-                    }
-
-                    parameter = new SqlParameter("PhoneNumbers", SqlDbType.Structured)
-                    {
-                        Value = phoneTable,
-                    };
-
-                    parameters.Add(parameter);
-                }
 
                 parameter = new SqlParameter("AdministratorId", SqlDbType.Int)
                 {
@@ -493,9 +350,7 @@
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public async Task<ActionResult> UpdateAdministrator([FromQuery] int adminId, [FromBody] AdministratorRequestDto updatedAdmin)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             if (adminId < 1)
             {
@@ -513,7 +368,81 @@
 
             try
             {
-                return StatusCode(StatusCodes.Status200OK);
+                List<SqlParameter> parameters = new List<SqlParameter>();
+
+                SqlParameter parameter = new SqlParameter("AdministratorId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = adminId,
+                };
+                parameters.Add(parameter);
+
+                ControllerHelpers.SetPersonSqlParameters(parameters,
+                                                         updatedAdmin.Prefix,
+                                                         updatedAdmin.FirstName,
+                                                         updatedAdmin.MiddleName,
+                                                         updatedAdmin.LastName,
+                                                         updatedAdmin.Suffix,
+                                                         updatedAdmin.Login,
+                                                         updatedAdmin.Email,
+                                                         updatedAdmin.Addresses,
+                                                         updatedAdmin.PhoneNumbers);
+
+                if (string.IsNullOrWhiteSpace(updatedAdmin.Department))
+                {
+                    throw new ArgumentException("Department cannot be null, empty, or whitespace.");
+                }
+
+                parameter = new SqlParameter("Department", SqlDbType.NVarChar, 128)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = updatedAdmin.Department,
+                };
+                parameters.Add(parameter);
+
+                if (string.IsNullOrWhiteSpace(updatedAdmin.Position))
+                {
+                    throw new ArgumentException("Position cannot be null, empty, or whitespace.");
+                }
+
+                parameter = new SqlParameter("Position", SqlDbType.NVarChar, 128)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = updatedAdmin.Position,
+                };
+                parameters.Add(parameter);
+
+                parameter = new SqlParameter("Results", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output,
+                };
+                parameters.Add(parameter);
+
+                int resultsIndex = parameters.Count - 1;
+
+                string sqlConnection = m_configuration.GetValue<string>("SQL:connectString");
+                using IDataAccess dataAccess = new DataAccess(m_dataAccessLogger, sqlConnection);
+                _ = await dataAccess.ExecuteQueryAsync("UpdateAdministrator", parameters).ConfigureAwait(false);
+
+                int results = (int)(parameters[resultsIndex].Value);
+
+                switch (results)
+                {
+                    case 0:
+                        m_logger.LogError("AdministratorController.UpdateAdministrator: Requested administrator successfully updated.");
+                        return StatusCode(StatusCodes.Status200OK);
+                    case 1:
+                        m_logger.LogError("AdministratorController.UpdateAdministrator: Requested administrator does not exist.");
+                        return StatusCode(StatusCodes.Status404NotFound);
+                    default:
+                        m_logger.LogError("AdministratorController.UpdateAdministrator: Unexpected status was returned from the database.");
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Unexpected status returned from the database.");
+                }
+            }
+            catch (ArgumentException argExeption)
+            {
+                m_logger.LogError("AdministratorController.UpdateAdministrator: " + argExeption.Message);
+                return StatusCode(StatusCodes.Status400BadRequest, argExeption.Message);
             }
             catch (SqlException sqlException)
             {
