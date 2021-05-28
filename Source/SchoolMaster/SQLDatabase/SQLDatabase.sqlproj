@@ -119,6 +119,8 @@
     <Build Include="Table Types\PhoneTable.sql" />
     <Build Include="Stored Procedures\CreateAdministrator.sql" />
     <Build Include="Stored Procedures\UpdateAdministrator.sql" />
+    <Build Include="Stored Procedures\CreateInstructor.sql" />
+    <Build Include="Stored Procedures\UpdateInstructor.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />
