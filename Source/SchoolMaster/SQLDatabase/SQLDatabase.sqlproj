@@ -121,6 +121,7 @@
     <Build Include="Stored Procedures\UpdateAdministrator.sql" />
     <Build Include="Stored Procedures\CreateInstructor.sql" />
     <Build Include="Stored Procedures\UpdateInstructor.sql" />
+    <Build Include="Stored Procedures\DeleteInstructor.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />

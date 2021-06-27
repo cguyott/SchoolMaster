@@ -39,6 +39,72 @@
         }
 
         /// <summary>
+        /// Deletes the specified instructor and all related data.
+        /// </summary>
+        /// <param name="instructorId">The id of the instructor who will be deleted.</param>
+        /// <returns>An HTTP 200 success status code.</returns>
+        /// <remarks>This operation cannot be undone.</remarks>
+        [HttpDelete]
+        [Route("api/v1/Instructor")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteInstructor([FromQuery] int instructorId)
+        {
+            if (instructorId < 1)
+            {
+                string errorMessage = "InstructorId cannot be less than 1.";
+                m_logger.LogError("InstructorController.DeleteInstructor: " + errorMessage);
+                return StatusCode(StatusCodes.Status400BadRequest, errorMessage);
+            }
+
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                SqlParameter parameter = new SqlParameter("InstructorId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Input,
+                    Value = instructorId,
+                };
+                parameters.Add(parameter);
+
+                parameter = new SqlParameter("Results", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output,
+                };
+                parameters.Add(parameter);
+
+                int resultsIndex = parameters.Count - 1;
+
+                string sqlConnection = m_configuration.GetValue<string>("SQL:connectString");
+                using IDataAccess dataAccess = new DataAccess(m_dataAccessLogger, sqlConnection);
+                _ = await dataAccess.ExecuteCommandAsync("DeleteInstructor", parameters).ConfigureAwait(false);
+
+                int results = (int)(parameters[resultsIndex].Value);
+
+                switch (results)
+                {
+                    case 0:
+                        m_logger.LogError("InstructorController.DeleteInstructor: Requested administrator successfully deleted.");
+                        return StatusCode(StatusCodes.Status200OK);
+                    case 1:
+                        m_logger.LogError("InstructorController.DeleteInstructor: Requested administrator not found.");
+                        return StatusCode(StatusCodes.Status404NotFound);
+                    default:
+                        m_logger.LogError("InstructorController.DeleteInstructor: Unexpected status was returned from the database.");
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Unexpected status returned from the database.");
+                }
+            }
+            catch (SqlException sqlException)
+            {
+                m_logger.LogError("InstructorController.DeleteInstructor: " + sqlException.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, sqlException.Message);
+            }
+        }
+
+        /// <summary>
         /// Creates the specified instructor and all related data.
         /// </summary>
         /// <param name="newInstructor">The data related to the administrator to be created.</param>
